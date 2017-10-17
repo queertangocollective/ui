@@ -1,0 +1,53 @@
+.search-field {
+  position: relative;
+  margin-bottom: 0;
+
+  svg.search {
+    position: absolute;
+    bottom: 4px;
+    left: 0px;
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+  }
+
+  .clear {
+    position: absolute;
+    bottom: 4px;
+    right: 0;
+    height: 24px;
+    width: 24px;
+    svg {
+      transition: all 120ms;
+      fill: $soot;
+      height: 16px;
+      width: 16px;
+
+      &:hover {
+        fill: $black;
+      }
+    }
+  }
+
+  &.has-icon input {
+    padding-left: 36px;
+  }
+
+  input {
+    padding-right: 2rem;
+  }
+  h2 & input {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 3rem;
+    border: 0;
+    font-size: 1.7rem;
+    height: 2.7rem;
+    &:hover, &:active, &:focus {
+      box-shadow: none;
+    }
+    &::placeholder {
+      color: $black;
+    }
+  }
+}

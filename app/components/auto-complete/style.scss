@@ -1,0 +1,22 @@
+.auto-complete {
+  .pop-over {
+    background: $black;
+    z-index: 500;
+  }
+  .pop-over-container {
+    padding: 1rem;
+    max-height: 16rem;
+    overflow-y: auto;
+    white-space: nowrap;
+  }
+
+  li {
+    font-size: 1rem;
+    padding: 0.5rem 0.25rem;
+    cursor: pointer;
+  }
+
+  li + li {
+    border-top: 1px solid $soot;
+  }
+}

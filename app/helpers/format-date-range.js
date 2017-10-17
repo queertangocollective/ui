@@ -1,0 +1,16 @@
+import { helper } from '@ember/component/helper';
+import moment from 'moment';
+
+export function formatDateRange(startDate, endDate) {
+  if (moment(startDate).isSame(moment(endDate))) {
+    return moment(startDate).format('MMMM D, YYYY');
+  } else if (moment(startDate).diff(moment(endDate), 'months') === 0) {
+    return `${moment(startDate).format("MMMM D")} - ${moment(endDate).format('D, YYYY')}`;
+  } else {
+    return `${moment(startDate).format("MMMM D, YYYY")} - ${moment(endDate).format('MMMM D, YYYY')}`;
+  }
+}
+
+export default helper(function ([startDate, endDate]) {
+  return formatDateRange(startDate, endDate);
+});

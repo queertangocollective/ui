@@ -1,10 +1,10 @@
-# ui
+# @queertangocollective/ui
 
-This README outlines the details of collaborating on this Ember addon.
+This addon contains core UI facilities for queertangocollective.org. These components can be reused across websites that Queer Tango Collective supports :heart:
 
 ## Installation
 
-* `git clone <repository-url>` this repository
+* `git clone git@github.com:queertangocollective/ui.git` this repository
 * `cd ui`
 * `npm install`
 
