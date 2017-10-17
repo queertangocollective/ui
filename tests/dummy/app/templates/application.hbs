@@ -1,3 +1,9 @@
-<h2 id="title">Welcome to Ember</h2>
+<label for='text-field'>Text Field</label>
+{{text-field inputId='text-field' value=text onchange=(action (mut text))}}
+{{text}}
+
+<label for='number-field'>Number Field</label>
+{{number-field inputId='number-field' value=number onchange=(action (mut number))}}
+{{number}}
 
 {{outlet}}
