@@ -39,5 +39,12 @@
 {{checked}}
 
 <button onclick={{action 'flash' 'Hi'}}>Show snackbar</button>
+<button onclick={{action (mut dialog) true}}>Show dialog</button>
+{{#if dialog}}
+  {{dialog-box (component 'hello-dialog')
+    ondismiss=(action (mut dialog) false)}}
+{{/if}}
+
 {{snack-bar}}
+{{dialog-box}}
 {{outlet}}
