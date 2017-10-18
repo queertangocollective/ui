@@ -3,6 +3,7 @@ import NumberField from '../number-field/component';
 import { l } from '../../helpers/l';
 
 export default NumberField.extend({
+
   classNames: ['percent-field'],
 
   min: 0,

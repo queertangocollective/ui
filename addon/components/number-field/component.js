@@ -267,7 +267,6 @@ export default Component.extend({
     },
 
     restrict(evt) {
-      debugger;
       if (evt.which === 32 || evt.shiftKey) {
         return false;
       }
