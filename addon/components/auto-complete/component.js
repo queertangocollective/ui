@@ -1,8 +1,10 @@
 import Component from '@ember/component';
 import { set, get, computed } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
+import layout from './template';
 
 export default Component.extend({
+  layout,
   classNames: ['auto-complete'],
 
   searchId: computed({

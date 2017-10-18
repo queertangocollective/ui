@@ -10,4 +10,12 @@
 {{password-field inputId='password-field' value=password onchange=(action (mut password))}}
 {{password}}
 
+<label for='search-field'>Search</label>
+{{search-field inputId='search-field' query=query onquery=(action (mut query))}}
+{{query}}
+
+<label for='auto-complete'>Autocomplete</label>
+{{auto-complete inputId='auto-complete' value=autocomplete onchange=(action (mut autocomplete)) onquery=(action 'query') key='name'}}
+{{autocomplete.alpha2Code}} / {{autocomplete.name}}
+
 {{outlet}}
