@@ -22,4 +22,12 @@
 {{auto-complete inputId='auto-complete' value=autocomplete onchange=(action (mut autocomplete)) onquery=(action 'query') key='name'}}
 {{autocomplete.alpha2Code}} / {{autocomplete.name}}
 
+<label for='date-field'>Date Field</label>
+{{date-field inputId='date-field' value=date onchange=(action (mut date))}}
+{{date}}
+
+<label for='datetime-field'>Datetime Field</label>
+{{datetime-field inputId='datetime-field' value=datetime onchange=(action (mut datetime))}}
+{{datetime}}
+
 {{outlet}}
