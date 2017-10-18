@@ -1,19 +1,19 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { bind } from '@ember/runloop';
-import { observer, get } from '@ember/object';
+import { get } from '@ember/object';
 import $ from 'jquery';
+import layout from './template';
 
 export default Component.extend({
+  layout,
 
   flash: service(),
 
-  session: service(),
-
-  stick: observer('session.currentUser', function () {
+  stick() {
     let top = Math.max($('.admin').height() - $(window).scrollTop(), 0) + 20;
     this.$('.snack-bar').css({ top });
-  }),
+  },
 
   didInsertElement() {
     this._stick = bind(this, 'stick');

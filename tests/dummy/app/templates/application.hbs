@@ -38,4 +38,6 @@
 {{check-box value=checked onchange=(action (mut checked))}}
 {{checked}}
 
+<button onclick={{action 'flash' 'Hi'}}>Show snackbar</button>
+{{snack-bar}}
 {{outlet}}
