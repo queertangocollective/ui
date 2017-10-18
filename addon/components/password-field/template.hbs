@@ -14,8 +14,8 @@
 {{/action-link}}
 {{#tool-tip for=(concat 'reveal-' elementId)}}
   {{#if hasBlock}}
-    {{yield isRevealed}}
+    {{yield}}
   {{else}}
-    {{#if isRevealed}}Hide{{else}}Reveal{{/if}} Password
+    {{yield to='inverse'}}
   {{/if}}
 {{/tool-tip}}
