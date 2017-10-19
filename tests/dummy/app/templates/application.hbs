@@ -2,6 +2,10 @@
 {{text-field inputId='text-field' value=text onchange=(action (mut text))}}
 {{text}}
 
+<label for='text-area'>Text Area</label>
+{{text-area inputId='text-area' value=multiline onchange=(action (mut multiline)) rows=3}}
+{{multiline}}
+
 <label for='number-field'>Number Field</label>
 {{number-field inputId='number-field' value=number onchange=(action (mut number))}}
 {{number}}
