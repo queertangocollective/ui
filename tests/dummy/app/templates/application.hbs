@@ -42,6 +42,13 @@
 {{check-box value=checked onchange=(action (mut checked))}}
 {{checked}}
 
+<label for='upload-field'>Upload field</label>
+{{#upload-field name='photo' value=upload onchange=(action (mut upload)) as |photo|}}
+  <img src={{photo.url}} alt={{photo.name}} />
+{{else}}
+  Add File
+{{/upload-field}}
+
 <button onclick={{action 'flash' 'Hi'}}>Show snackbar</button>
 <button onclick={{action (mut dialog) true}}>Show dialog</button>
 {{#if dialog}}
