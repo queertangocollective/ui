@@ -49,6 +49,14 @@
   Add File
 {{/upload-field}}
 
+<label for='upload-list'>Upload list</label>
+{{#upload-list name='gallery' value=uploads onchange=(action (mut uploads)) as |photo|}}
+  <img src={{photo.url}} alt={{photo.name}} />
+{{else}}
+  Add Files
+{{/upload-list}}
+
+
 <button onclick={{action 'flash' 'Hi'}}>Show snackbar</button>
 <button onclick={{action (mut dialog) true}}>Show dialog</button>
 {{#if dialog}}

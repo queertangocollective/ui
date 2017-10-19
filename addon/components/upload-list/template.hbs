@@ -1,0 +1,14 @@
+{{#with (await value) as |uploads|}}
+  {{#each uploads as |upload idx|}}
+    {{#upload-field value=upload name=(concat (or name inputId) '/' upload.id) onchange=(action 'change' idx) as |upload remove|}}
+      {{yield upload remove}}
+    {{else}}
+      {{yield to='inverse'}}
+    {{/upload-field}}
+  {{/each}}
+{{/with}}
+{{#upload-field name=(concat (or name inputId) '/new') multiple=true onchange=(action 'add')}}
+  {{yield upload remove}}
+{{else}}
+  {{yield to='inverse'}}
+{{/upload-field}}
