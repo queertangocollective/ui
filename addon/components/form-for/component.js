@@ -3,16 +3,16 @@ import { set, get, computed } from '@ember/object';
 import { tryInvoke } from '@ember/utils';
 import RSVP from 'rsvp';
 import Changeset from 'ember-changeset';
-import method from 'ember-service-methods/inject';
+import layout from './template';
 
 export default Component.extend({
+  layout,
+
   tagName: 'form',
 
   multiple: false,
 
   novalidate: true,
-
-  flash: method(),
 
   attributeBindings: ['novalidate'],
 
@@ -76,10 +76,7 @@ export default Component.extend({
 
     onsubmit() {
       return this.submit().then(() => {
-        let model = get(this, 'model');
-        this.flash(`"${model.get('name') || model.get('title') || model.get('email') || model.get('filename') || model.get('description')}" was saved.`, {
-          timeout: 2500
-        });
+        get(this, 'onsaved')(get(this, 'model'));
       });
     }
   }

@@ -2,8 +2,10 @@ import Component from '@ember/component';
 import { capitalize, dasherize } from '@ember/string';
 import { get, computed } from '@ember/object';
 import { tryInvoke } from '@ember/utils';
+import layout from './template';
 
 export default Component.extend({
+  layout,
 
   classNames: ['form-for_field'],
 

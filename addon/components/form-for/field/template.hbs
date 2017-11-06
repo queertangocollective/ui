@@ -21,8 +21,8 @@
       onchange=(action onchange model (if fieldName fieldName index))
       onquery=(action 'query')
       onupload=onupload
-      rows=rows as |arg1|}}
-      {{yield arg1}}
+      rows=rows as |arg1 arg2|}}
+      {{yield arg1 arg2}}
     {{else}}
       {{yield to='inverse'}}
     {{/component}}
