@@ -1,3 +1,4 @@
+import Autoresize from '../../mixins/autoresize';
 import Component from '@ember/component';
 import { set, get } from '@ember/object';
 import { tryInvoke, isBlank } from '@ember/utils';
@@ -8,7 +9,7 @@ import layout from './template';
 const UP = 38;
 const DOWN = 40;
 
-export default Component.extend({
+export default Component.extend(Autoresize, {
   layout,
   classNames: ['date-field'],
 
@@ -29,6 +30,24 @@ export default Component.extend({
   name: null,
 
   /**
+    The `format` that the date should be displayed in.
+
+    @property format
+    @type String
+    @default 'M/D/YYYY'
+   */
+  format: 'M/D/YYYY',
+
+  /**
+    The `timezone` that the date should be displayed in.
+
+    @property timezone
+    @type String
+    @default 'America/New_York'
+   */
+  timezone: 'America/New_York',
+
+  /**
     Whether or not the field is disabled.
 
     @property disabled
@@ -37,22 +56,18 @@ export default Component.extend({
    */
   disabled: false,
 
-  didRender() {
-    this._updateDisplayValue(this._getValue());
-  },
-
   _getValue() {
     if (get(this, 'isFocused')) {
       let input = get(this, 'element').querySelector('input');
       return input.value;
     } else {
       let value = get(this, 'value');
-      return value ? moment(value).format('M/D/YYYY ') : '';
+      return value ? moment(value).format(get(this, 'format')) : '';
     }
   },
 
   _setValue(value) {
-    let date = moment.tz(value, 'M/D/YYYY', 'America/New_York');
+    let date = moment.tz(value, get(this, 'format'), get(this, 'timezone'));
     if (isBlank(value) || value == null) {
       get(this, 'onchange')(null);
     } else if (date.isValid()) {
@@ -70,6 +85,7 @@ export default Component.extend({
     let selectionStart = input.selectionStart;
     let selectionEnd = input.selectionEnd;
 
+    set(this, 'displayValue', displayValue || '');
     input.value = displayValue || '';
     input.selectionStart = selectionStart;
     input.selectionEnd = selectionEnd;
@@ -83,14 +99,52 @@ export default Component.extend({
 
         let direction = evt.which === UP ? 1 : -1;
         let date = moment(get(this, 'value'));
-        if (cursor < 2) {
-          date.add(direction, 'month');
-        } else if (cursor > 2 && cursor < 5) {
-          date.add(direction, 'day');
-        } else if (cursor > 5) {
+        let format = get(this, 'format');
+        let formattedDate = date.format(format);
+        let separators = formattedDate.replace(/\d+|(am)|(pm)/g, '0').split('0');
+        let parts = [];
+
+        let numberStart = 0;
+        let formatStart = 0;
+        separators.forEach(function (separator) {
+          if (separator !== '') {
+            let formatEnd = format.indexOf(separator, formatStart);
+            let numberEnd = formattedDate.indexOf(separator, numberStart);
+
+            parts.push({
+              start: numberStart,
+              end: numberEnd + separator.length,
+              format: format.slice(formatStart, formatEnd),
+              value: formattedDate.slice(numberStart, numberEnd)
+            });
+            formatStart = formatEnd + separator.length;
+            numberStart = numberEnd + separator.length;
+          } else if (numberStart !== 0) {
+            parts.push({
+              start: numberStart,
+              end: formattedDate.length,
+              format: format.slice(formatStart),
+              value: format.slice(numberStart)
+            });
+          }
+        });
+
+        // Adjust the last item
+        parts[parts.length - 1].end++;
+
+        let unit = parts.find(function (part) {
+          return cursor >= part.start && cursor < part.end;
+        });
+
+        if (unit.format === 'YYYY') {
           date.add(direction, 'year');
+        } else if (unit.format === 'M' || unit.fomrat === 'MM') {
+          date.add(direction, 'month');
+        } else if (unit.format === 'D' || unit.format === 'DD') {
+          date.add(direction, 'day');
         }
-        this._setValue(date.format('M/D/YYYY'));
+
+        this._setValue(date.format(get(this, 'format')));
         return false;
       }
     },
@@ -133,7 +187,7 @@ export default Component.extend({
     },
 
     onchange({ moment }) {
-      this._setValue(moment.format('MM/DD/YYYY'));
+      this._setValue(moment.format(get(this, 'format')));
       get(this, 'popover').hide();
     }
   }
