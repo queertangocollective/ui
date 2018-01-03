@@ -2,5 +2,8 @@
 'use strict';
 
 module.exports = {
-  name: 'ui'
+  name: 'ui',
+  included() {
+    this._super.included.apply(this, arguments);
+  }
 };
