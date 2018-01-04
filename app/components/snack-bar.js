@@ -1,1 +1,1 @@
-export { default } from 'ui/components/snack-bar/component';
+export { default } from '@queertangocollective/ui/components/snack-bar/component';

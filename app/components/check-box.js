@@ -1,1 +1,1 @@
-export { default } from 'ui/components/check-box/component';
+export { default } from '@queertangocollective/ui/components/check-box/component';

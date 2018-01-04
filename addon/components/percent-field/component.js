@@ -49,7 +49,7 @@ export default NumberField.extend({
       trimmedString = trimmedString.replace(/%/g, '') + '.' + oldString.slice(
         oldString.indexOf('.'),
         oldString.indexOf('.') + precision + 1
-      ).replace(/[\.%]/g, '') + '%';
+      ).replace(/[.%]/g, '') + '%';
     }
 
     return trimmedString;

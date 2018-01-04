@@ -1,1 +1,1 @@
-export { default } from 'ui/components/tool-tip/component';
+export { default } from '@queertangocollective/ui/components/tool-tip/component';

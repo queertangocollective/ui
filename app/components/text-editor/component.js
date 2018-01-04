@@ -58,22 +58,25 @@ export default Component.extend({
     this._super(...arguments);
     set(this, 'componentCards', []);
     set(this, 'componentAtoms', []);
+    set(this, 'cards', [
+      createComponentCard('photo-card'),
+      createComponentCard('youtube-card')
+    ]);
+
+    set(this, 'atoms', [{
+      name: 'line-break',
+      type: 'dom',
+      render() {
+        return document.createElement('br');
+      }
+    }]);
 
     this._startedRunLoop = false;
   },
 
-  cards: [
-    createComponentCard('photo-card'),
-    createComponentCard('youtube-card')
-  ],
+  cards: null,
 
-  atoms: [{
-    name: 'line-break',
-    type: 'dom',
-    render() {
-      return document.createElement('br');
-    }
-  }],
+  atoms: null,
 
   willRender() {
     // Use a default mobiledoc. If there are no changes, then return early.
@@ -279,7 +282,7 @@ export default Component.extend({
   actions: {
     upload(editor, file) {
       return get(this, 'onupload')(file).then((photo) => {
-        debugger;
+        
         this.addCard('photo-card', {
           id: get(photo, 'id'),
           url: get(photo, 'url'),

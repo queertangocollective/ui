@@ -1,1 +1,1 @@
-export { default } from 'ui/components/number-field/component';
+export { default } from '@queertangocollective/ui/components/number-field/component';

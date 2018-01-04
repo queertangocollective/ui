@@ -2,7 +2,7 @@
 'use strict';
 
 module.exports = {
-  name: 'ui',
+  name: '@queertangoclub/ui',
   included() {
     this._super.included.apply(this, arguments);
   }

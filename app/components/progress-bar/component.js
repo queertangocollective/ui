@@ -22,4 +22,3 @@ export default Component.extend({
     return htmlSafe(`width: ${get(this, 'progress')}%`);
   })
 });
-n

@@ -1,1 +1,1 @@
-export { default } from 'ui/components/upload-field/component';
+export { default } from '@queertangocollective/ui/components/upload-field/component';

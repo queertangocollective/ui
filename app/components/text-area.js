@@ -1,1 +1,1 @@
-export { default } from 'ui/components/text-area/component';
+export { default } from '@queertangocollective/ui/components/text-area/component';

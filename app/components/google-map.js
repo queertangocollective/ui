@@ -1,1 +1,1 @@
-export { default } from 'ui/components/google-map/component';
+export { default } from '@queertangocollective/ui/components/google-map/component';

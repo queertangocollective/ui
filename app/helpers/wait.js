@@ -14,7 +14,7 @@ export function wait(duration) {
     return promise;
   }
 
-  let [number, units] = duration.split(/([0-9\.]+)/).map((string) => string.trim()).filter(isPresent);
+  let [number, units] = duration.split(/([0-9.]+)/).map((string) => string.trim()).filter(isPresent);
   let { promise, resolve } = defer();
   later(this, resolve, moment.duration(parseFloat(number, 10), units).asMilliseconds());
   return promise;

@@ -1,1 +1,1 @@
-export { default } from 'ui/components/form-for/form/component';
+export { default } from '@queertangocollective/ui/components/form-for/form/component';

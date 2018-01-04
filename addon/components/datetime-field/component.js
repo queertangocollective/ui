@@ -193,7 +193,7 @@ export default Component.extend(Autoresize, {
         return true;
       }
 
-      return /[:\d\w\/apm]/.test(String.fromCharCode(evt.which));
+      return /[:\d\w/apm]/.test(String.fromCharCode(evt.which));
     },
 
     reformat() {

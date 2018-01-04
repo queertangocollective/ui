@@ -221,7 +221,7 @@ export default Component.extend({
       let firstHalf = string.slice(0, firstDecimal + 1);
       let secondHalf = string.slice(firstDecimal + 1);
 
-      return `${firstHalf.replace(/\$/g, '')}${secondHalf.replace(/[%\.]/g, '')}`;
+      return `${firstHalf.replace(/\$/g, '')}${secondHalf.replace(/[%.]/g, '')}`;
     }
 
     return string.replace(/\$/g, '');
@@ -243,7 +243,7 @@ export default Component.extend({
       value = value.slice(0, decimalPointIndex + 1 + precision);
     }
 
-    let finalValue = this._clamp(parseInt(value.replace(/[,\.]/g, ''), 10), decimalPlaces);
+    let finalValue = this._clamp(parseInt(value.replace(/[,.]/g, ''), 10), decimalPlaces);
 
     if (isNaN(finalValue)) {
       finalValue = null;
@@ -275,7 +275,7 @@ export default Component.extend({
         return true;
       }
 
-      return /[\d\s\.,-]/.test(String.fromCharCode(evt.which));
+      return /[\d\s.,-]/.test(String.fromCharCode(evt.which));
     },
 
     // Cleans the input before submitting the value to the `onchange` function

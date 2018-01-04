@@ -8,9 +8,9 @@ export default Component.extend({
     get() {
       let url = get(this, 'payload.url');
       return (
-        url.match(/youtube\.com\/watch\?v=([^\/]+)/) ||
-        url.match(/youtu.be\/([^\/]+)/) ||
-        url.match(/youtube\.com\/embed\/([^\/]+)/)
+        url.match(/youtube\.com\/watch\?v=([^/]+)/) ||
+        url.match(/youtu.be\/([^/]+)/) ||
+        url.match(/youtube\.com\/embed\/([^/]+)/)
       )[1];
     }
   }),

@@ -1,1 +1,1 @@
-export { default } from 'ui/components/datetime-field/component';
+export { default } from '@queertangocollective/ui/components/datetime-field/component';

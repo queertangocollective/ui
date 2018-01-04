@@ -1,1 +1,1 @@
-export { default } from 'ui/components/percent-field/component';
+export { default } from '@queertangocollective/ui/components/percent-field/component';

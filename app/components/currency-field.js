@@ -1,1 +1,1 @@
-export { default } from 'ui/components/currency-field/component';
+export { default } from '@queertangocollective/ui/components/currency-field/component';

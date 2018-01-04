@@ -1,1 +1,1 @@
-export { default } from 'ui/components/auto-complete/component';
+export { default } from '@queertangoclub/ui/components/auto-complete/component';

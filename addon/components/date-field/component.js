@@ -158,7 +158,7 @@ export default Component.extend(Autoresize, {
         return true;
       }
 
-      return /[\d\/]/.test(String.fromCharCode(evt.which));
+      return /[\d/]/.test(String.fromCharCode(evt.which));
     },
 
     reformat() {

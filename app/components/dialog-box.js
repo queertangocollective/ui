@@ -1,1 +1,1 @@
-export { default } from 'ui/components/dialog-box/component';
+export { default } from '@queertangocollective/ui/components/dialog-box/component';

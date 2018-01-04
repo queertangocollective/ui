@@ -1,1 +1,1 @@
-export { default } from 'ui/components/action-link/component';
+export { default } from '@queertangocollective/ui/components/action-link/component';

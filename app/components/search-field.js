@@ -1,1 +1,1 @@
-export { default } from 'ui/components/search-field/component';
+export { default } from '@queertangocollective/ui/components/search-field/component';

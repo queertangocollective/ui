@@ -1,1 +1,1 @@
-export { default } from 'ui/components/progress-bar/component';
+export { default } from '@queertangocollective/ui/components/progress-bar/component';
