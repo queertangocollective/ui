@@ -22,8 +22,13 @@
 {{password-field inputId='password-field' value=password onchange=(action (mut password))}}
 {{password}}
 
+<label>
+  {{check-box value=hasIcon onchange=(action (mut hasIcon))}}
+  Has search icon
+</label>
+
 <label for='search-field'>Search</label>
-{{search-field hasIcon=true inputId='search-field' query=query onquery=(action (mut query))}}
+{{search-field hasIcon=hasIcon inputId='search-field' query=query onquery=(action (mut query))}}
 {{query}}
 
 <label for='auto-complete'>Autocomplete</label>

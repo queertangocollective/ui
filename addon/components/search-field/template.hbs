@@ -1,6 +1,6 @@
-{{#if hasIcon}}
+{{#liquid-if hasIcon class='search-icon'}}
   {{icon 'search' class='search'}}
-{{/if}}
+{{/liquid-if}}
 {{text-field
   value=value
   onchange=(action 'change')
@@ -9,6 +9,6 @@
   disabled=disabled}}
 {{#liquid-if value class='clear'}}
   <span onclick={{action clear}}>
-    {{icon 'cancel-solid'}}
+    {{icon 'cancel'}}
   </span>
 {{/liquid-if}}

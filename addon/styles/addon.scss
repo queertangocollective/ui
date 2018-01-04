@@ -1,0 +1,32 @@
+@import 'colors';
+@import 'button';
+@import 'check-box';
+@import 'text-field';
+@import 'dialog-box';
+@import 'date-field';
+@import 'pop-over';
+@import 'progress-bar';
+@import 'password-field';
+@import 'search-field';
+@import 'snack-bar';
+
+* {
+  box-sizing: border-box;
+}
+
+.text-area {
+  @extend .text-field;
+}
+
+.number-field {
+  @extend .text-field;
+}
+
+.datetime-field {
+  @extend .date-field;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}

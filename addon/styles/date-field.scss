@@ -1,0 +1,58 @@
+.date-field {
+  @extend .text-field;
+
+  .ember-power-calendar-row {
+    white-space: nowrap;
+
+    & > * {
+      width: 2rem;
+      height: 1.5rem;
+      display: inline-block;
+      text-align: center;
+    }
+  }
+
+  .ember-power-calendar-day {
+    background: transparent;
+    color: $white;
+    border: 1px solid rgba($grey, 0);
+    border-radius: 4px;
+  }
+
+  .ember-power-calendar-day:hover {
+    background: transparent;
+    border: 1px solid $grey;
+  }
+
+  .ember-power-calendar-day:active,
+  .ember-power-calendar-day--selected {
+    background: $grey;
+    border: 1px solid $grey;
+  }
+
+  .ember-power-calendar-day--other-month {
+    color: #999;
+  }
+
+  .ember-power-calendar-nav {
+    display: grid;
+    grid-template-columns: 2rem 1fr 2rem;
+    height: 1.5rem;
+    text-align: center;
+  }
+
+  .ember-power-calendar-nav button {
+    background: #444;
+    color: #FFFFFF;
+    border-radius: 4px;
+    border: 0;
+  }
+
+  .ember-power-calendar-nav button:hover {
+    background: rgb(66, 66, 66);
+  }
+
+  .ember-power-calendar-nav button:active {
+    background: #222;
+  }
+}
