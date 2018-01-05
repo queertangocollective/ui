@@ -13,7 +13,7 @@ module.exports = {
     this._super.included.apply(this, arguments);
   },
 
-  treeForPublic() {
+  treeForPublic(tree) {
     this._requireBuildPackages();
 
     if (!tree) {
