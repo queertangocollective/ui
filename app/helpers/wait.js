@@ -1,6 +1,3 @@
-/**
-  @module fluid
-*/
 import { helper } from '@ember/component/helper';
 
 import { later } from '@ember/runloop';
