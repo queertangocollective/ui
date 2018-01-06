@@ -1,0 +1,76 @@
+.sortable-list {
+  display: grid;
+  margin-bottom: 1rem;
+  width: 100%;
+
+  ol {
+    box-shadow: 0 1px 2px 1px rgba($black, 0.20);
+    border-radius: 4px;
+    margin: 0;
+    padding: 0;
+
+    li {
+      text-decoration: none;
+      display: block;
+      line-height: 2.5rem;
+      height: 2.5rem;
+      white-space: nowrap;
+      padding: 0 1rem;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $heather;
+      }
+
+      span {
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  header {
+    position: sticky;
+    top: 1rem;
+    padding: 0.3rem 1rem;
+    box-shadow: 0 1px 2px 1px rgba($black, 0.20);
+    border-radius: 4px;
+    background: $black;
+    color: $white;
+    margin-bottom: 1rem;
+    grid-template-rows: 1fr 1fr;
+
+    a {
+      display: inline-grid;
+      grid-template-columns: auto 1fr;
+      color: inherit;
+      line-height: 1.5rem;
+      text-decoration: none;
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        transition: all 200ms;
+        pointer-events: none;
+
+        path {
+          fill: $white;
+        }
+      }
+
+      &.active svg {
+        opacity: 1;
+      }
+
+      &:active {
+        transform: translateY(1px);
+      }
+
+      &.active.desc {
+        svg {
+          transform: rotateX(180deg);
+        }
+      }
+    }
+  }
+}

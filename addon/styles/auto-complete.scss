@@ -1,0 +1,26 @@
+.auto-complete {
+  .pop-over-container {
+    padding: 0;
+    max-height: 50vh;
+    overflow: auto;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0.4rem 0;
+    margin: 0;
+  }
+
+  li {
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $grey;
+    }
+
+    &:hover {
+      background: $grey;
+    }
+  }
+}

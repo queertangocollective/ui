@@ -1,0 +1,25 @@
+<header class='row'>
+  {{yield (hash item=(component 'sortable-list/list-item' sort=sort))}}
+</header>
+{{#if rows.length}}
+  <ol>
+    {{#each rows as |row|}}
+      <li class='row'>
+        {{yield (hash item=(component 'sortable-list/list-item' item=row))}}
+      </li>
+    {{/each}}
+  </ol>
+{{else}}
+  <div class="smcp align-center">
+    {{icon icon class='empty-state'}}
+    <br>
+    No Results Found
+  </div>
+{{/if}}
+{{#if hasMore}}
+  <div>
+    {{#submit-button onsubmit=(action 'loadMore' rows.length)}}
+      Load More Results
+    {{/submit-button}}
+  </div>
+{{/if}}

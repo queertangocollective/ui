@@ -1,0 +1,9 @@
+{{#if item}}
+  <span class="{{sortAsc}}">{{yield item}}</span>
+{{else}}
+  {{#link-to (query-params sort=(if (equals sort sortAsc) sortDesc sortAsc))
+        class=(concat sortAsc ' ' (if (equals sort sortAsc) 'asc active') " " (if (equals sort sortDesc) 'desc active'))}}
+    <span>{{yield to='inverse'}}</span>
+    {{icon 'down-chevron'}}
+  {{/link-to}}
+{{/if}}

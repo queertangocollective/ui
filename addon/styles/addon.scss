@@ -1,5 +1,7 @@
 @import 'colors';
+@import 'typography';
 @import 'button';
+@import 'auto-complete';
 @import 'check-box';
 @import 'text-field';
 @import 'dialog-box';
@@ -8,10 +10,16 @@
 @import 'progress-bar';
 @import 'password-field';
 @import 'search-field';
+@import 'sortable-list';
 @import 'snack-bar';
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  @extend .serif;
+  line-height: 1.25rem;
 }
 
 .text-area {

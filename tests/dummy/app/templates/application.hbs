@@ -1,3 +1,11 @@
+{{#sortable-list rows=orquestas sort=sort as |l|}}
+  {{#l.item 'name' as |item|}}
+    {{item.name}}
+  {{else}}
+    Name
+  {{/l.item}}
+{{/sortable-list}}
+
 <label for='text-field'>Text Field</label>
 {{text-field inputId='text-field' value=text onchange=(action (mut text))}}
 {{text}}
@@ -60,7 +68,6 @@
 {{else}}
   Add Files
 {{/upload-list}}
-
 
 <button onclick={{action 'flash' 'Hi'}}>Show snackbar</button>
 <button onclick={{action (mut dialog) true}}>Show dialog</button>
