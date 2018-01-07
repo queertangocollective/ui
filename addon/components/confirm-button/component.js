@@ -1,5 +1,6 @@
 import SubmitButton from '../submit-button/component';
 import layout from './template';
+import { get, set } from '@ember/object';
 
 export default SubmitButton.extend({
 
