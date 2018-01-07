@@ -3,7 +3,7 @@ import { htmlSafe } from '@ember/string';
 
 let diacriticMappingTable = null;
 
-function removeDiacritics (string) {
+function removeDiacritics(string) {
   if (!diacriticMappingTable) {
     diacriticMappingTable = {
       'À':'A', 'Á':'A', 'Â':'A', 'Ã':'A', 'Ä':'A', 'Å':'A', 'Ā':'A', 'Ă':'A',
