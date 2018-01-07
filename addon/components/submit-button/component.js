@@ -12,14 +12,14 @@ export default Component.extend({
   type: 'submit',
 
   submit: task(function *(submit) {
-    get(this, 'element').styles.width = get(this, 'element').getBoundingClientRect().width + 'px';
+    get(this, 'element').style.width = get(this, 'element').getBoundingClientRect().width + 'px';
     set(this, 'isProcessing', true);
     try {
       yield RSVP.all([submit(), timeout(500)]);
     } finally {
       set(this, 'isProcessing', false);
       yield timeout(500);
-      get(this, 'element').styles.width = null;
+      get(this, 'element').style.width = null;
     }
   }),
 
