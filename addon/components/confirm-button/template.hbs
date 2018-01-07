@@ -1,0 +1,9 @@
+{{#liquid-if isProcessing class='liquid-button'}}
+  {{icon 'spinner' class='spinner'}}
+{{else}}
+  {{#liquid-if isConfirming}}
+    {{yield to='inverse'}}
+  {{else}}
+    {{yield}}
+  {{/liquid-if}}
+{{/liquid-if}}
