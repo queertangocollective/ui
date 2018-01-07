@@ -5,16 +5,12 @@
   <ol>
     {{#each rows as |row|}}
       <li class='row'>
-        {{yield (hash item=(component 'sortable-list/list-item' item=row))}}
+        {{~yield (hash item=(component 'sortable-list/list-item' item=row))~}}
       </li>
     {{/each}}
   </ol>
 {{else}}
-  <div class="smcp align-center">
-    {{icon icon class='empty-state'}}
-    <br>
-    No Results Found
-  </div>
+  {{yield to='inverse'}}
 {{/if}}
 {{#if hasMore}}
   <div>
