@@ -74,12 +74,12 @@
 {{/submit-button}}
 
 {{#confirm-button onsubmit=(action 'flash' 'Submitted with confirmation')}}
-  Show snackbar
+  {{icon 'eye'}} Show snackbar
 {{else}}
   Are you sure?
 {{/confirm-button}}
 
-<button onclick={{action (mut dialog) true}}>Show dialog</button>
+<button type='submit' onclick={{action (mut dialog) true}}>Show dialog</button>
 {{#if dialog}}
   {{dialog-box (component 'hello-dialog')
     ondismiss=(action (mut dialog) false)}}

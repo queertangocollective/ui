@@ -15,6 +15,8 @@ export default Component.extend({
 
   classNames: ['submit-button'],
 
+  classNameBindings: ['isProcessing'],
+
   type: 'submit',
 
   submit: task(function *(submit) {
@@ -23,11 +25,10 @@ export default Component.extend({
     get(this, 'element').style.width = width + 'px';
     set(this, 'isProcessing', true);
     try {
-      yield timeout(1);
-      let children = get(this, 'element').querySelectorAll('.liquid-child');
-      children.forEach((child) => {
-        child.style.width = innerWidth + 'px';
-      });
+      yield timeout(0);
+      let spinner = get(this, 'element').querySelector('.spinner');
+      spinner.style.width = innerWidth + 'px';
+
       yield RSVP.all([submit(), timeout(500)]);
     } finally {
       set(this, 'isProcessing', false);

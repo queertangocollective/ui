@@ -6,7 +6,7 @@ export default SubmitButton.extend({
 
   layout,
 
-  classNameBindings: ['isConfirming', 'isProcessing'],
+  classNameBindings: ['isConfirming'],
 
   classNames: ['confirm-button'],
 

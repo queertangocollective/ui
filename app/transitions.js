@@ -13,6 +13,13 @@ export default function(){
   );
 
   this.transition(
+    this.hasClass('liquid-button'),
+    this.toValue(true),
+    this.use('cross-fade', { duration, easing }),
+    this.reverse('cross-fade', { duration, easing })
+  );
+
+  this.transition(
     this.childOf('.search-field'),
     this.toValue(true),
     this.use('fade', { duration }),

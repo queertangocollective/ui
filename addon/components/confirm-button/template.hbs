@@ -1,7 +1,7 @@
-{{#liquid-if isProcessing class='liquid-button'}}
+{{#liquid-if isProcessing class='liquid-button' enableGrowth=false}}
   {{icon 'spinner' class='spinner'}}
 {{else}}
-  {{#liquid-if isConfirming}}
+  {{#liquid-if isConfirming class='liquid-button' growPixelsPerSecond=20 growthDuration=150}}
     {{yield to='inverse'}}
   {{else}}
     {{yield}}
