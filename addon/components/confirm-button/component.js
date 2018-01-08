@@ -6,17 +6,31 @@ export default SubmitButton.extend({
 
   layout,
 
-  classNameBindings: ['isConfirming'],
+  classNameBindings: ['isConfirming', 'isProcessing'],
+
+  classNames: ['confirm-button'],
 
   click(evt) {
     evt.preventDefault();
+    if (get(this, 'isProcessing')) return false;
+
     if (get(this, 'isConfirming')) {
-      get(this, 'submit').perform(get(this, 'onsubmit')).then(() => {
-        set(this, 'isConfirming', false);
-      });
+      document.removeEventListener('click', this.dismiss);
+      set(this, 'isConfirming', false);
+      get(this, 'submit').perform(get(this, 'onsubmit'));
     } else {
       set(this, 'isConfirming', true);
+      this.dismiss = () => {
+        set(this, 'isConfirming', false);
+      };
+      document.addEventListener('click', this.dismiss);
     }
     return false;
+  },
+
+  willDestroyElement() {
+    if (this.dismiss) {
+      document.removeEventListener('click', this.dismiss);
+    }
   }
 });

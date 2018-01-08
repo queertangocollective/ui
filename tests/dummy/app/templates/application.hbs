@@ -69,7 +69,16 @@
   Add Files
 {{/upload-list}}
 
-<button onclick={{action 'flash' 'Hi'}}>Show snackbar</button>
+{{#submit-button onsubmit=(action 'flash' 'Submitted!')}}
+  Show snackbar
+{{/submit-button}}
+
+{{#confirm-button onsubmit=(action 'flash' 'Submitted with confirmation')}}
+  Show snackbar
+{{else}}
+  Are you sure?
+{{/confirm-button}}
+
 <button onclick={{action (mut dialog) true}}>Show dialog</button>
 {{#if dialog}}
   {{dialog-box (component 'hello-dialog')

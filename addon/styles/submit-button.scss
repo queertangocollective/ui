@@ -1,0 +1,11 @@
+button[type=submit].submit-button {
+  background: $accent;
+
+  .liquid-child {
+    white-space: nowrap;
+  }
+
+  .spinner {
+    margin: 0 auto;
+  }
+}

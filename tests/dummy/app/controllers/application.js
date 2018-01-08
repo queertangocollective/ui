@@ -24,8 +24,8 @@ export default Controller.extend({
       return result.json();
     },
 
-    flash() {
-      this.flash('Hello', {
+    flash(text) {
+      return this.flash(text, {
         timeout: 5000
       });
     }
