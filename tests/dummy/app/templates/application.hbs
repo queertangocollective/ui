@@ -10,6 +10,12 @@
 {{text-field inputId='text-field' value=text onchange=(action (mut text))}}
 {{text}}
 
+<label for='single-select'>Select</label>
+{{#single-select inputId='single-select' value=option options=(list 'Apple' 'Banana' 'Yuzu') gravity='s' onchange=(action (mut option)) as |item|}}
+  {{icon 'check'}} {{item}}
+{{/single-select}}
+{{option}}
+
 <label for='text-area'>Text Area</label>
 {{text-area inputId='text-area' value=multiline onchange=(action (mut multiline)) rows=3}}
 {{multiline}}
