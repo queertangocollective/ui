@@ -1,8 +1,8 @@
 {{#if item}}
   <span class="{{sortAsc}}">{{yield item}}</span>
 {{else}}
-  {{#link-to (query-params sort=(if (equals sort sortAsc) sortDesc sortAsc))
-        class=(concat sortAsc ' ' (if (equals sort sortAsc) 'asc active') " " (if (equals sort sortDesc) 'desc active'))}}
+  {{#link-to (query-params sort=(if (equals (dasherize sort) (dasherize sortAsc)) (dasherize sortDesc) (dasherize sortAsc)))
+        class=(concat (dasherize sortAsc) ' ' (if (equals (dasherize sort) (dasherize sortAsc)) 'asc active') " " (if (equals (dasherize sort) (dasherize sortDesc)) 'desc active'))}}
     <span>{{yield to='inverse'}}</span>
     {{icon 'down-chevron'}}
   {{/link-to}}
