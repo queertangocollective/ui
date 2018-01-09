@@ -87,7 +87,8 @@
   }
 
   footer {
-    justify-self: end;
+    @extend .row;
+    flex-direction: row-reverse;
     padding: 0.5rem;
   }
 }

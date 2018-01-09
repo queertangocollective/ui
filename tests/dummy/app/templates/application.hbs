@@ -75,6 +75,7 @@
   Add Files
 {{/upload-list}}
 
+<div class='row'>
 {{#submit-button onsubmit=(action 'flash' 'Submitted!')}}
   Show snackbar
 {{/submit-button}}
@@ -86,10 +87,12 @@
 {{/confirm-button}}
 
 <button type='submit' onclick={{action (mut dialog) true}}>Show dialog</button>
+<button type='reset'>Cancel</button>
 {{#if dialog}}
   {{dialog-box (component 'hello-dialog')
     ondismiss=(action (mut dialog) false)}}
 {{/if}}
+</div>
 
 {{snack-bar}}
 {{dialog-box}}
