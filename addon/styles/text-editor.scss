@@ -1,0 +1,118 @@
+.text-editor {
+  position: relative;
+  margin-bottom: 1rem;
+
+  .__mobiledoc-editor {
+    @extend .sans-serif;
+    font-size: 1rem;
+    line-height: 1.4rem;
+    color: $black;
+    background: $white;
+    border: 1px solid rgba(204, 204, 204, 0);
+    color: #4A4A4A;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px 1px rgba(5, 5, 5, 0.2);
+    transition-property: box-shadow, color, border;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.79, 0.14, 0.15, 0.86);
+    padding: 0.2rem 0.5rem;
+    width: calc(100% - 0.4rem);
+
+    &:focus {
+      box-shadow: 0 2px 4px 2px rgba(5, 5, 5, 0.2);
+    }
+
+    & > div {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    & > *:first-child {
+      margin-top: 0;
+    }
+
+    & > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  nav {
+    background: $black;
+    color: $white;
+    box-shadow: 0 1px 2px 1px rgba($black, 0.20);
+    border-radius: 4px;
+    height: 2rem;
+    width: calc(100% - 0.4rem);
+    margin: 0.5rem 0 1rem;
+    overflow: hidden;
+
+    button {
+      appearance: none;
+      height: 2rem;
+      width: 2.5rem;
+      margin: 0;
+      padding: 0;
+      background: $black;
+      border: 0;
+
+      &:not(:first-child) {
+        border-left: 1px solid $grey;
+      }
+      &:last-child {
+        border-right: 1px solid $grey;
+      }
+
+      &.active {
+        background: $white;
+
+        & + .active {
+          border-left: 1px solid $heather;
+        }
+
+        svg path {
+          fill: $black;
+        }
+      }
+
+      svg path {
+        fill: $white;
+      }
+    }
+  }
+
+  .mini-form {
+    position: sticky;
+    top: 88px;
+    z-index: 2;
+    background: $white;
+  }
+
+  .__mobiledoc-editor {
+    margin: 0;
+    padding: 0.5em;
+    min-height: 2em;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  blockquote {
+    position: relative;
+    margin: 1em 0;
+    border-left: 0;
+    color: $black;
+
+    &:before {
+      position: absolute;
+      content: "“";
+      font-size: 2em;
+      color: $heather;
+      left: 0em;
+    }
+  }
+}

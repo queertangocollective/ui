@@ -2,10 +2,11 @@ import Component from '@ember/component';
 import { get, computed } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import { htmlSafe } from '@ember/string';
+import layout from './template';
 
 export default Component.extend({
   tagName: '',
-
+  layout,
   osx: navigator.platform.match(/Mac/),
 
   hint: reads('for'),

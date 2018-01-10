@@ -1,5 +1,5 @@
 {{#file-dropzone name=(concat name '-img') as |dropzone|}}
-  <nav>
+  <nav class='row'>
     {{#text-editor/markup-button for='strong' title='Bold' id=inputId editor=this onclick=(action 'toggleMarkup')}}
       {{icon 'bold'}}
     {{/text-editor/markup-button~}}
@@ -45,7 +45,7 @@
 
 {{#each componentCards as |card|}}
   {{#ember-wormhole to=card.destinationElementId}}
-    {{component card.cardName
+    {{component (concat 'text-editor/cards/' card.cardName)
       editor=editor
       postModel=card.postModel
       cardName=card.cardName

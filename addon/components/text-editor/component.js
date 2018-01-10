@@ -5,6 +5,7 @@ import EmberObject, { computed, set, get } from '@ember/object';
 import createComponentCard from 'ember-mobiledoc-editor/utils/create-component-card';
 import Editor from 'mobiledoc-kit/editor/editor';
 import { MOBILEDOC_VERSION } from 'mobiledoc-kit/renderers/mobiledoc';
+import layout from './template';
 
 const EDITOR_CARD_SUFFIX = '-editor';
 export const ADD_CARD_HOOK = 'addComponent';
@@ -49,6 +50,7 @@ const EMPTY_MOBILEDOC = {
 export default Component.extend({
   classNames: ['text-editor'],
   tagName: 'article',
+  layout,
 
   placeholder: null,
   spellcheck: true,
@@ -58,11 +60,11 @@ export default Component.extend({
     this._super(...arguments);
     set(this, 'componentCards', []);
     set(this, 'componentAtoms', []);
-    set(this, 'cards', [
-      createComponentCard('photo-card'),
-      createComponentCard('youtube-card')
-    ]);
 
+    set(this, 'cards', [
+      createComponentCard('photo'),
+      createComponentCard('youtube')
+    ]);
     set(this, 'atoms', [{
       name: 'line-break',
       type: 'dom',
@@ -73,10 +75,6 @@ export default Component.extend({
 
     this._startedRunLoop = false;
   },
-
-  cards: null,
-
-  atoms: null,
 
   willRender() {
     // Use a default mobiledoc. If there are no changes, then return early.
@@ -161,7 +159,7 @@ export default Component.extend({
     };
 
     editor = new Editor({
-      placeholder: get(this, 'placeholder'),
+      placeholder: get(this, 'placeholder') || '',
       spellcheck: get(this, 'spellcheck'),
       autofocus: get(this, 'autofocus'),
       cards: get(this, 'cards'),
@@ -236,6 +234,10 @@ export default Component.extend({
 
   mobiledoc: computed({
     get() {
+      if (get(this, 'value') == null ||
+          get(this, 'value') === '') {
+        return EMPTY_MOBILEDOC;
+      }
       try {
         return JSON.parse(get(this, 'value')) || EMPTY_MOBILEDOC;
       } catch (e) {
@@ -282,7 +284,7 @@ export default Component.extend({
   actions: {
     upload(editor, file) {
       return get(this, 'onupload')(file).then((photo) => {
-        
+        debugger;
         this.addCard('photo-card', {
           id: get(photo, 'id'),
           url: get(photo, 'url'),
@@ -294,7 +296,9 @@ export default Component.extend({
 
     openForm(actionName) {
       if (this.get('form.actionName') == actionName) {
+        let range = get(this, 'form.range');
         this.set('form', null);
+        this.get('editor').selectRange(range);
         return;
       }
 
@@ -312,13 +316,12 @@ export default Component.extend({
       }
     },
 
-    addLink(range, href) {
+    addLink(href) {
+      let range = get(this, 'form.range');
       this.set('form', null);
       let editor = this.get('editor');
-      editor.run(postEditor => {
-        let markup = postEditor.builder.createMarkup('a', { href });
-        postEditor.addMarkupToRange(range, markup);
-      });
+      editor.selectRange(range);
+      editor.toggleMarkup('a', { href });
     },
 
     toggleMarkup(editor, forProperty) {
@@ -330,11 +333,12 @@ export default Component.extend({
     },
 
     addYoutubeEmbed(url) {
+      debugger;
       let { range } = this.get('form');
       this.set('form', null);
       let editor = this.get('editor');
       editor.selectRange(range);
-      this.addCard('youtube-card', {
+      this.addCard('youtube', {
         url,
         width: 640,
         height: 360,

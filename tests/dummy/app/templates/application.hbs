@@ -10,6 +10,10 @@
 {{text-field inputId='text-field' value=text onchange=(action (mut text))}}
 {{text}}
 
+<label for='text-editor'>Text Editor</label>
+{{text-editor inputId='text-editor' value=editor onchange=(action (mut editor))}}
+{{editor}}
+
 <label for='single-select'>Select</label>
 {{#single-select inputId='single-select' value=option options=(list 'Apple' 'Banana' 'Yuzu') gravity='s' onchange=(action (mut option)) as |item|}}
   {{icon 'check'}} {{item}}
