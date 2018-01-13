@@ -47,11 +47,17 @@
       line-height: 1.5rem;
       text-decoration: none;
 
+      .sort {
+        pointer-events: none;
+        transform: rotate(90deg);
+        height: 1.5rem;
+        margin-left: 0.5rem;
+      }
+
       svg {
         width: 1.5rem;
         height: 1.5rem;
         transition: all 200ms;
-        pointer-events: none;
 
         path {
           fill: $white;
@@ -68,7 +74,7 @@
 
       &.active.desc {
         svg {
-          transform: rotateX(180deg);
+          transform: rotateY(180deg);
         }
       }
     }

@@ -4,6 +4,6 @@
   {{#link-to (query-params sort=(if (equals (dasherize sort) (dasherize sortAsc)) (dasherize sortDesc) (dasherize sortAsc)))
         class=(concat (dasherize sortAsc) ' ' (if (equals (dasherize sort) (dasherize sortAsc)) 'asc active') " " (if (equals (dasherize sort) (dasherize sortDesc)) 'desc active'))}}
     <span>{{yield to='inverse'}}</span>
-    {{icon 'down-chevron'}}
+    <span class='sort'>{{icon 'chevron'}}</span>
   {{/link-to}}
 {{~/if}}
