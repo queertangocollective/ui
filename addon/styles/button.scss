@@ -10,8 +10,8 @@ button[type=reset] {
   height: calc(2rem + 2px);
   border-width: 1px;
   border-style: solid;
-  // Offset to optically center the text
-  padding: 0.4rem 1rem 0.6rem;
+  padding: 0.2rem 1rem;
+  line-height: 1.5rem;
   transition-property: background, padding, box-shadow, color, border, border-color, transform;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.79, 0.14, 0.15, 0.86);
@@ -35,8 +35,8 @@ button[type=reset] {
 
   svg {
     display: block;
-    width: 1.5rem;
-    height: 1rem;
+    width: 2rem;
+    height: 1.5rem;
 
     &:first-child {
       padding-right: 0.5rem;
