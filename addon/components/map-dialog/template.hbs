@@ -1,5 +1,8 @@
-{{#if (and latitude longitude)}}
+<div class="body">
   <iframe frameborder="0" class="google-map"
     src="https://www.google.com/maps/embed/v1/view?key={{apiKey}}&center={{latitude}},{{longitude}}&zoom={{zoom}}" allowfullscreen>
   </iframe>
-{{/if}}
+</div>
+<footer>
+  <button type='reset' onclick={{dismiss}}>Close</button>
+</footer>
