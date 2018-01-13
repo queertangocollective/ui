@@ -1,10 +1,11 @@
-<header class='row'>
+<div class='background'></div>
+<header>
   {{yield (hash item=(component 'sortable-list/list-item' sort=sort))}}
 </header>
 {{#if rows.length}}
   <ol>
     {{#each rows as |row|}}
-      <li class='row'>
+      <li>
         {{~yield (hash item=(component 'sortable-list/list-item' item=row))~}}
       </li>
     {{/each}}

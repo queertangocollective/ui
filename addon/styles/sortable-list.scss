@@ -3,6 +3,26 @@
   margin-bottom: 1rem;
   width: 100%;
 
+  .background {
+    position: sticky;
+    top: 0rem;
+    pointer-events: none;
+
+    &:after {
+      position: absolute;
+      display: block;
+      content: ' ';
+      top: -0.5rem;
+      height: 3.5rem;
+      //left: -0.5rem;
+
+      width: 100%;
+      background: rgba($white, 0.4);
+      backdrop-filter: blur(3px);
+      z-index: 0;
+    }
+  }
+
   ol {
     box-shadow: 0 1px 2px 1px rgba($black, 0.20);
     border-radius: 4px;
@@ -39,6 +59,7 @@
     color: $white;
     margin-bottom: 1rem;
     grid-template-rows: 1fr 1fr;
+    z-index: 2;
 
     a {
       display: inline-grid;
