@@ -40,8 +40,3 @@ html {
 .datetime-field {
   @extend .date-field;
 }
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}

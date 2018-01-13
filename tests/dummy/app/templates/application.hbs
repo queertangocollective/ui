@@ -1,8 +1,18 @@
-{{#sortable-list rows=orquestas sort=sort as |l|}}
+{{#sortable-list id='countries' rows=model sort=sort as |l|}}
   {{#l.item 'name' as |item|}}
     {{item.name}}
   {{else}}
-    Name
+    Country
+  {{/l.item}}
+  {{#l.item 'code' as |item|}}
+    {{item.alpha2Code}}
+  {{else}}
+    Code
+  {{/l.item}}
+  {{#l.item 'capital' as |item|}}
+    {{item.capital}}
+  {{else}}
+    Capital
   {{/l.item}}
 {{/sortable-list}}
 
@@ -80,22 +90,22 @@
 {{/upload-list}}
 
 <div class='row'>
-{{#submit-button onsubmit=(action 'flash' 'Submitted!')}}
-  Show snackbar
-{{/submit-button}}
+  {{#submit-button onsubmit=(action 'flash' 'Submitted!')}}
+    Show snackbar
+  {{/submit-button}}
 
-{{#confirm-button onsubmit=(action 'flash' 'Submitted with confirmation')}}
-  {{icon 'eye'}} Show snackbar
-{{else}}
-  Are you sure?
-{{/confirm-button}}
+  {{#confirm-button onsubmit=(action 'flash' 'Submitted with confirmation')}}
+    {{icon 'eye'}} Show snackbar
+  {{else}}
+    Are you sure?
+  {{/confirm-button}}
 
-<button type='submit' onclick={{action (mut dialog) true}}>Show dialog</button>
-<button type='reset'>Cancel</button>
-{{#if dialog}}
-  {{dialog-box (component 'hello-dialog')
-    ondismiss=(action (mut dialog) false)}}
-{{/if}}
+  <button type='submit' onclick={{action (mut dialog) true}}>Show dialog</button>
+  <button type='reset'>Cancel</button>
+  {{#if dialog}}
+    {{dialog-box (component 'hello-dialog')
+      ondismiss=(action (mut dialog) false)}}
+  {{/if}}
 </div>
 
 {{snack-bar}}

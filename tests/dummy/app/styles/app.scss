@@ -1,0 +1,16 @@
+#countries {
+  .name {
+    width: 40%;
+  }
+  .code {
+    width: 10%;
+  }
+  .capital {
+    width: 50%;
+  }
+  li .code {
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    font-variant-caps: all-small-caps;
+  }
+}
