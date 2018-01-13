@@ -15,7 +15,7 @@
     transition-duration: 200ms;
     transition-timing-function: cubic-bezier(0.79, 0.14, 0.15, 0.86);
     padding: 0.2rem 0.5rem;
-    width: calc(100% - 0.4rem);
+    width: 100%;
 
     &:disabled {
       border: 1px solid #CCCCCC;

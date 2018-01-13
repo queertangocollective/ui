@@ -41,10 +41,11 @@
     max-height: calc(100vh - 3rem);
     box-shadow: -5px 0 20px rgba($black, .3);
     pointer-events: auto;
+    overflow: hidden;
 
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 3rem 1fr auto;
+    grid-template-rows: auto 1fr auto;
   }
 
   header {
@@ -87,8 +88,7 @@
   }
 
   footer {
-    @extend .row;
-    flex-direction: row-reverse;
+    @extend .reverse-row;
     padding: 0.5rem;
   }
 }
