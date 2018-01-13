@@ -16,7 +16,7 @@
       {{icon 'quote'}}
     {{/text-editor/section-button~}}
 
-    {{#text-editor/markup-button for='a' hint='isLink' title='Link' id=inputId editor=this onclick=(action 'openForm' 'addLink')}}
+    {{#text-editor/markup-button for='a' hint='isLink' title='Link' id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/link-form' active=(get editor.activeMarkupTagNames 'isLink') onsubmit=(action 'addLink')))}}
       {{icon 'link'}}
     {{else}}
       {{icon 'unlink'}}
@@ -31,12 +31,15 @@
       {{/tool-tip~}}
     {{/if}}
 
-    {{#text-editor/markup-button for='youtube' title='Embed Youtube Video' id=inputId editor=this onclick=(action 'openForm' 'addYoutubeEmbed')}}
+    {{#text-editor/markup-button for='youtube' title='Embed Youtube Video' id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/youtube-form' onsubmit=(action 'addYoutubeEmbed')))}}
       {{icon 'youtube'}}
+    {{/text-editor/markup-button}}
+    {{#text-editor/markup-button for='emoji' title='Add Emoji' id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/emoji-form' onsubmit=(action 'addEmoji')))}}
+      {{icon 'emoji'}}
     {{/text-editor/markup-button}}
   </nav>
   {{#if form}}
-    {{text-editor/mini-form editor=this form=form onsubmit=(action form.actionName) oncancel=(action (mut form) null) class='mini-form'}}
+    {{component form.component}}
   {{/if}}
   <div class="mobiledoc-editor__editor-wrapper">
     <div class="mobiledoc-editor__editor"></div>

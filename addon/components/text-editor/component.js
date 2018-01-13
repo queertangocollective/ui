@@ -294,8 +294,8 @@ export default Component.extend({
       });
     },
 
-    openForm(actionName) {
-      if (this.get('form.actionName') == actionName) {
+    openForm(component) {
+      if (this.get('form.component') === component) {
         let range = get(this, 'form.range');
         this.set('form', null);
         this.get('editor').selectRange(range);
@@ -311,7 +311,7 @@ export default Component.extend({
       } else {
         this.set('form', {
           range: editor.range,
-          actionName
+          component
         });
       }
     },
@@ -344,6 +344,14 @@ export default Component.extend({
         height: 360,
         autoplay: false
       });
+    },
+
+    addEmoji(emoji) {
+      let { range } = this.get('form');
+      this.set('form', null);
+      let editor = this.get('editor');
+      editor.selectRange(range);
+      editor.insertText(emoji);
     }
   }
 });

@@ -115,4 +115,37 @@
       left: 0em;
     }
   }
+
+  .emoji-form {
+    background: $white;
+    border: 1px solid rgba(204, 204, 204, 0);
+    font-size: 1.5rem;
+    color: #4A4A4A;
+    line-height: 1.5rem;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px 1px rgba(5, 5, 5, 0.2);
+    resize: none;
+    padding: 0.4rem 0.5rem 0;
+    width: calc(100% - 0.4rem);
+    margin-bottom: 1rem;
+
+    a {
+      display: inline-block;
+      width: 1.5rem;
+      transition-property: font-size;
+      transition-duration: 200ms;
+      transition-timing-function: cubic-bezier(0.79, 0.14, 0.15, 0.86);
+
+      &:active {
+        text-align: center;
+        font-size: 1.3rem;
+        line-height: 1.3rem;
+        width: 1.5rem;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
 }
