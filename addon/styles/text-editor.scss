@@ -43,7 +43,7 @@
     border-radius: 4px;
     height: 2rem;
     width: 100%;
-    margin: 0.5rem 0 1rem;
+    margin: 0.5rem 0;
     overflow: hidden;
 
     button {
@@ -88,7 +88,7 @@
   }
 
   .__mobiledoc-editor {
-    margin: 0;
+    margin: 0.5rem 0 0 0;
     padding: 0.5em;
     min-height: 2em;
   }
@@ -126,8 +126,8 @@
     box-shadow: 0 1px 2px 1px rgba(5, 5, 5, 0.2);
     resize: none;
     padding: 0.4rem 0.5rem 0;
-    width: calc(100% - 0.4rem);
-    margin-bottom: 1rem;
+    width: 100%;
+    margin: 0.25rem 0;
 
     a {
       display: inline-block;
@@ -146,6 +146,21 @@
       &:focus {
         outline: none;
       }
+    }
+  }
+
+  .link-form,
+  .youtube-form {
+    position: relative;
+    margin: 0.25rem 0;
+
+    button {
+      position: absolute;
+      top: 0.1rem;
+      right: 0.1rem;
+      height: 1.8rem;
+      line-height: 1rem;
+      padding: 0.2rem 0.75rem;
     }
   }
 }
