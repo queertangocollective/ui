@@ -1,0 +1,12 @@
+{{text-field value=value readonly=true onfocus=(action focusIn) onblurs=(action focusOut)}}
+<button type='submit' onclick={{action 'copy'}} onmousedown={{action buttonDown}}>
+  {{~#liquid-if copied.isRunning class="liquid-button" ~}}
+    {{yield to='inverse'}}
+  {{else}}
+    {{#liquid-if prompt.isRunning class="liquid-button" ~}}
+      {{#if osx}}&#8984;{{else}}ctrl{{/if}}+C to copy
+    {{else}}
+      {{yield}}
+    {{~/liquid-if~}}
+  {{~/liquid-if}}
+</button>
