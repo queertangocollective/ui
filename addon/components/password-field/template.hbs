@@ -13,9 +13,9 @@
   {{#if isRevealed}}{{icon 'eye'}}{{else}}{{icon 'eye-closed'}}{{/if}}
 {{/action-link}}
 {{#tool-tip for=(concat 'reveal-' elementId)}}
-  {{#if hasBlock}}
-    {{yield}}
-  {{else}}
+  {{#if isRevealed}}
     {{yield to='inverse'}}
+  {{else}}
+    {{yield}}
   {{/if}}
 {{/tool-tip}}
