@@ -47,7 +47,11 @@
 {{currency}}
 
 <label for='password-field'>Password</label>
-{{password-field inputId='password-field' value=password onchange=(action (mut password))}}
+{{#password-field inputId='password-field' value=password onchange=(action (mut password))}}
+  Reveal Password
+{{else}}
+  Hide Password
+{{/password-field}}
 {{password}}
 
 <label>
@@ -70,6 +74,12 @@
 <label for='datetime-field'>Datetime Field</label>
 {{datetime-field inputId='datetime-field' value=datetime onchange=(action (mut datetime))}}
 {{datetime}}
+
+{{#copy-field value='Hello'}}
+  Copy
+{{else}}
+  Copied
+{{/copy-field}}
 
 <label for='check-box'>Checkbox</label>
 {{check-box value=checked onchange=(action (mut checked))}}
