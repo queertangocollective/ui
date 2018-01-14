@@ -46,6 +46,8 @@ export default Component.extend({
    */
   disabled: false,
 
+  readonly: false,
+
   didRender() {
     this._updateDisplayValue(this._getValue());
   },
@@ -77,6 +79,9 @@ export default Component.extend({
     reformat() {
       let input = get(this, 'element').querySelector('input');
       this._setValue(input.value);
+    },
+    focus() {
+      tryInvoke(this, 'onfocus');
     },
     blur() {
       tryInvoke(this, 'onblur');
