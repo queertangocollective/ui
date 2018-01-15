@@ -10,8 +10,9 @@ button[type=reset] {
   height: calc(1.8rem + 2px);
   border-width: 1px;
   border-style: solid;
-  padding: 0.4rem 1rem;
-  line-height: 1rem;
+  padding: 0.35rem 1rem;
+  line-height: 1.1rem;
+  font-size: 11px;
   transition-property: background, padding, box-shadow, color, border, border-color, transform;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.79, 0.14, 0.15, 0.86);
@@ -35,8 +36,8 @@ button[type=reset] {
 
   svg {
     display: block;
-    width: 1.5rem;
-    height: 1rem;
+    width: 1.625rem;
+    height: 1.125rem;
 
     &:first-child {
       padding-right: 0.5rem;

@@ -1,4 +1,4 @@
-{{#file-dropzone name=(concat name '-img') as |dropzone|}}
+{{#file-dropzone name=(concat name '-photo') as |dropzone|}}
   <nav class='row'>
     {{#text-editor/markup-button for='strong' title='Bold' id=inputId editor=this onclick=(action 'toggleMarkup')}}
       {{icon 'bold'}}
@@ -23,10 +23,10 @@
     {{/text-editor/markup-button~}}
 
     {{#if onupload}}
-      {{#file-upload name=(concat name '-img') id=(concat inputId '-img') onfileadd=(action 'upload' editor.editor)}}
-        {{icon 'img'}}
+      {{#file-upload name=(concat name '-photo') id=(concat inputId '-photo') onfileadd=(action 'upload' editor.editor)}}
+        {{icon 'photo'}}
       {{/file-upload~}}
-      {{#tool-tip for=(concat inputId '-img')}}
+      {{#tool-tip for=(concat inputId '-photo')}}
         Add Image
       {{/tool-tip~}}
     {{/if}}
