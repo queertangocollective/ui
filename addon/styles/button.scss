@@ -7,11 +7,11 @@ button[type=reset] {
   grid-template-columns: auto auto auto;
   box-shadow: 0 1px 2px 1px rgba($black, 0.20);
   border-radius: 4px;
-  height: calc(2rem + 2px);
+  height: calc(1.8rem + 2px);
   border-width: 1px;
   border-style: solid;
-  padding: 0.2rem 1rem;
-  line-height: 1.5rem;
+  padding: 0.4rem 1rem;
+  line-height: 1rem;
   transition-property: background, padding, box-shadow, color, border, border-color, transform;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.79, 0.14, 0.15, 0.86);
@@ -35,8 +35,8 @@ button[type=reset] {
 
   svg {
     display: block;
-    width: 2rem;
-    height: 1.5rem;
+    width: 1.5rem;
+    height: 1rem;
 
     &:first-child {
       padding-right: 0.5rem;
@@ -67,8 +67,7 @@ button[type=reset] {
     background: $white;
     color: $black;
     border-color: $white;
-    // Optically fix the height of the cancel button
-    height: calc(2rem + 1px);
+    height: calc(1.8rem + 1px);
 
     &:active {
       border-color: $heather;
