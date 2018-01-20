@@ -1,46 +1,50 @@
 import Component from '@ember/component';
 import { set, get } from '@ember/object';
+import { debounce } from '@ember/runloop';
 import RSVP from 'rsvp';
 import layout from './template';
 
 export default Component.extend({
   layout,
   classNames: ['upload-field'],
-  classNameBindings: ['file:present'],
 
   multiple: false,
 
+  files: null,
+
   didReceiveAttrs() {
-    let value = get(this, 'value');
-    if (value) {
-      if (value.then || get(value, 'store')) {
-        RSVP.resolve(value).then((file) => {
-          if (file) {
-            set(this, 'file', file);
-          } else {
-            set(this, 'file', null);
-          }
-        });
-      } else {
-        set(this, 'isLoading', true);
-        value.readAsDataURL().then((url) => {
-          set(this, 'isLoading', false);
-          set(this, 'file', {
-            url,
-            name: get(value, 'name')
-          });
-        });
+    RSVP.resolve(get(this, 'value')).then((files) => {
+      files = files || [];
+      if (!Array.isArray(files)) {
+        files = [files];
       }
+      set(this, 'files', files.slice());
+    });
+  },
+
+  update(files) {
+    if (get(this, 'multiple')) {
+      get(this, 'onchange')(files);
     } else {
-      set(this, 'file', null);
+      get(this, 'onchange')(files[0]);
     }
   },
 
   actions: {
-    remove(evt) {
-      get(this, 'onchange')(null);
-      evt.preventDefault();
-      return false;
+    add(file) {
+      let files = get(this, 'files');
+      files.push(file);
+      debounce(this, 'update', files, 10);
+    },
+
+    change(index, file) {
+      let files = get(this, 'files');
+      if (file) {
+        files.splice(index, 1, file);
+      } else {
+        files.splice(index, 1);
+      }
+      this.update(files);
     }
   }
 });

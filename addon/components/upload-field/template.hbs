@@ -1,9 +1,15 @@
-{{#if isLoading}}
-  {{icon 'spinner'}}
-{{else if file}}
-  {{yield file (action 'remove')}}
-{{else}}
-  {{#file-upload name=name accept="image/*" multiple=multiple onfileadd=(action onchange)}}
-    {{yield to='inverse'}}
-  {{/file-upload}}
-{{/if}}
+{{#file-dropzone name=name}}
+  {{#each files as |file idx|}}
+    {{#if file.isLoading}}
+      {{icon 'spinner'}}
+    {{else if file}}
+      {{yield file (action 'change' idx null)}}
+    {{/if}}
+  {{/each}}
+
+  {{#if (or multiple (equals files.length 0))}}
+    {{#file-upload name=name accept=accept multiple=multiple onfileadd=(action 'add')}}
+      {{yield to='inverse'}}
+    {{/file-upload}}
+  {{/if}}
+{{/file-dropzone}}

@@ -284,7 +284,6 @@ export default Component.extend({
   actions: {
     upload(editor, file) {
       return get(this, 'onupload')(file).then((photo) => {
-        debugger;
         this.addCard('photo-card', {
           id: get(photo, 'id'),
           url: get(photo, 'url'),
@@ -333,7 +332,6 @@ export default Component.extend({
     },
 
     addYoutubeEmbed(url) {
-      debugger;
       let { range } = this.get('form');
       this.set('form', null);
       let editor = this.get('editor');
