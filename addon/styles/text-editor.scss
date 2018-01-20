@@ -1,10 +1,11 @@
 .text-editor {
   position: relative;
-  margin-bottom: 1rem;
+  margin-bottom: 0.25rem;
 
   .__mobiledoc-editor {
     @extend .sans-serif;
     font-size: 1rem;
+    min-height: 4.6rem;
     line-height: 1.4rem;
     color: $black;
     background: $white;
@@ -15,7 +16,8 @@
     transition-property: box-shadow, color, border;
     transition-duration: 200ms;
     transition-timing-function: cubic-bezier(0.79, 0.14, 0.15, 0.86);
-    padding: 0.2rem 0.5rem;
+    margin: 0.5rem 0 0 0;
+    padding: 0.5em;
     width: 100%;
 
     &:focus {
@@ -80,17 +82,8 @@
     }
   }
 
-  .mini-form {
-    position: sticky;
-    top: 88px;
-    z-index: 2;
-    background: $white;
-  }
-
-  .__mobiledoc-editor {
-    margin: 0.5rem 0 0 0;
-    padding: 0.5em;
-    min-height: 2em;
+  p {
+    margin-bottom: 0.75rem;
   }
 
   strong {

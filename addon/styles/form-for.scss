@@ -1,0 +1,20 @@
+.form-for_field {
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  &.has-autocompletion .field {
+    position: relative;
+
+    input {
+      padding-left: 2rem;
+    }
+
+    .autocomplete {
+      position: absolute;
+      left: 0.5rem;
+      top: 0.5rem;
+    }
+  }
+}

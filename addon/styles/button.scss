@@ -1,4 +1,5 @@
-.button,
+a.reset-button,
+a.submit-button,
 button[type=submit],
 button[type=reset] {
   @extend .smcp;
@@ -46,12 +47,9 @@ button[type=reset] {
     &:last-child:not(:first-child) {
       padding-left: 0.5rem;
     }
-
-    path, rect {
-      fill: white;
-    }
   }
 
+  a.submit-button,
   &[type=submit] {
     background: $black;
     color: $white;
@@ -62,8 +60,15 @@ button[type=reset] {
       background: $accent;
       border-color: $accent;
     }
+
+    svg {
+      path, rect {
+        fill: $white;
+      }
+    }
   }
 
+  a.reset-button,
   &[type=reset] {
     background: $white;
     color: $black;
@@ -79,6 +84,12 @@ button[type=reset] {
       color: $white;
       background: $accent;
       border-color: $accent;
+    }
+
+    svg {
+      path, rect {
+        fill: $black;
+      }
     }
   }
 
