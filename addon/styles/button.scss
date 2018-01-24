@@ -49,7 +49,7 @@ button[type=reset] {
     }
   }
 
-  a.submit-button,
+  &.submit-button,
   &[type=submit] {
     background: $black;
     color: $white;
@@ -68,7 +68,7 @@ button[type=reset] {
     }
   }
 
-  a.reset-button,
+  &.reset-button,
   &[type=reset] {
     background: $white;
     color: $black;
