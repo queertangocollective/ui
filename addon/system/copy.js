@@ -1,5 +1,5 @@
 import Ember from 'ember';
-const { RSVP } = Ember;
+import RSVP from 'rsvp';
 
 let globalClipboard = typeof ClipboardEvent === "undefined" &&
                       typeof window.clipboardData !== "undefined" &&

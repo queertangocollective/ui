@@ -1,3 +1,3 @@
 {{#each emojis as |emoji|}}
-  {{#action-link (action onsubmit emoji)}}{{emoji}}{{/action-link}}
+  <a tabindex=0 onclick={{action onsubmit emoji preventDefault=false}}>{{emoji}}</a>
 {{/each}}

@@ -6,7 +6,6 @@ import RSVP from 'rsvp';
 import copy from '../../system/copy';
 import layout from './template';
 import { wait } from '../../helpers/wait';
-import { getLayout } from 'dom-ruler';
 
 const ESCAPE = 27;
 
@@ -35,10 +34,6 @@ export default Component.extend({
 
   selectText() {
     let input = get(this, 'element').querySelector('input');
-    let selection = window.getSelection();
-    let range = document.createRange();
-
-    selection.removeAllRanges();
     input.select();
   },
 
@@ -66,7 +61,6 @@ export default Component.extend({
   }),
 
   focusIn() {
-    debugger;
     if (this._mayClick) { return; }
 
     this.focused = true;
@@ -77,7 +71,7 @@ export default Component.extend({
       if (this.focused) {
         return this.focusIn();
       }
-    }, function (e) {});
+    }, function () {});
   },
 
   focusOut() {
@@ -89,10 +83,10 @@ export default Component.extend({
     // it will become focused and trigger the prompt.
     this._mayClick = true;
     let unsetMayClick = () => {
-      $(document).off('mouseup', unsetMayClick);
+      document.removeEventListener('mouseup', unsetMayClick);
       this._mayClick = false;
     }
-    $(document).on('mouseup', unsetMayClick);
+    document.addEventListener('mouseup', unsetMayClick);
   },
 
   keyUp(evt) {

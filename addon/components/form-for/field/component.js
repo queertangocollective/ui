@@ -40,6 +40,12 @@ export default Component.extend({
   actions: {
     query(...args) {
       return tryInvoke(this, 'onquery', args);
+    },
+
+    autocomplete(model, key, value, evt) {
+      get(this, 'onchange')(model, key, value);
+      evt.preventDefault();
+      return false;
     }
   }
 }).reopenClass({

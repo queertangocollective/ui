@@ -9,9 +9,10 @@
        oninput={{action 'reformat'}}
        readonly={{if readonly 'readonly'}}
        disabled={{disabled}}>
-{{#action-link (action (mut isRevealed) (not isRevealed)) id=(concat 'reveal-' elementId)}}
+{{! not a button to prevent submission}}
+<a id="reveal-{{elementId}}" tabindex=0 onclick={{action (mut isRevealed) (not isRevealed) preventDefault=false}}>
   {{#if isRevealed}}{{icon 'eye'}}{{else}}{{icon 'eye-closed'}}{{/if}}
-{{/action-link}}
+</a>
 {{#tool-tip for=(concat 'reveal-' elementId)}}
   {{#if isRevealed}}
     {{yield to='inverse'}}

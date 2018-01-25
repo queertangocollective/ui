@@ -57,8 +57,8 @@
     {{#if label}}<label for={{inputId}}>{{{label}}}</label>{{/if}}
   {{/if}}
   {{#if autocomplete}}
-    {{#action-link (action onchange model (if fieldName fieldName index) autocomplete) class='autocomplete'}}
+    <a tabindex=0 class='autocomplete' onclick={{action onchange model (if fieldName fieldName index) autocomplete preventDefault=false}}>
       {{icon 'wand'}}
-    {{/action-link}}
+    </a>
   {{/if}}
 </div>
