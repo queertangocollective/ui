@@ -14,6 +14,6 @@
               uploads=(component 'form-for/field' fieldType='upload-list' model=changeset index=index onchange=(action 'onchange') label=false)
               autocomplete=(component 'form-for/field' fieldType='auto-complete' model=changeset index=index onchange=(action 'onchange'))
               select=(component 'form-for/field' fieldType='single-select' model=changeset index=index onchange=(action 'onchange'))
-              submit=(component 'form-for/button' onsubmit=(action 'onsubmit'))
+              submit=(component 'form-for/button' onsubmit=(action save))
               form-for=(component 'form-for/form' model=model tagName='' onsubmit=onsubmit parent=this)
             )}}

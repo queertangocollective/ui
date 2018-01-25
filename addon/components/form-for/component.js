@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { set, get, computed } from '@ember/object';
 import { tryInvoke } from '@ember/utils';
+import { debounce } from '@ember/runloop';
 import RSVP from 'rsvp';
 import Changeset from 'ember-changeset';
 import layout from './template';
@@ -52,6 +53,12 @@ export default Component.extend({
     return RSVP.all(promises);
   },
 
+  save() {
+    return this.submit().then(() => {
+      get(this, 'onsaved')(get(this, 'model'));
+    });
+  },
+
   init() {
     this._super(...arguments);
     set(this, 'nestedForms', []);
@@ -73,17 +80,9 @@ export default Component.extend({
         model.set(field, value);
       }
 
-      if (get(this, 'onchange')) {
-        get(this, 'onchange')(() => {
-          return this.submit();
-        });
+      if (get(this, 'autosave')) {
+        debounce(this, 'save', 2000);
       }
-    },
-
-    onsubmit() {
-      return this.submit().then(() => {
-        get(this, 'onsaved')(get(this, 'model'));
-      });
     }
   }
 }).reopenClass({
