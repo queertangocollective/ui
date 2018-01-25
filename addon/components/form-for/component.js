@@ -72,6 +72,12 @@ export default Component.extend({
       } else {
         model.set(field, value);
       }
+
+      if (get(this, 'onchange')) {
+        get(this, 'onchange')(() => {
+          return this.submit();
+        });
+      }
     },
 
     onsubmit() {
