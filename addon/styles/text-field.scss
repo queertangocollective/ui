@@ -3,6 +3,7 @@
 
   textarea, input {
     @extend .sans-serif;
+    appearance: none;
     background: $white;
     border: 1px solid rgba(204, 204, 204, 0);
     font-size: 1rem;
