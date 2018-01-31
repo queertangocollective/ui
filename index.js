@@ -5,10 +5,6 @@ const Funnel = require('broccoli-funnel');
 module.exports = {
   name: '@queertangocollective/ui',
 
-  addonPath(path) {
-    return `node_modules/@queertangocollective/ui/${path}`;
-  },
-
   included() {
     this._super.included.apply(this, arguments);
   },

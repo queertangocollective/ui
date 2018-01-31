@@ -9,6 +9,9 @@ module.exports = function(defaults) {
       inline: {
         copypastaGen: (assetId) => `{{icon '${assetId}'}}`
       }
+    },
+    sassOptions: {
+      includePaths: ['addon/styles', 'tests/dummy/app/styles']
     }
   });
 
