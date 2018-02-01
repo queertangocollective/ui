@@ -16,6 +16,7 @@ button[type=reset] {
   transition-property: background, padding, box-shadow, color, border, border-color, transform;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.79, 0.14, 0.15, 0.86);
+  white-space: nowrap;
   overflow: hidden;
 
   &:hover:not(:disabled) {
