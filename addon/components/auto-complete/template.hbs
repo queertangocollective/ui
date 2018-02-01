@@ -1,4 +1,4 @@
-{{search-field inputId=inputId query=(get value key) onquery=(action 'query') hasIcon=false onchange=(action (mut query))}}
+{{search-field inputId=inputId query=(get displayValue key) onquery=(action 'query') hasIcon=false onchange=(action (mut query))}}
 
 {{#liquid-bind options as |suggestions|}}
   {{#if suggestions}}
@@ -10,6 +10,6 @@
   {{/if}}
 {{/liquid-bind}}
 
-{{#liquid-if (and query (not (get value key)))}}
+{{#liquid-if (and query (not (get displayValue key)))}}
   {{yield}}
 {{/liquid-if}}
