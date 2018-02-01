@@ -36,6 +36,7 @@
   {{f.number 'number' label='{{number-field}}'}}
   {{f.percent 'percent' label='{{percent-field}}'}}
   {{f.currency 'currency' label='{{currency-field}}'}}
+  {{f.autocomplete 'autocomplete' key='name' onquery=(action 'query') label='{{auto-complete}}'}}
   {{#f.password 'password' label='{{password-field}}'}}
     Reveal Password
   {{else}}
