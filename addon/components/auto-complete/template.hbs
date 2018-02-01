@@ -1,12 +1,14 @@
 {{search-field inputId=inputId query=(get value key) onquery=(action 'query') hasIcon=false onchange=(action (mut query))}}
 
-{{#pop-over for=inputId ondidinsert=(action (mut popover)) flow='dropdown'}}
-  <ul>
-    {{#each options as |option|}}
-      <li onclick={{action 'change' option}}>{{highlight (get option key) match=query}}</li>
-    {{/each}}
-  </ul>
-{{/pop-over}}
+{{#liquid-bind options as |suggestions|}}
+  {{#if suggestions}}
+    <ul>
+      {{#each suggestions as |option|}}
+        <li onclick={{action 'change' option}}>{{highlight (get option key) match=query}}</li>
+      {{/each}}
+    </ul>
+  {{/if}}
+{{/liquid-bind}}
 
 {{#liquid-if (and query (not (get value key)))}}
   {{yield}}

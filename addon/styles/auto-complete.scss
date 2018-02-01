@@ -1,16 +1,16 @@
 .auto-complete {
   @extend .sans-serif;
 
-  .pop-over-container {
-    padding: 0;
-    max-height: 50vh;
-    overflow: auto;
-  }
-
   ul {
     list-style: none;
     padding: 0.4rem 0;
-    margin: 0;
+    margin: 0.5rem 0;
+    max-height: 9rem;
+    overflow: auto;
+    background: $black;
+    color: $white;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px 1px rgba(5, 5, 5, 0.2);
   }
 
   li {
