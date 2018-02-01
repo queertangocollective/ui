@@ -3,7 +3,7 @@ import { set, get, computed } from '@ember/object';
 import { tryInvoke } from '@ember/utils';
 import { debounce } from '@ember/runloop';
 import RSVP from 'rsvp';
-import Changeset from 'ember-changeset';
+import BufferedProxy from 'ember-buffered-proxy/proxy';
 import layout from './template';
 
 export default Component.extend({
@@ -19,7 +19,9 @@ export default Component.extend({
 
   changeset: computed('model', {
     get() {
-      return new Changeset(get(this, 'model') || {});
+      return BufferedProxy.create({
+        content: get(this, 'model') || {}
+      });
     }
   }),
 
@@ -32,8 +34,8 @@ export default Component.extend({
     let promises = [];
     let model = get(this, 'model');
     let changeset = get(this, 'changeset');
-    let changes = get(this, 'changeset').snapshot().changes;
-    let isDirty = changeset.get('isDirty') || model.get('isDeleted');
+    let changes = get(this, 'changeset.buffer');
+    let isDirty = changeset.get('hasChanges') || model.get('isDeleted');
 
     if (isDirty && (model == null || get(model, 'isNew'))) {
       return get(this, 'onsubmit')(model, changes).then(() => {
