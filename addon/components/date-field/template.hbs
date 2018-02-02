@@ -11,13 +11,3 @@
        onchange={{action 'reformat'}}
        oninput={{action 'reformat'}}
        disabled={{disabled}}>
-{{#pop-over for=inputId ondidinsert=(action (mut popover)) flow="dropdown"}}
-  {{#power-calendar center=center
-                    onCenterChange=(action 'updateCenter')
-                    selected=value
-                    onSelect=(action 'onchange') as |calendar|}}
-    {{calendar.nav}}
-    <hr>
-    {{calendar.days}}
-  {{/power-calendar}}
-{{/pop-over}}

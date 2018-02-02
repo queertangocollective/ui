@@ -71,11 +71,8 @@ export default Component.extend(Autoresize, {
     if (isBlank(value) || value == null) {
       get(this, 'onchange')(null);
     } else if (date.isValid()) {
-      get(this, 'popover').show();
       set(this, 'center', date);
       get(this, 'onchange')(date.toDate());
-    } else {
-      get(this, 'popover').hide();
     }
     this._updateDisplayValue(value);
   },
@@ -203,17 +200,11 @@ export default Component.extend(Autoresize, {
 
     focus() {
       set(this, 'isFocused', true);
-      get(this, 'popover').show();
     },
 
     blur() {
       set(this, 'isFocused', false);
       tryInvoke(this, 'onblur');
-      later(() => {
-        if (!get(this, 'isFocused')) {
-          get(this, 'popover').hide();
-        }
-      }, 250);
     },
 
     updateCenter({ date }) {
@@ -223,7 +214,6 @@ export default Component.extend(Autoresize, {
 
     onchange({ moment }) {
       this._setValue(moment.format('MM/DD/YYYY h:mma'));
-      get(this, 'popover').hide();
     }
   }
 });
