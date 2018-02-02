@@ -11,3 +11,29 @@
        onchange={{action 'reformat'}}
        oninput={{action 'reformat'}}
        disabled={{disabled}}>
+<a id="calendar-for-{{elementId}}" tabindex=0 onclick={{action (mut isActive) (not isActive) preventDefault=false}}>
+  {{icon 'calendar'}}
+</a>
+{{#if (media '(min-width: 320px) and (max-width: 480px)')}}
+  {{#liquid-if isActive flow='dropdown' class='calendar'}}
+    {{#power-calendar center=center
+                      onCenterChange=(action 'updateCenter')
+                      selected=value
+                      onSelect=(action 'onchange') as |calendar|}}
+      {{calendar.nav}}
+      <hr>
+      {{calendar.days}}
+    {{/power-calendar}}
+  {{/liquid-if}}
+{{else}}
+  {{#pop-over for=(concat 'calendar-for-' elementId) on='click' flow='dropdown'}}
+    {{#power-calendar center=center
+                      onCenterChange=(action 'updateCenter')
+                      selected=value
+                      onSelect=(action 'onchange') as |calendar|}}
+      {{calendar.nav}}
+      <hr>
+      {{calendar.days}}
+    {{/power-calendar}}
+  {{/pop-over}}
+{{/if}}
