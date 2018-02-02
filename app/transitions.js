@@ -27,6 +27,13 @@ export default function(){
   );
 
   this.transition(
+    this.hasClass('calendar'),
+    this.toValue(true),
+    this.use('fade', { duration }),
+    this.reverse('fade', { duration })
+  );
+
+  this.transition(
     this.hasClass('snack-bar'),
     this.use('toaster', { duration: slow, easing: [600, 30] })
   );
