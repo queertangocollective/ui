@@ -84,8 +84,10 @@ export default Component.extend(Autoresize, {
 
     set(this, 'displayValue', displayValue || '');
     input.value = displayValue || '';
-    input.selectionStart = selectionStart;
-    input.selectionEnd = selectionEnd;
+    if (get(this, 'isFocused')) {
+      input.selectionStart = selectionStart;
+      input.selectionEnd = selectionEnd;
+    }
   },
 
   actions: {
@@ -178,6 +180,7 @@ export default Component.extend(Autoresize, {
     },
 
     onchange({ moment }) {
+      set(this, 'isActive', false);
       this._setValue(moment.format(get(this, 'format')));
     }
   }
