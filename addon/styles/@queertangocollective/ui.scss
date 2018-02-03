@@ -34,6 +34,10 @@ html {
   line-height: 1.25rem;
 }
 
+.noscroll {
+  overflow: hidden;
+}
+
 .text-area {
   @extend .text-field;
 }
