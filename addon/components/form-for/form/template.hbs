@@ -11,7 +11,7 @@
     {{/each}}
   {{/with}}
 {{else}}
-  {{#form-for (get model fieldName) tagName='div' class=class
+  {{#form-for (await (get model fieldName)) tagName='div' class=class
     onsubmit=onsubmit
     oninit=(action 'registerWith' parent) as |f|}}
     {{yield f}}
