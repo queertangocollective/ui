@@ -93,8 +93,11 @@ export default Component.extend(Autoresize, {
     let selectionEnd = textarea.selectionEnd;
 
     textarea.value = displayValue || '';
-    textarea.selectionStart = selectionStart;
-    textarea.selectionEnd = selectionEnd;
+
+    if (get(this, 'isFocused')) {
+      textarea.selectionStart = selectionStart;
+      textarea.selectionEnd = selectionEnd;
+    }
   },
 
   actions: {

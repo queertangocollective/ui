@@ -54,6 +54,10 @@ export default NumberField.extend({
   },
 
   _moveCursor(previousCursorPosition, previousValue, newValue) {
+    if (!get(this, 'isFocused')) {
+      return;
+    }
+
     let input = get(this, 'element').querySelector('input');
 
     if (parseFloat(previousValue, 10) > get(this, 'max')) {

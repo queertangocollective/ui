@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { get } from '@ember/object';
+import { get, set } from '@ember/object';
 import { tryInvoke, isEmpty } from '@ember/utils';
 import layout from './template';
 
@@ -69,8 +69,11 @@ export default Component.extend({
     let selectionEnd = input.selectionEnd;
 
     input.value = displayValue || '';
-    input.selectionStart = selectionStart;
-    input.selectionEnd = selectionEnd;
+
+    if (get(this, 'isFocused')) {
+      input.selectionStart = selectionStart;
+      input.selectionEnd = selectionEnd;
+    }
   },
 
   actions: {
@@ -79,7 +82,11 @@ export default Component.extend({
       this._setValue(input.value);
     },
     blur() {
+      set(this, 'isFocused', false);
       tryInvoke(this, 'onblur');
+    },
+    focus() {
+      set(this, 'isFocused', true);
     }
   }
 });

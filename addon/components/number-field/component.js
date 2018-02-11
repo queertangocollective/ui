@@ -186,6 +186,10 @@ export default Component.extend({
   },
 
   _moveCursor(previousCursorPosition, previousValue, newValue) {
+    if (!get(this, 'isFocused')) {
+      return;
+    }
+
     let input = get(this, 'element').querySelector('input');
     let newCursorPosition = previousCursorPosition;
 
@@ -289,6 +293,14 @@ export default Component.extend({
       let valueWithPrecision = this._applyPrecision(displayValue);
 
       this._setValue(valueWithPrecision);
+    },
+
+    focus() {
+      set(this, 'isFocused', true);
+    },
+
+    blur() {
+      set(this, 'isFocused', false);
     }
   }
 });
