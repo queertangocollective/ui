@@ -38,6 +38,15 @@ export default Component.extend({
   name: null,
 
   /**
+    The `type` of the `input` element.
+
+    @property type
+    @type String
+    @default 'text'
+   */
+  type: 'text',
+
+  /**
     Whether or not the field is disabled.
 
     @property disabled
@@ -67,12 +76,22 @@ export default Component.extend({
 
   _updateDisplayValue(displayValue) {
     let input = get(this, 'element').querySelector('input');
+
+    // No work needs to be done
+    if (input.value === displayValue) {
+      return;
+    }
+
     let selectionStart = input.selectionStart;
     let selectionEnd = input.selectionEnd;
 
     input.value = displayValue || '';
-    input.selectionStart = selectionStart;
-    input.selectionEnd = selectionEnd;
+
+    // Only update the cursor position if focused
+    if (get(this, 'isFocused')) {
+      input.selectionStart = selectionStart;
+      input.selectionEnd = selectionEnd;
+    }
   },
 
   actions: {
@@ -81,9 +100,11 @@ export default Component.extend({
       this._setValue(input.value);
     },
     focus() {
+      set(this, 'isFocused', true);
       tryInvoke(this, 'onfocus');
     },
     blur() {
+      set(this, 'isFocused', false);
       tryInvoke(this, 'onblur');
     }
   }
