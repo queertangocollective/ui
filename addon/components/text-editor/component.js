@@ -6,6 +6,7 @@ import createComponentCard from 'ember-mobiledoc-editor/utils/create-component-c
 import Editor from 'mobiledoc-kit/editor/editor';
 import { MOBILEDOC_VERSION } from 'mobiledoc-kit/renderers/mobiledoc';
 import layout from './template';
+import isMobile from '../../system/mobile';
 
 const EDITOR_CARD_SUFFIX = '-editor';
 export const ADD_CARD_HOOK = 'addComponent';
@@ -51,6 +52,8 @@ export default Component.extend({
   classNames: ['text-editor'],
   tagName: 'article',
   layout,
+
+  isMobile,
 
   placeholder: null,
   spellcheck: true,

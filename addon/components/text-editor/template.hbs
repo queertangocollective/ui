@@ -34,9 +34,11 @@
     {{#text-editor/markup-button for='youtube' title='Embed Youtube Video' id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/youtube-form' onsubmit=(action 'addYoutubeEmbed')))}}
       {{icon 'youtube'}}
     {{/text-editor/markup-button}}
-    {{#text-editor/markup-button for='emoji' title='Add Emoji' id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/emoji-form' onsubmit=(action 'addEmoji')))}}
-      {{icon 'emoji'}}
-    {{/text-editor/markup-button}}
+    {{#unless isMobile}}
+      {{#text-editor/markup-button for='emoji' title='Add Emoji' id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/emoji-form' onsubmit=(action 'addEmoji')))}}
+        {{icon 'emoji'}}
+      {{/text-editor/markup-button}}
+    {{/unless}}
   </nav>
   {{#liquid-if form}}
     {{component form.component}}
