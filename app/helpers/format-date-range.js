@@ -22,7 +22,7 @@ function formatTime(s, e) {
 
 export function formatDateRange(startDate, endDate) {
   if (moment(startDate).isSame(moment(endDate), 'day')) {
-    return moment(startDate).format('MMMM D, YYYY') + formatTime(startDate, endDate);
+    return moment(startDate).format('MMMM D, YYYY') + ' ' + formatTime(startDate, endDate);
   } else if (moment(startDate).isSame(moment(endDate), 'month')) {
     return `${moment(startDate).format("MMMM D h:mma")} - ${moment(endDate).format('D, YYYY h:mma')}`;
   } else {
