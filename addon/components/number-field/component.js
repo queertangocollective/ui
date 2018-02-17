@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { get } from '@ember/object';
+import { get, set } from '@ember/object';
 import { l } from '../../helpers/l';
 import layout from './template';
 
@@ -209,8 +209,10 @@ export default Component.extend({
         }
       }
 
-      input.selectionStart = newCursorPosition;
-      input.selectionEnd = newCursorPosition;
+      if (input.selectionStart !== newCursorPosition) {
+        input.selectionStart = newCursorPosition;
+        input.selectionEnd = newCursorPosition;
+      }
     }
   },
 

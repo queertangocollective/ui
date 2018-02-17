@@ -89,8 +89,12 @@ export default Component.extend({
 
     // Only update the cursor position if focused
     if (get(this, 'isFocused')) {
-      input.selectionStart = selectionStart;
-      input.selectionEnd = selectionEnd;
+      if (input.selectionStart !== selectionStart) {
+        input.selectionStart = selectionStart;
+      }
+      if (input.selectionEnd !== selectionEnd) {
+        input.selectionEnd = selectionEnd;
+      }
     }
   },
 
