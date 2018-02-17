@@ -1,0 +1,44 @@
+.navigation-bar {
+  padding: 0.5rem 0;
+  margin-bottom: 0.5rem;
+
+  a {
+    color: $grey;
+    text-decoration: none;
+    padding: 0.35rem 0.5rem 0.35rem 0;
+    line-height: 1.2rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.active {
+      text-decoration: underline;
+      color: $black;
+    }
+  }
+
+  span {
+    flex: 1;
+  }
+
+  .pop-over {
+    background: $white;
+
+    .pop-over-compass {
+      box-shadow: 0 2px 4px 2px rgba($black, 0.2);
+    }
+
+    nav {
+      width: 10rem;
+      padding: 0 0.5rem;
+    }
+
+    span {
+      display: block;
+      content: ' ';
+      flex: none;
+      height: 1rem;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{{#if (media '(max-width: 620px)')}}
+  <button type='submit' id='nav-{{elementId}}' class='icon'>
+    {{icon 'list'}}
+  </button>
+  {{#pop-over gravity='nw' cover=true for=(concat 'nav-' elementId) on='click' ondidinsert=(action (mut popover))}}
+    <nav>
+      {{yield}}
+    </nav>
+  {{/pop-over}}
+{{else}}
+  <nav>
+    {{yield}}
+  </nav>
+{{/if}}

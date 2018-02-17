@@ -13,6 +13,21 @@
   }
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+
+  & > * {
+    margin: 0.25rem 0;
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
 .reverse-row {
   display: flex;
   flex-direction: row-reverse;
