@@ -3,12 +3,12 @@
     {{icon 'list'}}
   </button>
   {{#pop-over gravity='nw' cover=true for=(concat 'nav-' elementId) on='click' ondidinsert=(action (mut popover))}}
-    <nav>
+    <nav class="column">
       {{yield}}
     </nav>
   {{/pop-over}}
 {{else}}
-  <nav>
+  <nav class="row">
     {{yield}}
   </nav>
 {{/if}}
