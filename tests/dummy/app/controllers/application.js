@@ -5,7 +5,7 @@ import { set } from '@ember/object';
 export default Controller.extend({
   flash: method(),
 
-  queryParams: ['sort'],
+  queryParams: ['sort', 'as'],
 
   actions: {
     async query({ text }) {

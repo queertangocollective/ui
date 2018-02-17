@@ -1,5 +1,4 @@
 <label for='upload-field'>Upload field</label>
-
 {{check-box value=multiple onchange=(action (mut multiple))}}
 {{#upload-field name='photo' multiple=multiple value=upload accept='image/*' onchange=(action 'upload' 'upload') as |photo remove|}}
   <img src={{photo.url}} alt={{photo.name}} />
@@ -7,6 +6,9 @@
 {{else}}
   Add File
 {{/upload-field}}
+
+{{#link-to (query-params as='list') class='button'}}{{icon 'list'}} List{{/link-to}}
+{{#link-to (query-params as='calendar') class='button'}}{{icon 'calendar'}} Calendar{{/link-to}}
 
 {{#sortable-list id='countries' rows=model sort=sort as |l|}}
   {{#l.item 'name' as |item|}}
