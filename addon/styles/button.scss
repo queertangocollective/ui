@@ -37,6 +37,10 @@ button[type=reset] {
     border: 1px solid #EEEEE;
   }
 
+  &.icon svg {
+    padding: 0;
+  }
+
   svg {
     display: block;
     width: 1.625rem;
