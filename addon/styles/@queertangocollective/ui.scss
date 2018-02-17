@@ -49,3 +49,10 @@ html {
 .datetime-field {
   @extend .date-field;
 }
+
+.liquid-container:not(.liquid-animating) {
+  &,
+  .liquid-child {
+    overflow: visible;
+  }
+}
