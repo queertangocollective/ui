@@ -32,8 +32,7 @@
   justify-content: center;
   overflow: hidden;
 
-  & > div,
-  form {
+  & > div {
     background: $white;
     width: 30rem;
     max-width: calc(100vw - 2rem);
@@ -49,7 +48,8 @@
     grid-template-rows: auto 1fr auto;
   }
 
-  :not(.body) header {
+  & > div > header,
+  & > div > form > header {
     @extend .smcp;
     @extend .serif;
     position: relative;

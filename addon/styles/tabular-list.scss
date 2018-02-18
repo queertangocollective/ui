@@ -22,6 +22,7 @@
       }
 
       span {
+        content: ' ';
         display: inline-block;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -41,6 +42,8 @@
     z-index: 2;
 
     span {
+      content: ' ';
+      display: inline-block;
       color: inherit;
       line-height: 1.5rem;
       text-decoration: none;
