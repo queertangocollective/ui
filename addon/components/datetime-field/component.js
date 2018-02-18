@@ -216,6 +216,7 @@ export default Component.extend(Autoresize, {
 
     onchange({ moment }) {
       set(this, 'isActive', false);
+      moment.add(12, 'hours');
       this._setValue(moment.format('MM/DD/YYYY h:mma'));
     }
   }
