@@ -1,6 +1,6 @@
 {
   "name": "@queertangocollective/ui",
-  "version": "0.1.58",
+  "version": "0.1.59",
   "description": "ui toolkit for queertangocollective",
   "keywords": [
     "ember-addon"
