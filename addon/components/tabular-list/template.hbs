@@ -1,0 +1,14 @@
+<header>
+  {{yield (hash item=(component (tabular-list/list-item' sort=sort))}}
+</header>
+{{#if rows.length}}
+  <ol>
+    {{#each rows as |row|}}
+      <li>
+        {{~yield (hash item=(component 'tabular-list/list-item' item=row))~}}
+      </li>
+    {{/each}}
+  </ol>
+{{else}}
+  {{yield to='inverse'}}
+{{/if}}

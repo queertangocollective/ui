@@ -1,0 +1,5 @@
+{{#if item~}}
+  <span class="{{dasherize name}}">{{yield item}}</span>
+{{~else~}}
+  <span class="{{dasherize name}}">{{yield to='inverse'}}</span>
+{{~/if}}

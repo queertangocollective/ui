@@ -1,0 +1,49 @@
+.tabular-list {
+  display: grid;
+  margin-bottom: 1rem;
+  width: 100%;
+
+  ol {
+    box-shadow: 0 1px 2px 1px rgba($black, 0.20);
+    border-radius: 4px;
+    margin: 0;
+    padding: 0;
+
+    li {
+      text-decoration: none;
+      display: block;
+      line-height: 2.5rem;
+      height: 2.5rem;
+      white-space: nowrap;
+      padding: 0 1rem;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $heather;
+      }
+
+      span {
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  header {
+    position: sticky;
+    padding: 0.3rem 1rem;
+    box-shadow: 0 1px 2px 1px rgba($black, 0.20);
+    border-radius: 4px;
+    background: $black;
+    color: $white;
+    margin-bottom: 1rem;
+    grid-template-rows: 1fr 1fr;
+    z-index: 2;
+
+    span {
+      color: inherit;
+      line-height: 1.5rem;
+      text-decoration: none;
+    }
+  }
+}

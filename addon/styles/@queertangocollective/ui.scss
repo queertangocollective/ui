@@ -4,6 +4,7 @@
 @import 'typography';
 @import 'button';
 @import 'auto-complete';
+@import 'confirm-button';
 @import 'copy-field';
 @import 'check-box';
 @import 'text-field';
@@ -21,9 +22,9 @@
 @import 'spinner';
 @import 'snack-bar';
 @import 'submit-button';
+@import 'tabular-list';
 @import 'text-editor';
 @import 'tool-tip';
-@import 'confirm-button';
 
 * {
   box-sizing: border-box;
