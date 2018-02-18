@@ -1,5 +1,5 @@
 <header>
-  {{yield (hash item=(component (tabular-list/list-item' sort=sort))}}
+  {{yield (hash item=(component 'tabular-list/list-item' sort=sort))}}
 </header>
 {{#if rows.length}}
   <ol>
