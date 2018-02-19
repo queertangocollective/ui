@@ -55,6 +55,10 @@
 {{search-field hasIcon=hasIcon inputId='search-field' query=query onquery=(action (mut query))}}
 {{query}}
 
+<label for='url-field'>URL</label>
+{{url-field inputId='url-field' value=url onchange=(action (mut url))}}
+{{url}}
+
 <label for='auto-complete'>Autocomplete</label>
 {{auto-complete inputId='auto-complete' value=autocomplete onchange=(action (mut autocomplete)) onquery=(action 'query') key='name'}}
 {{autocomplete.alpha2Code}} / {{autocomplete.name}}
