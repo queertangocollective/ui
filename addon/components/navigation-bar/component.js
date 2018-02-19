@@ -17,6 +17,7 @@ export default Component.extend({
   },
 
   didTransition: observer('router.currentRouteName', function () {
+    get(this, 'router.currentRouteName'); // Necessary for triggering observation
     if (get(this, 'popover')) {
       get(this, 'popover').hide();
     }
