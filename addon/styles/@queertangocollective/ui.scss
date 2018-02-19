@@ -52,6 +52,10 @@ html {
   @extend .date-field;
 }
 
+a {
+  color: $accent;
+}
+
 .liquid-container:not(.liquid-animating) {
   &,
   .liquid-child {
