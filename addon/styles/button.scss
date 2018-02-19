@@ -37,10 +37,6 @@ button[type=reset] {
     border: 1px solid #EEEEE;
   }
 
-  &.icon svg {
-    padding: 0;
-  }
-
   svg {
     display: block;
     width: 1.625rem;
@@ -53,6 +49,10 @@ button[type=reset] {
     &:last-child:not(:first-child) {
       padding-left: 0.5rem;
     }
+  }
+
+  &.icon svg {
+    padding-right: 0;
   }
 
   &.button.active,
