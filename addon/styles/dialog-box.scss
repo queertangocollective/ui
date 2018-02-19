@@ -74,6 +74,7 @@
   .body {
     max-height: calc(100vh - 8rem);
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     padding: 1rem 1rem 0;
 
     & > *:last-child {
