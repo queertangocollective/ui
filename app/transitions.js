@@ -37,4 +37,9 @@ export default function(){
     this.hasClass('snack-bar'),
     this.use('toaster', { duration: slow, easing: [600, 30] })
   );
+
+  this.transition(
+    this.hasClass('create-button'),
+    this.use('create-button', { duration: slow })
+  );
 }

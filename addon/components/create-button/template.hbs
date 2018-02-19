@@ -1,0 +1,10 @@
+{{#liquid-if isCreating class='create-button'}}
+  {{text-field value=value onchange=(action (mut value)) autofocus=true placeholder=placeholder}}
+  {{#submit-button class='icon' onsubmit=(action 'submit' value)}}
+    {{yield to='inverse'}}
+  {{/submit-button}}
+{{else}}
+  <button type='submit' onclick={{action 'create'}}>
+    {{yield}}
+  </button>
+{{/liquid-if}}

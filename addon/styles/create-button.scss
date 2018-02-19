@@ -1,0 +1,12 @@
+.create-button {
+  .text-field {
+    max-width: 15rem;
+  }
+  .liquid-child {
+    @extend .row;
+  }
+
+  .dialog-box & .text-field {
+    max-width: 100%;
+  }
+}
