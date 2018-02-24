@@ -59,6 +59,54 @@ export default Component.extend({
   spellcheck: true,
   autofocus: true,
 
+  buttons: computed('markup', function () {
+    let buttons = [{
+      type: 'strong',
+      label: 'Bold',
+      icon: 'bold'
+    }, {
+      type: 'em',
+      label: 'Italic',
+      icon: 'italic'
+    }, {
+      type: 'u',
+      label: 'Underline',
+      icon: 'underline'
+    }, {
+      type: 'blockquote',
+      label: 'Quote',
+      icon: 'quote'
+    }, {
+      type: 'a',
+      label: 'Link',
+      icon: 'link'
+    }, {
+      type: 'photo',
+      label: 'Add Photo',
+      icon: 'photo'
+    }, {
+      type: 'youtube',
+      label: 'Embed Youtube Video',
+      icon: 'youtube'
+    }];
+
+    // Mobile OSes have robust emoji keyboards
+    if (!get(this, 'isMobile')) {
+      buttons.push({
+        type: 'emoji',
+        label: 'Add Emoji',
+        icon: 'emoji'
+      });
+    }
+
+    if (get(this, 'markup')) {
+      return get(this, 'markup').map((name) => {
+        return buttons.findBy('icon', name);
+      });
+    }
+    return buttons;
+  }),
+
   init() {
     this._super(...arguments);
     set(this, 'componentCards', []);

@@ -1,46 +1,39 @@
 {{#file-dropzone name=(concat name '-photo') as |dropzone|}}
   <nav class='row'>
-    {{#text-editor/markup-button for='strong' title='Bold' id=inputId editor=this onclick=(action 'toggleMarkup')}}
-      {{icon 'bold'}}
-    {{/text-editor/markup-button~}}
-
-    {{#text-editor/markup-button for='em' title='Italicize' id=inputId editor=this onclick=(action 'toggleMarkup')}}
-      {{icon 'italic'}}
-    {{/text-editor/markup-button~}}
-
-    {{#text-editor/markup-button for='u' title='Underline' id=inputId editor=this onclick=(action 'toggleMarkup')}}
-      {{icon 'underline'}}
-    {{/text-editor/markup-button~}}
-
-    {{#text-editor/section-button for='blockquote' title='Quote' id=inputId editor=this onclick=(action 'toggleSection')}}
-      {{icon 'quote'}}
-    {{/text-editor/section-button~}}
-
-    {{#text-editor/markup-button for='a' hint='isLink' title='Link' id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/link-form' active=(get editor.activeMarkupTagNames 'isLink') onsubmit=(action 'addLink')))}}
-      {{icon 'link'}}
-    {{else}}
-      {{icon 'unlink'}}
-    {{/text-editor/markup-button~}}
-
-    {{#if onupload}}
-      {{#file-upload name=(concat name '-photo') id=(concat inputId '-photo') onfileadd=(action 'upload' editor.editor)}}
-        {{icon 'photo'}}
-      {{/file-upload~}}
-      {{#tool-tip for=(concat inputId '-photo')}}
-        Add Image
-      {{/tool-tip~}}
-    {{/if}}
-
-    {{#text-editor/markup-button for='youtube' title='Embed Youtube Video' id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/youtube-form' onsubmit=(action 'addYoutubeEmbed')))}}
-      {{icon 'youtube'}}
-    {{/text-editor/markup-button}}
-    {{#unless isMobile}}
-      {{#text-editor/markup-button for='emoji' title='Add Emoji' id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/emoji-form' onsubmit=(action 'addEmoji')))}}
-        {{icon 'emoji'}}
-      {{/text-editor/markup-button}}
-    {{/unless}}
+    {{#each buttons as |button|}}
+      {{#if (equals button.type 'a')}}
+        {{#text-editor/markup-button for=button.type hint='isLink' title=button.label id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/link-form' active=(get editor.activeMarkupTagNames 'isLink') onsubmit=(action 'addLink')))}}
+          {{icon button.icon}}
+        {{else}}
+          {{icon 'unlink'}}
+        {{/text-editor/markup-button~}}
+      {{else if (equals button.type 'photo')}}
+        {{#file-upload name=(concat name '-photo') id=(concat inputId '-photo') onfileadd=(action 'upload' editor.editor)}}
+          {{icon button.icon}}
+        {{/file-upload~}}
+        {{#tool-tip for=(concat inputId '-photo')}}
+          {{button.label}}
+        {{/tool-tip~}}
+      {{else if (equals button.type 'quote')}}
+        {{#text-editor/section-button for=button.type title=button.label id=inputId editor=this onclick=(action 'toggleSection')}}
+          {{icon button.icon}}
+        {{/text-editor/section-button~}}
+      {{else if (equals button.type 'youtube')}}
+        {{#text-editor/markup-button for=button.type title=button.label id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/youtube-form' onsubmit=(action 'addYoutubeEmbed')))}}
+          {{icon button.icon}}
+          {{/text-editor/markup-button}}
+      {{else if (equals button.type 'emoji')}}
+        {{#text-editor/markup-button for=button.type title=button.label id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/emoji-form' onsubmit=(action 'addEmoji')))}}
+          {{icon button.icon}}
+        {{/text-editor/markup-button}}
+      {{else}}
+        {{#text-editor/markup-button for=button.type title=button.label id=inputId editor=this onclick=(action 'toggleMarkup')}}
+          {{icon button.icon}}
+        {{/text-editor/markup-button~}}
+      {{/if}}
+    {{/each}}
   </nav>
-  {{#liquid-if form}}
+  {{#liquid-if form class='editor-form'}}
     {{component form.component}}
   {{/liquid-if}}
   <div class="mobiledoc-editor__editor-wrapper">

@@ -1,6 +1,7 @@
 .text-editor {
   position: relative;
   margin-bottom: 0.25rem;
+  width: 100%;
 
   .__mobiledoc-editor {
     @extend .sans-serif;
@@ -50,6 +51,7 @@
 
     label,
     button {
+      position: relative;
       appearance: none;
       height: 2rem;
       width: 2.5rem;
@@ -79,6 +81,12 @@
 
       svg path {
         fill: $white;
+      }
+
+      svg {
+        position: absolute;
+        top: calc(50% - 9px);
+        left: calc(50% - 9px);
       }
     }
   }
@@ -115,13 +123,39 @@
     border: 1px solid rgba(204, 204, 204, 0);
     font-size: 1.5rem;
     color: #4A4A4A;
-    line-height: 1.5rem;
     border-radius: 4px;
     box-shadow: 0 1px 2px 1px rgba(5, 5, 5, 0.2);
     resize: none;
-    padding: 0.4rem 0.5rem 0;
-    width: 100%;
-    margin: 0.25rem 0;
+    height: 2.4rem;
+    overflow: hidden;
+    padding: 0 1.5rem;
+
+    .emoji-list {
+      position: absolute;
+      padding: 0 0.5rem;
+      margin: 0.25rem 0;
+      white-space: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      width: calc(100% - 3rem);
+    }
+
+    .next, .previous {
+      position: absolute;
+      padding: 0.4rem 0;
+      top: 0.2rem;
+    }
+
+    .next {
+      right: 0.2rem;
+    }
+
+    .previous {
+      left: 0.2rem;
+      svg {
+        transform: rotate(180deg);
+      }
+    }
 
     a {
       display: inline-block;
@@ -129,12 +163,15 @@
       transition-property: font-size;
       transition-duration: 200ms;
       transition-timing-function: cubic-bezier(0.79, 0.14, 0.15, 0.86);
+      cursor: pointer;
+      padding: 0.25rem 0.25rem 0;
+      line-height: 1.75rem;
+      width: 2rem;
 
       &:active {
         text-align: center;
         font-size: 1.3rem;
         line-height: 1.3rem;
-        width: 1.5rem;
       }
 
       &:focus {

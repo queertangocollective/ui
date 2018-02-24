@@ -1,2 +1,2 @@
-{{text-field onchange=(action (mut value)) value=value}}
-<button type='submit' onclick={{action onsubmit value}}>{{#if isActive}}{{icon 'unlink'}}{{else}}{{icon 'link'}}{{/if}}</button>
+{{url-field onchange=(action (mut value)) value=value placeholder='Enter URL'}}
+<button type='submit' class='icon' onclick={{action onsubmit value}}>{{#if isActive}}{{icon 'unlink'}}{{else}}{{icon 'link'}}{{/if}}</button>
