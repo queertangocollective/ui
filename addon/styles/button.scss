@@ -1,7 +1,9 @@
 a.button,
 a.reset-button,
 a.submit-button,
+button.submit,
 button[type=submit],
+button.reset,
 button[type=reset] {
   @extend .smcp;
   @extend .serif;
@@ -57,6 +59,7 @@ button[type=reset] {
   }
 
   &.button.active,
+  &.submit,
   &.submit-button,
   &[type=submit] {
     background: $black;
@@ -83,6 +86,7 @@ button[type=reset] {
   }
 
   &.button:not(.active),
+  &.reset,
   &.reset-button,
   &[type=reset] {
     background: $white;
