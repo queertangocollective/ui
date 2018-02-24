@@ -42,4 +42,9 @@ export default function(){
     this.hasClass('create-button'),
     this.use('create-button', { duration: slow })
   );
+
+  this.transition(
+    this.hasClass('auto-complete-options'),
+    this.use('fade', { duration, easing })
+  );
 }

@@ -1,6 +1,6 @@
 {{search-field inputId=inputId query=(get displayValue key) onquery=(action 'query') hasIcon=false onchange=(action (mut query))}}
 
-{{#liquid-bind options as |suggestions|}}
+{{#liquid-bind options class='auto-complete-options' as |suggestions|}}
   {{#if suggestions}}
     <ul>
       {{#each suggestions as |option|}}
