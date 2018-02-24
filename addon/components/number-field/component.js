@@ -277,7 +277,7 @@ export default Component.extend({
         return false;
       }
 
-      if (evt.which <= 40) {
+      if (evt.which <= 40 || evt.metaKey) {
         return true;
       }
 
