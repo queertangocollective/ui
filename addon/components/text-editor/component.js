@@ -335,7 +335,7 @@ export default Component.extend({
   actions: {
     upload(editor, file) {
       return get(this, 'onupload')(file).then((photo) => {
-        this.addCard('photo-card', {
+        this.addCard('photo', {
           id: get(photo, 'id'),
           url: get(photo, 'url'),
           title: get(photo, 'title'),
