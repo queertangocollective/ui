@@ -3,6 +3,8 @@ import Component from '@ember/component';
 import { set, get } from '@ember/object';
 import { cancel, debounce } from '@ember/runloop';
 import layout from './template';
+import RSVP from 'rsvp';
+import opacity from 'ember-animated/motions/opacity';
 
 /**
   A `{{search-field}}` is a drop in replacement
@@ -76,6 +78,15 @@ export default Component.extend({
   search() {
     this._timer = null;
     get(this, 'onquery')(get(this, 'value'));
+  },
+
+  duration: 250,
+
+  fade: function* ({ insertedSprites, removedSprites }) {
+    yield RSVP.all([
+        ...insertedSprites.map(opacity),
+        ...removedSprites.map(opacity)
+    ]);
   },
 
   actions: {

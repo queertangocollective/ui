@@ -20,13 +20,6 @@ export default function(){
   );
 
   this.transition(
-    this.childOf('.search-field'),
-    this.toValue(true),
-    this.use('fade', { duration }),
-    this.reverse('fade', { duration })
-  );
-
-  this.transition(
     this.hasClass('calendar'),
     this.toValue(true),
     this.use('fade', { duration }),
@@ -41,10 +34,5 @@ export default function(){
   this.transition(
     this.hasClass('create-button'),
     this.use('create-button', { duration: slow })
-  );
-
-  this.transition(
-    this.hasClass('auto-complete-options'),
-    this.use('fade', { duration, easing })
   );
 }

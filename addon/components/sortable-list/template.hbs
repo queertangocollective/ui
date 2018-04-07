@@ -2,17 +2,19 @@
 <header>
   {{yield (hash item=(component 'sortable-list/list-item' sort=sort))}}
 </header>
-{{#if rows.length}}
-  <ol>
-    {{#each rows as |row|}}
-      <li>
-        {{~yield (hash item=(component 'sortable-list/list-item' item=row))~}}
-      </li>
-    {{/each}}
-  </ol>
-{{else}}
-  {{yield to='inverse'}}
-{{/if}}
+{{#animated-container}}
+  {{#animated-if rows.length use=fade duration=duration}}
+    {{#animated-container tagName='ol'}}
+      {{#animated-each rows use=shuffle duration=duration as |row|}}
+        <li>
+          {{~yield (hash item=(component 'sortable-list/list-item' item=row))~}}
+        </li>
+      {{/animated-each}}
+    {{/animated-container}}
+  {{else}}
+    {{yield to='inverse'}}
+  {{/animated-if}}
+{{/animated-container}}
 {{#if hasMore}}
   <div>
     {{#submit-button onsubmit=(action 'loadMore' rows.length)}}

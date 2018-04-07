@@ -3,16 +3,18 @@
                  send=send}}
 {{else}}
   {{#from-elsewhere name="dialog" tagName="" as |dialog|}}
-    {{#liquid-bind dialog containerless=true use='dialog' as |props|}}
-      {{#if props.dialog}}
-        <div class="dialog-container {{props.class}}">
-          <div class="dialog-background" onclick={{action props.dismiss}}></div>
+    <div class="dialog-container {{props.class}}">
+      {{#animated-if dialog use=fade duration=duration}}
+        <div class="dialog-background" onclick={{action dialog.dismiss}}></div>
+      {{/animated-if}}
+      {{#animated-value dialog group=dialog.group use=show duration=duration as |props|}}
+        {{#if props.dialog}}
           <div class="{{props.className}}">
             {{component props.dialog dismiss=props.dismiss}}
             {{key-down 'esc' props.dismiss}}
           </div>
-        </div>
-      {{/if}}
-    {{/liquid-bind}}
+        {{/if}}
+      {{/animated-value}}
+    </div>
   {{/from-elsewhere}}
 {{/if}}

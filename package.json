@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "broccoli-funnel": "^2.0.1",
+    "ember-animated": "^0.3.0",
     "ember-autoresize": "^1.1.0",
     "ember-buffered-proxy": "^0.8.1",
     "ember-cli-autoprefixer": "^0.8.1",

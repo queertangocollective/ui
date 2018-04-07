@@ -1,11 +1,21 @@
 import Controller from '@ember/controller';
 import method from 'ember-service-methods/inject';
-import { set } from '@ember/object';
+import { computed, get, set } from '@ember/object';
 
 export default Controller.extend({
   flash: method(),
 
   queryParams: ['sort', 'as'],
+
+  sort: 'name',
+
+  countries: computed('sort', 'model', function () {
+    let sort = get(this, 'sort');
+    if (sort[0] === '-') {
+      return get(this, 'model').sortBy(sort.slice(1)).reverse().slice(0, 20);
+    }
+    return get(this, 'model').sortBy(get(this, 'sort')).slice(0, 20);
+  }),
 
   actions: {
     async query({ text }) {

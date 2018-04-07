@@ -3,6 +3,9 @@ import { set, get, computed } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
 import { resolve } from 'rsvp';
 import layout from './template';
+import RSVP from 'rsvp';
+import move from 'ember-animated/motions/move';
+import { fadeOut, fadeIn } from 'ember-animated/motions/opacity';
 
 export default Component.extend({
   layout,
@@ -16,6 +19,33 @@ export default Component.extend({
     resolve(get(this, 'value')).then((value) => {
       set(this, 'displayValue', value);
     });
+  },
+
+  duration: 200,
+
+  fade: function* ({ insertedSprites, removedSprites }) {
+    yield RSVP.all([
+      ...insertedSprites.map(fadeIn),
+      ...removedSprites.map(fadeOut)
+    ]);
+  },
+
+  shuffle: function* ({ insertedSprites, keptSprites, removedSprites }) {
+    if (removedSprites.length) {
+      yield RSVP.all(removedSprites.map(fadeOut));
+    }
+    if (keptSprites.length) {
+      yield Promise.all(keptSprites.map(sprite => {
+        sprite.applyStyles({ zIndex: 1 });
+        return RSVP.all([
+          fadeIn(sprite),
+          move(sprite)
+        ]);
+      }));
+    }
+    if (insertedSprites.length) {
+      insertedSprites.map(fadeOut);
+    }
   },
 
   actions: {

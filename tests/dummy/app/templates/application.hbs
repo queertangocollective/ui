@@ -10,7 +10,7 @@
 {{#link-to (query-params as='list') class='button'}}{{icon 'list'}} List{{/link-to}}
 {{#link-to (query-params as='calendar') class='button'}}{{icon 'calendar'}} Calendar{{/link-to}}
 
-{{#sortable-list id='countries' rows=model sort=sort as |l|}}
+{{#sortable-list id='countries' rows=countries sort=sort as |l|}}
   {{#l.item 'name' as |item|}}
     {{item.name}}
   {{else}}
@@ -94,10 +94,13 @@
     Are you sure?
   {{/confirm-button}}
 
-  <button type='submit' onclick={{action (mut dialog) true}}>Show dialog</button>
+  {{#animated-beacon group='hello'}}
+    <button type='submit' onclick={{action (mut dialog) true}}>Show dialog</button>
+  {{/animated-beacon}}
   <button type='reset'>Cancel</button>
   {{#if dialog}}
     {{dialog-box (component 'hello-dialog')
+      group='hello'
       ondismiss=(action (mut dialog) false)}}
   {{/if}}
 </div>

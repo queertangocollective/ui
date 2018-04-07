@@ -1,9 +1,9 @@
-{{#liquid-if isProcessing class='liquid-button' enableGrowth=false}}
+{{#animated-if isProcessing use=fade duration=duration}}
   {{icon 'spinner' class='spinner'}}
 {{else}}
-  {{#liquid-if isConfirming class='liquid-button' growPixelsPerSecond=20 growthDuration=150}}
-    {{yield to='inverse'}}
+  {{#animated-if isConfirming use=fade duration=duration}}
+    <span>{{yield to='inverse'}}</span>
   {{else}}
-    {{yield}}
-  {{/liquid-if}}
-{{/liquid-if}}
+    <span>{{yield}}</span>
+  {{/animated-if}}
+{{/animated-if}}

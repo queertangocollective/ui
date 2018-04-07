@@ -1,6 +1,11 @@
 import Component from '@ember/component';
 import { set, get, setProperties } from '@ember/object';
 import layout from './template';
+import RSVP from 'rsvp';
+import opacity from 'ember-animated/motions/opacity';
+import scale from 'ember-animated/motions/scale';
+import move from 'ember-animated/motions/move';
+import { easeInOut as easing } from 'ember-animated/easings/cosine';
 
 /**
   `{{dialog-box}}`es are a modal dialog
@@ -62,6 +67,8 @@ export default Component.extend({
    */
   ondismiss: null,
 
+  duration: 200,
+
   /**
     `dialog-class` is a list of classes that will be added
     to the root of the dialog that's being rendered.
@@ -77,6 +84,7 @@ export default Component.extend({
       className: 'dialog-box',
       dismiss: get(this, 'ondismiss'),
       dialog: get(this, 'dialog'),
+      group: get(this, 'group'),
       class: get(this, 'dialog-class')
     };
 
@@ -86,8 +94,39 @@ export default Component.extend({
     } else {
       set(this, 'send', send);
     }
-  }
+  },
 
+  fade: function* ({ insertedSprites, removedSprites }) {
+    yield RSVP.all([
+        ...insertedSprites.map(sprite => opacity(sprite, { from: 0, to: 1 })),
+        ...removedSprites.map(sprite => opacity(sprite, { from: 1, to : 0 }))
+    ]);
+
+    if (insertedSprites.length) {
+      document.body.classList.add('noscroll');
+    } else {
+      document.body.classList.remove('noscroll');
+    }
+  },
+
+  show: function* ({ receivedSprites, sentSprites }) {
+    yield RSVP.all([
+        ...receivedSprites.map(sprite => {
+          return RSVP.all([
+            scale(sprite, { easing }),
+            move(sprite, { easing }),
+            opacity(sprite, { from: 0, to: 1, easing })
+          ]);
+        }),
+        ...sentSprites.map(sprite => {
+          return RSVP.all([
+            scale(sprite, { easing }),
+            move(sprite, { easing }),
+            opacity(sprite, { from: 1, to: 0, easing })
+          ]);
+        })
+    ]);
+  }
 }).reopenClass({
   positionalParams: ['dialog']
 });

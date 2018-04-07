@@ -1,6 +1,8 @@
-{{#liquid-if hasIcon class='search-icon'}}
-  {{icon 'search' class='search'}}
-{{/liquid-if}}
+{{#animated-container class='search-icon'}}
+  {{#animated-if hasIcon use=fade duration=duration}}
+    {{icon 'search' class='search'}}
+  {{/animated-if}}
+{{/animated-container}}
 {{text-field
   inputId=inputId
   value=value
@@ -8,8 +10,10 @@
   name=name
   placeholder=placeholder
   disabled=disabled}}
-{{#liquid-if value class='clear'}}
-  <span onclick={{action clear}}>
-    {{icon 'cancel'}}
-  </span>
-{{/liquid-if}}
+{{#animated-container class='clear'}}
+  {{#animated-if value use=fade duration=duration}}
+    <span onclick={{action clear}}>
+      {{icon 'cancel'}}
+    </span>
+  {{/animated-if}}
+{{/animated-container}}

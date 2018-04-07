@@ -1,15 +1,14 @@
 {{search-field inputId=inputId query=(get displayValue key) onquery=(action 'query') hasIcon=false onchange=(action (mut query))}}
 
-{{#liquid-bind options class='auto-complete-options' as |suggestions|}}
-  {{#if suggestions}}
-    <ul>
-      {{#each suggestions as |option|}}
-        <li onclick={{action 'change' option}}>{{highlight (get option key) match=query}}</li>
-      {{/each}}
-    </ul>
-  {{/if}}
-{{/liquid-bind}}
-
-{{#liquid-if (and query (not (get displayValue key)))}}
-  {{yield}}
-{{/liquid-if}}
+{{#if options}}
+  {{#animated-container tagName='ul' class='auto-complete-options'}}
+    {{#animated-each options key=key use=shuffle duration=duration as |option|}}
+      <li onclick={{action 'change' option}}>{{highlight (get option key) match=query}}</li>
+    {{/animated-each}}
+  {{/animated-container}}
+{{/if}}
+{{#animated-container}}
+  {{#animated-if (and query (not (get displayValue key))) use=fade duration=duration}}
+    {{yield}}
+  {{/animated-if}}
+{{/animated-container}}

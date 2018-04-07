@@ -54,6 +54,10 @@ button[type=reset] {
     }
   }
 
+  & > span {
+    display: flex;
+  }
+
   &.icon svg {
     padding-right: 0;
   }

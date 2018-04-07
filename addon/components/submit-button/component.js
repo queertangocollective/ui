@@ -1,9 +1,9 @@
-import Component from '@ember/component';
+import Component from 'ember-animated/components/animated-container';
 import { set, get } from '@ember/object';
 import RSVP from 'rsvp';
 import { task, timeout } from 'ember-concurrency';
 import layout from './template';
-import { getLayout } from 'dom-ruler';
+import opacity from 'ember-animated/motions/opacity';
 
 export default Component.extend({
 
@@ -19,21 +19,14 @@ export default Component.extend({
 
   type: 'submit',
 
+  duration: 200,
+
   submit: task(function *(submit) {
-    let width = get(this, 'element').getBoundingClientRect().width;
-    let innerWidth = getLayout(get(this, 'element')).content.width;
-    get(this, 'element').style.width = width + 'px';
     set(this, 'isProcessing', true);
     try {
-      yield timeout(0);
-      let spinner = get(this, 'element').querySelector('.spinner');
-      spinner.style.width = innerWidth + 'px';
-
       yield RSVP.all([submit(), timeout(500)]);
     } finally {
       set(this, 'isProcessing', false);
-      yield timeout(500);
-      get(this, 'element').style.width = null;
     }
   }),
 
@@ -43,5 +36,12 @@ export default Component.extend({
 
     get(this, 'submit').perform(get(this, 'onsubmit'));
     return false;
+  },
+
+  fade: function* ({ insertedSprites, removedSprites }) {
+    yield RSVP.all([
+      ...insertedSprites.map(sprite => opacity(sprite, { from: 0, to: 1 })),
+      ...removedSprites.map(sprite => opacity(sprite, { from: 0, to: 0 }))
+    ]);
   }
 });
