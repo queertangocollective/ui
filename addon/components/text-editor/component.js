@@ -334,10 +334,9 @@ export default Component.extend({
 
   actions: {
     upload(editor, file) {
+      let editor = this.get('editor');
+      let range = editor.range;
       return get(this, 'onupload')(file).then((photo) => {
-        let { range } = this.get('form');
-        this.set('form', null);
-        let editor = this.get('editor');
         editor.selectRange(range);
         this.addCard('photo', {
           id: get(photo, 'id'),
