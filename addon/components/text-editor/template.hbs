@@ -9,7 +9,7 @@
             {{icon 'unlink'}}
           {{/text-editor/markup-button~}}
         {{else if (equals button.type 'photo')}}
-          {{#file-upload name=(concat name '-photo') id=(concat inputId '-photo') onfileadd=(action 'upload' editor.editor)}}
+          {{#file-upload name=(concat name '-photo') id=(concat inputId '-photo') onfileadd=(action 'upload')}}
             {{icon button.icon}}
           {{/file-upload~}}
           {{#tool-tip for=(concat inputId '-photo')}}

@@ -333,7 +333,8 @@ export default Component.extend({
   },
 
   actions: {
-    upload(editor, file) {
+    upload(file) {
+      let editor = this.get('editor');
       let range = editor.range;
       return get(this, 'onupload')(file).then((photo) => {
         editor.selectRange(range);
