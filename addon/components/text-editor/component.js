@@ -262,6 +262,12 @@ export default Component.extend({
       }
     });
 
+    editor.cursorDidChange(() => {
+      if (editor.hasCursor()) {
+        this._lastRange = editor.range;
+      }
+    });
+
     if (get(this, 'disabled')) {
       editor.disableEditing();
     }
@@ -335,7 +341,7 @@ export default Component.extend({
   actions: {
     upload(file) {
       let editor = this.get('editor');
-      let range = editor.range;
+      let range = this._lastRange;
       return get(this, 'onupload')(file).then((photo) => {
         editor.selectRange(range);
         this.addCard('photo', {
