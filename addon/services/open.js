@@ -22,12 +22,13 @@ export default Service.extend({
   ondismiss: null,
   dialog: null,
 
-  execute(dialog) {
+  execute(Dialog) {
     return new Promise((resolve, reject) => {
       set(this, 'ondismiss', reject);
-      set(this, 'dialog', Object.assign({
+      Dialog.ComponentClass = Dialog.ComponentClass.extend({
         onsubmit: resolve
-      }, dialog));
+      });
+      set(this, 'dialog', Dialog);
     }).finally(() => {
       set(this, 'dialog', null);
       set(this, 'ondismiss', null);
