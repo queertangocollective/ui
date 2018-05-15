@@ -10,7 +10,7 @@ import { task } from 'ember-concurrency';
 
   ```js
   export default Ember.Route.extend({
-    flash: service(),
+    flash: method(),
 
     deleteItem: task(function * (item) {
       try {

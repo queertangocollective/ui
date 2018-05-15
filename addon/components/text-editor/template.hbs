@@ -27,7 +27,7 @@
           {{#text-editor/markup-button for=button.type title=button.label id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/emoji-form' onsubmit=(action 'addEmoji')))}}
             {{icon button.icon}}
           {{/text-editor/markup-button}}
-        {{else if button.isEmbed}}
+        {{else if button.onembed}}
           {{#text-editor/markup-button for=button.type title=button.label id=inputId editor=this onclick=(action 'embed' button)}}
             {{icon button.icon}}
           {{/text-editor/markup-button~}}

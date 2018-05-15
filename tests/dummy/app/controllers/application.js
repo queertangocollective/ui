@@ -3,6 +3,7 @@ import method from 'ember-service-methods/inject';
 import { computed, get, set } from '@ember/object';
 
 export default Controller.extend({
+  open: method(),
   flash: method(),
 
   queryParams: ['sort', 'as'],
@@ -39,6 +40,10 @@ export default Controller.extend({
       return this.flash(text, {
         timeout: 5000
       });
+    },
+
+    open(dialog) {
+      return this.open(dialog);
     }
   }
 });

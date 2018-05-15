@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { set, get, setProperties } from '@ember/object';
+import { inject as service } from '@ember/service';
 import layout from './template';
 import RSVP from 'rsvp';
 import opacity from 'ember-animated/motions/opacity';
@@ -57,6 +58,8 @@ import { easeInOut as easing } from 'ember-animated/easings/cosine';
 export default Component.extend({
   tagName: '',
   layout,
+
+  open: service(),
 
   /**
     `ondismiss` is triggered when the dialog is dismissed.

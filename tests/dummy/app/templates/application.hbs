@@ -88,6 +88,10 @@
     Show snackbar
   {{/submit-button}}
 
+  {{#submit-button onsubmit=(action 'open' (component 'hello-dialog'))}}
+    Show dialog
+  {{/submit-button}}
+
   {{#confirm-button onsubmit=(action 'flash' 'Submitted with confirmation')}}
     {{icon 'eye'}} Show snackbar
   {{else}}

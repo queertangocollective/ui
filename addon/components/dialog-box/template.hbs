@@ -17,4 +17,7 @@
       {{/animated-value}}
     </div>
   {{/from-elsewhere}}
+  {{#if open.dialog}}
+    {{dialog-box open.dialog ondismiss=open.ondismiss}}
+  {{/if}}
 {{/if}}
