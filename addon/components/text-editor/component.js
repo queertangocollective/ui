@@ -347,12 +347,12 @@ export default Component.extend({
       let range = this._lastRange;
       return get(this, 'onupload')(file).then((photo) => {
         editor.selectRange(range);
-        this.addCardInEditMode('photo', {
+        this.addCard('photo', {
           id: get(photo, 'id'),
           url: get(photo, 'url'),
           title: get(photo, 'title'),
           caption: get(photo, 'caption')
-        });
+        }, true);
       });
     },
 
@@ -361,7 +361,7 @@ export default Component.extend({
       let range = this._lastRange;
       return button.onembed().then((embed) => {
         editor.selectRange(range);
-        this.addCardInEditMode(button.type, embed);
+        this.addCard(button.type, embed, true);
       });
     },
 
