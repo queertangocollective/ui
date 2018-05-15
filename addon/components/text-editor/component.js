@@ -356,12 +356,12 @@ export default Component.extend({
       });
     },
 
-    embed(type) {
+    embed(button) {
       let editor = this.get('editor');
       let range = this._lastRange;
-      return get(this, 'onembed')(type).then((embed) => {
+      return button.onembed().then((embed) => {
         editor.selectRange(range);
-        this.addCardInEditMode(type, embed);
+        this.addCardInEditMode(button.type, embed);
       });
     },
 

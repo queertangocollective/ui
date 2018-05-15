@@ -28,7 +28,7 @@
             {{icon button.icon}}
           {{/text-editor/markup-button}}
         {{else if button.isEmbed}}
-          {{#text-editor/markup-button for=button.type title=button.label id=inputId editor=this onclick=(action 'embed' button.type)}}
+          {{#text-editor/markup-button for=button.type title=button.label id=inputId editor=this onclick=(action 'embed' button)}}
             {{icon button.icon}}
           {{/text-editor/markup-button~}}
         {{else}}
