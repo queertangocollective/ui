@@ -59,6 +59,8 @@ export default Component.extend({
   spellcheck: true,
   autofocus: true,
 
+  embeds: null,
+
   buttons: computed('markup', function () {
     let buttons = [{
       type: 'strong',
@@ -88,7 +90,7 @@ export default Component.extend({
       type: 'youtube',
       label: 'Embed Youtube Video',
       icon: 'youtube'
-    }];
+    }, ...(get(this, 'embeds') || [])];
 
     // Mobile OSes have robust emoji keyboards
     if (!get(this, 'isMobile')) {
@@ -114,7 +116,8 @@ export default Component.extend({
 
     set(this, 'cards', [
       createComponentCard('photo'),
-      createComponentCard('youtube')
+      createComponentCard('youtube'),
+      ...(get(this, 'embeds') || []).map(({ type }) => createComponentCard(type))
     ]);
     set(this, 'atoms', [{
       name: 'line-break',
@@ -344,12 +347,21 @@ export default Component.extend({
       let range = this._lastRange;
       return get(this, 'onupload')(file).then((photo) => {
         editor.selectRange(range);
-        this.addCard('photo', {
+        this.addCardInEditMode('photo', {
           id: get(photo, 'id'),
           url: get(photo, 'url'),
           title: get(photo, 'title'),
           caption: get(photo, 'caption')
         });
+      });
+    },
+
+    embed(type) {
+      let editor = this.get('editor');
+      let range = this._lastRange;
+      return get(this, 'onembed')(type).then((embed) => {
+        editor.selectRange(range);
+        this.addCardInEditMode(type, embed);
       });
     },
 
