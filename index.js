@@ -4,8 +4,10 @@ const Funnel = require('broccoli-funnel');
 module.exports = {
   name: '@queertangocollective/ui',
 
-  included() {
+  included(app) {
     this._super.included.apply(this, arguments);
+    app.import('node_modules/@glimmer/reference/dist/amd/es5/glimmer-reference.js');
+    app.import('node_modules/@glimmer/util/dist/amd/es5/glimmer-util.js');
   },
 
   treeForPublic(tree) {

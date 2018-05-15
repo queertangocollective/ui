@@ -43,7 +43,9 @@ export default Controller.extend({
     },
 
     open(dialog) {
-      return this.open(dialog);
+      return this.open(dialog).then((answer) => {
+        console.log(answer);
+      }, function () {});
     }
   }
 });

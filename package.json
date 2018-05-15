@@ -19,6 +19,7 @@
     "test": "ember try:each"
   },
   "dependencies": {
+    "@glimmer/reference": "^0.34.2",
     "broccoli-funnel": "^2.0.1",
     "ember-animated": "^0.3.0",
     "ember-autoresize": "^1.1.0",
