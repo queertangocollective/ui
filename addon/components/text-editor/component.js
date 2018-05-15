@@ -61,7 +61,7 @@ export default Component.extend({
 
   embeds: null,
 
-  buttons: computed('markup', function () {
+  buttons: computed('markup', 'embeds', function () {
     let buttons = [{
       type: 'strong',
       label: 'Bold',
