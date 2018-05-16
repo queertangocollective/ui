@@ -16,8 +16,8 @@ function addNamedArgument(args, key, value) {
   let reference = new UnboundReference(value);
   args.named[key] = reference;
   args.named.map[key] = reference;
-  args.named.names.push(key);
-  args.named.references.push(reference);
+  args.named.names = args.named.names.slice().concat(key);
+  args.named.references = args.named.references.slice().concat(reference);
   args.length++;
   args.named.length++;
 }
