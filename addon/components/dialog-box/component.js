@@ -85,10 +85,10 @@ export default Component.extend({
   didReceiveAttrs() {
     let send = {
       className: 'dialog-box',
-      dismiss: get(this, 'ondismiss'),
-      dialog: get(this, 'dialog'),
-      group: get(this, 'group'),
-      class: get(this, 'dialog-class')
+      dismiss: this.ondismiss,
+      dialog: this.dialog,
+      group: this.group,
+      class: this['dialog-class']
     };
 
     if (get(this, 'send.dialog')) {

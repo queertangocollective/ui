@@ -12,6 +12,16 @@ class UnboundReference extends ConstReference {
   }
 }
 
+function addNamedArgument(args, key, value) {
+  let reference = new UnboundReference(value);
+  args.named[key] = reference;
+  args.named.map[key] = reference;
+  args.named.names.push(key);
+  args.named.references.push(reference);
+  args.length++;
+  args.named.length++;
+}
+
 /**
   Example:
 
@@ -36,7 +46,7 @@ export default Service.extend({
   execute(Dialog) {
     return new Promise((resolve, reject) => {
       set(this, 'ondismiss', reject);
-      Dialog.args.named.onsubmit = UnboundReference.create(resolve);
+      addNamedArgument(Dialog.args, 'onsubmit', resolve);
       set(this, 'dialog', Dialog);
     }).finally(() => {
       set(this, 'dialog', null);

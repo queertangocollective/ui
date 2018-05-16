@@ -1,6 +1,6 @@
 {{#form-for payload onsubmit=(action submit) as |f|}}
   <figure>
-    <img src="{{payload.url}}" alt="{{payload.title}}" class="size-{{f.changeset.size}}"/>
+    <img src="{{payload.url}}" alt="{{payload.title}}" class="size-{{f.changeset.size}}" onclick={{action cancelCard}}/>
     {{#f.buttons 'inset' as |b|}}
       {{#b.option 'left'}}{{icon 'inset-left'}} Left{{/b.option}}
       {{#b.option 'none'}}{{icon 'inset-none'}} None{{/b.option}}
