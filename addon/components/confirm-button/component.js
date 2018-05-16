@@ -12,12 +12,12 @@ export default SubmitButton.extend({
 
   click(evt) {
     evt.preventDefault();
-    if (get(this, 'isProcessing')) return false;
+    if (this.isProcessing) return false;
 
-    if (get(this, 'isConfirming')) {
+    if (this.isConfirming) {
       document.removeEventListener('click', this.dismiss);
       set(this, 'isConfirming', false);
-      get(this, 'submit').perform(get(this, 'onsubmit'));
+      this.submit.perform(this.onsubmit);
     } else {
       set(this, 'isConfirming', true);
       this.dismiss = () => {

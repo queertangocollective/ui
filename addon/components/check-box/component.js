@@ -15,7 +15,7 @@ export default Component.extend({
 
   actions: {
     change(evt) {
-      get(this, 'onchange')(evt.target.checked);
+      this.onchange(evt.target.checked);
     }
   }
 });

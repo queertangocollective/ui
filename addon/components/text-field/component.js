@@ -62,20 +62,20 @@ export default Component.extend({
   },
 
   _getValue() {
-    return get(this, 'value');
+    return this.value;
   },
 
   _setValue(value) {
     if (isEmpty(value) || value == null) {
-      get(this, 'onchange')(null);
+      this.onchange(null);
     } else {
-      get(this, 'onchange')(value);
+      this.onchange(value);
     }
     this._updateDisplayValue(value);
   },
 
   _updateDisplayValue(displayValue) {
-    let input = get(this, 'element').querySelector('input');
+    let input = this.element.querySelector('input');
 
     // No work needs to be done
     if (input.value === displayValue) {
@@ -88,7 +88,7 @@ export default Component.extend({
     input.value = displayValue || '';
 
     // Only update the cursor position if focused
-    if (get(this, 'isFocused')) {
+    if (this.isFocused) {
       if (input.selectionStart !== selectionStart) {
         input.selectionStart = selectionStart;
       }
@@ -100,7 +100,7 @@ export default Component.extend({
 
   actions: {
     reformat() {
-      let input = get(this, 'element').querySelector('input');
+      let input = this.element.querySelector('input');
       this._setValue(input.value);
     },
     focus() {

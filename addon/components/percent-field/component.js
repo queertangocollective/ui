@@ -13,7 +13,7 @@ export default NumberField.extend({
   precision: 2,
 
   _format(number) {
-    const precision = get(this, 'precision');
+    const precision = this.precision;
 
     return l('percent', number, {
       precision,
@@ -22,17 +22,17 @@ export default NumberField.extend({
   },
 
   _getValue() {
-    const value = get(this, 'value');
+    const value = this.value;
     if (value != null) {
-      return get(this, 'value') * 100;
+      return this.value * 100;
     }
   },
 
   _setValue(value) {
     if (value != null) {
-      get(this, 'onchange')(parseFloat((value / 100).toFixed(get(this, 'precision') + 2), 10));
+      this.onchange(parseFloat((value / 100).toFixed(this.precision + 2), 10));
     } else {
-      get(this, 'onchange')(value);
+      this.onchange(value);
     }
     this._updateDisplayValue(value);
   },
@@ -56,13 +56,13 @@ export default NumberField.extend({
   },
 
   _moveCursor(previousCursorPosition, previousValue, newValue) {
-    if (!get(this, 'isFocused')) {
+    if (!this.isFocused) {
       return;
     }
 
-    const input = get(this, 'element').querySelector('input');
+    const input = this.element.querySelector('input');
 
-    if (parseFloat(previousValue, 10) > get(this, 'max')) {
+    if (parseFloat(previousValue, 10) > this.max) {
       input.selectionStart = input.selectionEnd = newValue.length - 1;
     } else if (previousCursorPosition !== null &&
         previousCursorPosition === previousValue.length) {

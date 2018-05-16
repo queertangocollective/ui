@@ -19,7 +19,7 @@ export default Mixin.create(Autoresize, {
 
   autoResizeText: computed('displayValue', 'value', 'placeholder', {
     get() {
-      var value = get(this, 'displayValue') || get(this, 'value') || get(this, 'placeholder');
+      var value = this.displayValue || this.value || this.placeholder;
       if (isNone(value)) {
         value = '@';
       }
@@ -28,10 +28,10 @@ export default Mixin.create(Autoresize, {
   }),
 
   didRender() {
-    if (get(this, 'autoresize')) {
+    if (this.autoresize) {
       once(this, 'measureSize');
     } else {
-      get(this, 'autoresizeElement').removeAttribute('style');
+      this.autoresizeElement.removeAttribute('style');
     }
     set(this, 'autoresizeElement', this.element.querySelector('input'));
     this._updateDisplayValue(this._getValue());

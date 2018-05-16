@@ -14,7 +14,7 @@ export default Component.extend({
   keyboardShortcut: computed('for', {
     get() {
       let commands = get(this, 'editor.editor').keyCommands;
-      let markup = get(this, 'for');
+      let markup = this['for'];
       let command = commands.find(function (command) {
         return command.run.toString().toLowerCase().indexOf(`'${markup}'`) !== -1 ||
           command.run.toString().toLowerCase().indexOf(`"${markup}"`) !== -1 ||
@@ -24,7 +24,7 @@ export default Component.extend({
       if (command) {
         return htmlSafe(command.str.toLowerCase()
           .replace('meta', 'ctrl')
-          .replace('ctrl', get(this, 'osx') ? '&#8984;' : 'ctrl'));
+          .replace('ctrl', this.osx ? '&#8984;' : 'ctrl'));
       }
     }
   })

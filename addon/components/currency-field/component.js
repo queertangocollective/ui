@@ -8,7 +8,7 @@ export default NumberField.extend({
   precision: 2,
 
   _format(number) {
-    let precision = get(this, 'precision');
+    let precision = this.precision;
     if (number != null) {
       number *= 100;
     }
@@ -20,17 +20,17 @@ export default NumberField.extend({
   },
 
   _getValue() {
-    let value = get(this, 'value');
+    let value = this.value;
     if (value != null) {
-      return get(this, 'value') / 100;
+      return this.value / 100;
     }
   },
 
   _setValue(value) {
     if (value != null) {
-      get(this, 'onchange')(parseFloat((value * 100).toFixed(get(this, 'precision') - 2), 10));
+      this.onchange(parseFloat((value * 100).toFixed(this.precision - 2), 10));
     } else {
-      get(this, 'onchange')(value);
+      this.onchange(value);
     }
     this._updateDisplayValue(value);
   },
@@ -54,13 +54,13 @@ export default NumberField.extend({
   },
 
   _moveCursor(previousCursorPosition, previousValue, newValue) {
-    if (!get(this, 'isFocused')) {
+    if (!this.isFocused) {
       return;
     }
 
-    let input = get(this, 'element').querySelector('input');
+    let input = this.element.querySelector('input');
 
-    if (parseFloat(previousValue, 10) > get(this, 'max')) {
+    if (parseFloat(previousValue, 10) > this.max) {
       input.selectionStart = input.selectionEnd = newValue.length + 1;
     } else if (previousCursorPosition !== null &&
         previousCursorPosition === previousValue.length) {

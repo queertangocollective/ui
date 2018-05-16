@@ -126,14 +126,14 @@ export default Component.extend({
   },
 
   _getValue() {
-    return get(this, 'value');
+    return this.value;
   },
 
   _setValue(value) {
     if (value) {
-      get(this, 'onchange')(parseFloat(value.toFixed(get(this, 'precision')), 10));
+      this.onchange(parseFloat(value.toFixed(this.precision), 10));
     } else {
-      get(this, 'onchange')(value);
+      this.onchange(value);
     }
     this._updateDisplayValue(value);
   },
@@ -143,9 +143,9 @@ export default Component.extend({
   },
 
   _updateDisplayValue(number) {
-    let precision = get(this, 'precision');
-    let max = get(this, 'max');
-    let input = get(this, 'element').querySelector('input');
+    let precision = this.precision;
+    let max = this.max;
+    let input = this.element.querySelector('input');
     let cursorPosition = input.selectionStart;
     let lastDisplayValue = input.value;
     let displayValue = this._format(number);
@@ -177,7 +177,7 @@ export default Component.extend({
   },
 
   _format(number) {
-    let precision = get(this, 'precision');
+    let precision = this.precision;
 
     return l('number', number, {
       precision,
@@ -186,11 +186,11 @@ export default Component.extend({
   },
 
   _moveCursor(previousCursorPosition, previousValue, newValue) {
-    if (!get(this, 'isFocused')) {
+    if (!this.isFocused) {
       return;
     }
 
-    let input = get(this, 'element').querySelector('input');
+    let input = this.element.querySelector('input');
     let newCursorPosition = previousCursorPosition;
 
     if (newCursorPosition !== null) {
@@ -218,7 +218,7 @@ export default Component.extend({
 
   _clamp(value, precision=0) {
     let pow = Math.pow(10, precision);
-    return Math.min(Math.max(value, get(this, 'min') * pow), get(this, 'max') * pow);
+    return Math.min(Math.max(value, this.min * pow), this.max * pow);
   },
 
   _removeExtraDecimals(string = '') {
@@ -235,7 +235,7 @@ export default Component.extend({
 
   // Removes extra characters
   _applyPrecision(number) {
-    let precision = get(this, 'precision');
+    let precision = this.precision;
     let value = this._removeExtraDecimals(number);
     let decimalPlaces = 0;
 
@@ -263,11 +263,11 @@ export default Component.extend({
   actions: {
     handleArrowKeys(evt) {
       if (evt.which === UP) {
-        this._stepValue(get(this, 'step'));
+        this._stepValue(this.step);
         return false;
       }
       if (evt.which === DOWN) {
-        this._stepValue(get(this, 'step') * - 1);
+        this._stepValue(this.step * - 1);
         return false;
       }
     },
@@ -286,7 +286,7 @@ export default Component.extend({
 
     // Cleans the input before submitting the value to the `onchange` function
     reformat(evt) {
-      let input = get(this, 'element').querySelector('input');
+      let input = this.element.querySelector('input');
       let displayValue = input.value || '';
       if (evt.clipboardData) {
         return true;

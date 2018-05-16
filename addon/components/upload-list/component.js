@@ -7,7 +7,7 @@ export default Component.extend({
   layout,
 
   didReceiveAttrs() {
-    RSVP.resolve(get(this, 'value')).then((uploads) => {
+    RSVP.resolve(this.value).then((uploads) => {
       uploads = uploads || [];
       this._uploads = uploads.slice();
     });
@@ -17,7 +17,7 @@ export default Component.extend({
     add(upload) {
       let uploads = this._uploads;
       uploads.push(upload);
-      get(this, 'onchange')(uploads);
+      this.onchange(uploads);
     },
     change(index, upload) {
       let uploads = this._uploads.slice();
@@ -26,7 +26,7 @@ export default Component.extend({
       } else {
         uploads.splice(index, 1);
       }
-      get(this, 'onchange')(uploads);
+      this.onchange(uploads);
     }
   }
 });

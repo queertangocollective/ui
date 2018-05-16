@@ -18,9 +18,9 @@ export default Component.extend({
   inputId: computed('fieldName', 'model', 'index', {
     get() {
       return [
-        get(this, 'modelName'),
-        get(this, 'index'),
-        dasherize(get(this, 'fieldName') || '')
+        this.modelName,
+        this.index,
+        dasherize(this.fieldName || '')
       ].compact().join('_');
     }
   }),
@@ -33,7 +33,7 @@ export default Component.extend({
 
   label: computed('fieldName', {
     get() {
-      return dasherize(get(this, 'fieldName') || '').split('-').map(capitalize).join(' ');
+      return dasherize(this.fieldName || '').split('-').map(capitalize).join(' ');
     }
   }),
 
@@ -43,7 +43,7 @@ export default Component.extend({
     },
 
     autocomplete(model, key, value, evt) {
-      get(this, 'onchange')(model, key, value);
+      this.onchange(model, key, value);
       evt.preventDefault();
       return false;
     }

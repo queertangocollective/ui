@@ -51,26 +51,26 @@ export default Component.extend({
   },
 
   _getValue() {
-    return get(this, 'value');
+    return this.value;
   },
 
   _setValue(value) {
     if (isEmpty(value) || value == null) {
-      get(this, 'onchange')(null);
+      this.onchange(null);
     } else {
-      get(this, 'onchange')(value);
+      this.onchange(value);
     }
     this._updateDisplayValue(value);
   },
 
   _updateDisplayValue(displayValue) {
-    let input = get(this, 'element').querySelector('input');
+    let input = this.element.querySelector('input');
     let selectionStart = input.selectionStart;
     let selectionEnd = input.selectionEnd;
 
     input.value = displayValue || '';
 
-    if (get(this, 'isFocused')) {
+    if (this.isFocused) {
       input.selectionStart = selectionStart;
       input.selectionEnd = selectionEnd;
     }
@@ -78,7 +78,7 @@ export default Component.extend({
 
   actions: {
     reformat() {
-      let input = get(this, 'element').querySelector('input');
+      let input = this.element.querySelector('input');
       this._setValue(input.value);
     },
     blur() {

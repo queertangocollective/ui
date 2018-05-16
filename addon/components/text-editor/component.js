@@ -307,7 +307,7 @@ export default Component.extend({
   }),
 
   postDidChange(editor) {
-    let serializeVersion = this.get('serializeVersion');
+    let serializeVersion = this.serializeVersion;
     let updatedMobileDoc = editor.serialize(serializeVersion);
     this._localMobiledoc = updatedMobileDoc;
     get(this, 'onchange')(JSON.stringify(updatedMobileDoc));
@@ -343,7 +343,7 @@ export default Component.extend({
 
   actions: {
     upload(file) {
-      let editor = this.get('editor');
+      let editor = this.editor;
       let range = this._lastRange;
       return get(this, 'onupload')(file).then((photo) => {
         editor.selectRange(range);
@@ -357,7 +357,7 @@ export default Component.extend({
     },
 
     embed(button) {
-      let editor = this.get('editor');
+      let editor = this.editor;
       let range = this._lastRange;
       return button.onembed().then((embed) => {
         editor.selectRange(range);
@@ -369,11 +369,11 @@ export default Component.extend({
       if (this.get('form.component') === component) {
         let range = get(this, 'form.range');
         this.set('form', null);
-        this.get('editor').selectRange(range);
+        this.editor.selectRange(range);
         return;
       }
 
-      let editor = this.get('editor');
+      let editor = this.editor;
       if (!editor.hasCursor()) {
         return;
       }
@@ -390,7 +390,7 @@ export default Component.extend({
     addLink(href) {
       let range = get(this, 'form.range');
       this.set('form', null);
-      let editor = this.get('editor');
+      let editor = this.editor;
       editor.selectRange(range);
       editor.toggleMarkup('a', { href });
     },
@@ -404,9 +404,9 @@ export default Component.extend({
     },
 
     addYoutubeEmbed(url) {
-      let { range } = this.get('form');
+      let { range } = this.form;
       this.set('form', null);
-      let editor = this.get('editor');
+      let editor = this.editor;
       editor.selectRange(range);
       this.addCard('youtube', {
         url,
@@ -417,9 +417,9 @@ export default Component.extend({
     },
 
     addEmoji(emoji) {
-      let { range } = this.get('form');
+      let { range } = this.form;
       this.set('form', null);
-      let editor = this.get('editor');
+      let editor = this.editor;
       editor.selectRange(range);
       editor.insertText(emoji);
     }

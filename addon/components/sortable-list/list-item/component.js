@@ -6,7 +6,7 @@ export default Component.extend({
   tagName: '',
   layout,
   sortDesc: computed('sortAsc', function () {
-    return `-${get(this, 'sortAsc')}`;
+    return `-${this.sortAsc}`;
   })
 }).reopenClass({
   positionalParams: ['sortAsc', 'sortDesc']

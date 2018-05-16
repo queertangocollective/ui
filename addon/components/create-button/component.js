@@ -8,7 +8,7 @@ export default Component.extend({
 
   actions: {
     submit(value) {
-      return get(this, 'onsubmit')({ [get(this, 'field')]: value })
+      return this.onsubmit({ [this.field]: value })
         .catch(() => {})
         .finally(() => set(this, 'isCreating', false));
     },

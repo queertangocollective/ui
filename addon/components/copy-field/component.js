@@ -33,29 +33,29 @@ export default Component.extend({
   osx: navigator.platform.match(/Mac/),
 
   selectText() {
-    let input = get(this, 'element').querySelector('input');
+    let input = this.element.querySelector('input');
     input.select();
   },
 
   copyText: task(function *(text) {
     try {
       yield copy(text);
-      yield get(this, 'copied').perform();
+      yield this.copied.perform();
       yield wait('600ms');
     } catch (e) {
-      yield get(this, 'prompt').perform();
+      yield this.prompt.perform();
     }
   }).drop(),
 
   prompt: task(function *() {
     this.selectText();
     yield oncopy(this);
-    yield get(this, 'copied').perform();
+    yield this.copied.perform();
   }).drop(),
 
   copied: task(function *() {
-    if (get(this, 'oncopy')) {
-      get(this, 'oncopy')();
+    if (this.oncopy) {
+      this.oncopy();
     }
     yield wait('750ms');
   }),
@@ -65,7 +65,7 @@ export default Component.extend({
 
     this.focused = true;
 
-    get(this, 'prompt').perform().then(() => {
+    this.prompt.perform().then(() => {
       return wait('750ms');
     }).then(() => {
       if (this.focused) {
@@ -92,9 +92,9 @@ export default Component.extend({
   keyUp(evt) {
     switch (evt.which) {
     case ESCAPE:
-      get(this, 'element').blur();
+      this.element.blur();
       window.getSelection().removeAllRanges();
-      get(this, 'prompt').cancelAll();
+      this.prompt.cancelAll();
     }
   },
 
@@ -103,7 +103,7 @@ export default Component.extend({
       evt.preventDefault();
       if (this._finishingAnimation) { return; }
 
-      get(this, 'copyText').perform(get(this, 'value'));
+      this.copyText.perform(this.value);
     }
   }
 });
