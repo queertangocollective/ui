@@ -351,7 +351,9 @@ export default Component.extend({
           id: get(photo, 'id'),
           url: get(photo, 'url'),
           title: get(photo, 'title'),
-          caption: get(photo, 'caption')
+          caption: '',
+          inset: 'none',
+          size: 'large'
         }, true);
       });
     },

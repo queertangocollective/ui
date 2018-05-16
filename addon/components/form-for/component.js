@@ -20,7 +20,7 @@ export default Component.extend({
   changeset: computed('model', {
     get() {
       return BufferedProxy.create({
-        content: get(this, 'model') || {}
+        content: this.model || {}
       });
     }
   }),
@@ -32,23 +32,23 @@ export default Component.extend({
     }
 
     let promises = [];
-    let model = get(this, 'model');
-    let changeset = get(this, 'changeset');
-    let changes = get(this, 'changeset.buffer');
+    let model = this.model;
+    let changeset = this.changeset;
+    let changes = this.changeset.buffer;
     let isDirty = changeset.get('hasChanges') || model.isDeleted;
 
     if (isDirty && (model == null || get(model, 'isNew'))) {
-      return get(this, 'onsubmit')(model, changes).then(() => {
-        return RSVP.all(get(this, 'nestedForms').map(function (form) {
+      return this.onsubmit(model, changes).then(() => {
+        return RSVP.all(this.nestedForms.map(function (form) {
           return form.submit(evt);
         }));
       });
     } else {
-      promises = get(this, 'nestedForms').map(function (form) {
+      promises = this.nestedForms.map(function (form) {
         return form.submit(evt);
       });
       if (isDirty) {
-        promises.push(get(this, 'onsubmit')(model, changes));
+        promises.push(this.onsubmit(model, changes));
       }
     }
 
@@ -57,7 +57,7 @@ export default Component.extend({
 
   save() {
     return this.submit().then(() => {
-      get(this, 'onsaved')(get(this, 'model'));
+      this.onsaved && this.onsaved(this.model);
     });
   },
 
@@ -68,7 +68,7 @@ export default Component.extend({
   },
 
   register(form) {
-    get(this, 'nestedForms').push(form);
+    this.nestedForms.push(form);
   },
 
   actions: {
@@ -82,7 +82,7 @@ export default Component.extend({
         model.set(field, value);
       }
 
-      if (get(this, 'autosave')) {
+      if (this.autosave) {
         debounce(this, 'save', 2000);
       }
     }

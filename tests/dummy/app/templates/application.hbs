@@ -1,3 +1,13 @@
+{{#button-group value=imageSize onchange=(action (mut imageSize)) as |b|}}
+  {{#b.option 'small' class='icon'}}{{icon 'small'}}{{/b.option}}
+  {{#b.option 'large' class='icon'}}{{icon 'large'}}{{/b.option}}
+  {{#b.option 'full-bleed' class='icon'}}{{icon 'full-bleed'}}{{/b.option}}
+{{/button-group}}
+{{#button-group value=inset onchange=(action (mut inset)) as |b|}}
+  {{#b.option 'left' class='icon'}}{{icon 'inset-left'}}{{/b.option}}
+  {{#b.option 'none' class='icon'}}{{icon 'inset-none'}}{{/b.option}}
+  {{#b.option 'right' class='icon'}}{{icon 'inset-right'}}{{/b.option}}
+{{/button-group}}
 <label for='upload-field'>Upload field</label>
 {{check-box value=multiple onchange=(action (mut multiple))}}
 {{#upload-field name='photo' multiple=multiple value=upload accept='image/*' onchange=(action 'upload' 'upload') as |photo remove|}}
