@@ -352,9 +352,9 @@ export default Component.extend({
           url: get(photo, 'url'),
           title: get(photo, 'title'),
           caption: '',
-          inset: 'none',
-          size: 'large'
-        }, true);
+          align: 'center',
+          size: 'medium'
+        });
       });
     },
 
@@ -363,7 +363,7 @@ export default Component.extend({
       let range = this._lastRange;
       return button.onembed().then((embed) => {
         editor.selectRange(range);
-        this.addCard(button.type, embed, true);
+        this.addCard(button.type, embed);
       });
     },
 

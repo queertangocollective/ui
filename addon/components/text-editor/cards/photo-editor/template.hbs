@@ -1,15 +1,15 @@
 {{#form-for payload onsubmit=(action submit) as |f|}}
   <figure>
     <img src="{{payload.url}}" alt="{{payload.title}}" class="size-{{f.changeset.size}}" onclick={{action cancelCard}}/>
-    {{#f.buttons 'inset' as |b|}}
+    {{#f.buttons 'align' as |b|}}
       {{#b.option 'left'}}{{icon 'inset-left'}} Left{{/b.option}}
-      {{#b.option 'none'}}{{icon 'inset-none'}} None{{/b.option}}
+      {{#b.option 'center'}}{{icon 'inset-none'}} Center{{/b.option}}
       {{#b.option 'right'}}{{icon 'inset-right'}} Right{{/b.option}}
     {{/f.buttons}}
     {{#f.buttons 'size' as |b|}}
       {{#b.option 'small'}}{{icon 'small'}} Small{{/b.option}}
-      {{#b.option 'large'}}{{icon 'large'}} Large{{/b.option}}
-      {{#b.option 'full-bleed'}}{{icon 'full-bleed'}} Full Bleed{{/b.option}}
+      {{#b.option 'medium'}}{{icon 'large'}} Medium{{/b.option}}
+      {{#b.option 'large'}}{{icon 'full-bleed'}} Large{{/b.option}}
     {{/f.buttons}}
   </figure>
   <figcaption>
