@@ -1,8 +1,10 @@
 <figure onclick={{action editCard}}>
-  <img src="{{payload.url}}" alt="{{payload.title}}" class="size-{{payload.size}}"/>
+  {{#animated-beacon group=(concat "photo-" payload.photoId)}}
+    <img src="{{payload.url}}" alt="{{payload.title}}" class="size-{{payload.size}}"/>
+  {{/animated-beacon}}
   {{#unless (equals payload.inset 'none')}}
-    <button disabled=true class='icon' type='submit' id="inset-{{elementId}}">
-      {{icon (concat 'inset-' payload.inset)}}
+    <button disabled=true class='icon' type='submit'>
+      {{icon (concat 'align-' payload.inset)}}
     </button>
   {{/unless}}
 </figure>

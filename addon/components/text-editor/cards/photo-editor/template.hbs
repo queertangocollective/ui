@@ -1,19 +1,7 @@
-{{#form-for payload onsubmit=(action submit) as |f|}}
-  <figure>
-    <img src="{{payload.url}}" alt="{{payload.title}}" class="size-{{f.changeset.size}}" onclick={{action cancelCard}}/>
-    {{#f.buttons 'align' as |b|}}
-      {{#b.option 'left'}}{{icon 'inset-left'}} Left{{/b.option}}
-      {{#b.option 'center'}}{{icon 'inset-none'}} Center{{/b.option}}
-      {{#b.option 'right'}}{{icon 'inset-right'}} Right{{/b.option}}
-    {{/f.buttons}}
-    {{#f.buttons 'size' as |b|}}
-      {{#b.option 'small'}}{{icon 'small'}} Small{{/b.option}}
-      {{#b.option 'medium'}}{{icon 'large'}} Medium{{/b.option}}
-      {{#b.option 'large'}}{{icon 'full-bleed'}} Large{{/b.option}}
-    {{/f.buttons}}
-  </figure>
-  <figcaption>
-    {{f.text 'caption'}}
-  </figcaption>
-  {{f.submit 'Save'}}
-{{/form-for}}
+{{text-editor/cards/photo payload=payload editCard=editCard}}
+{{dialog-box (component 'edit-photo-dialog'
+    payload=payload
+    photo=photo
+    onsubmit=(action saveCard))
+  group=(concat 'photo-' payload.photoId)
+  ondismiss=(action cancelCard)}}

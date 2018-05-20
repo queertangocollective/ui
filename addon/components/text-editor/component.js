@@ -348,7 +348,7 @@ export default Component.extend({
       return get(this, 'onupload')(file).then((photo) => {
         editor.selectRange(range);
         this.addCard('photo', {
-          id: get(photo, 'id'),
+          photoId: get(photo, 'id'),
           url: get(photo, 'url'),
           title: get(photo, 'title'),
           caption: '',
