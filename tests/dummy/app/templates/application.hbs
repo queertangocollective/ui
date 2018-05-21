@@ -39,6 +39,9 @@
 {{/sortable-list}}
 
 {{#form-for class='grid-column' as |f|}}
+  {{#f.nav ondelete=(action 'query')}}
+    <button type='submit'>{{icon 'emoji'}} Hi There</button>
+  {{/f.nav}}
   {{f.text 'text' label='{{text-field}}'}}
   {{f.editor 'editor' label='{{text-editor}}'}}
   {{#f.select 'select' label='{{single-select}}' options=(list 'Apple' 'Banana' 'Yuzu') gravity='s' as |item|}}

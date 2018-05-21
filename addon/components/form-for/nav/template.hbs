@@ -1,0 +1,28 @@
+<nav class='form-for-nav row'>
+  <div class="row">
+    {{yield}}
+    {{#if ondelete}}
+      <button type="reset" class="icon" id="menu-for-{{id}}" onclick={{action stop}}>{{icon "ellipsis"}}</button>
+      {{#pop-over class="overflow-menu" for=(concat "menu-for-" id) on='click' gravity='sw'}}
+        {{#submit-button onsubmit=(action ondelete model)}}
+          {{icon "trash"}} Delete
+        {{/submit-button}}
+      {{/pop-over}}
+    {{/if}}
+  </div>
+  <div class="save-indicator">
+    {{#if model.updatedAt}}
+      <div id="save-indicator-for-{{id}}">
+        {{#if model.isSaving}}
+          {{icon 'spinner'}}
+        {{else}}
+          {{icon 'check'}}
+        {{/if}}
+        {{#if changeset.hasChanges}}Unsaved Changes{{else}}Saved {{moment-from-now model.updatedAt}}{{/if}}
+      </div>
+      {{#pop-over for=(concat "save-indicator-for-" id) gravity="s" on="click"}}
+        Saved at {{l 'date' model.updatedAt}}
+      {{/pop-over}}
+    {{/if}}
+  </div>
+</nav>

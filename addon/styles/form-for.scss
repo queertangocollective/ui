@@ -1,3 +1,25 @@
+.form-for-nav {
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  .save-indicator {
+    padding: 0.25rem;
+
+    svg {
+      position: relative;
+      top: 3px;
+    }
+  }
+
+  .overflow-menu {
+    background-color: white;
+
+    .pop-over-container {
+      padding: 0 0.5rem 0.5rem;
+    }
+  }
+}
+
 .form-for_field {
   label {
     display: block;

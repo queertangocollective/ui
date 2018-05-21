@@ -35,7 +35,7 @@
   & > div,
   & > div > form {
     background: $white;
-    width: 30rem;
+    width: 40rem;
     max-width: calc(100vw - 2rem);
     height: auto;
     border-radius: 0.25rem;
@@ -47,6 +47,13 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
+
+    .tabular-list {
+      header, ol {
+        width: 38rem;
+        max-width: calc(100vw - 4rem);
+      }
+    }
   }
 
   & > div > header,
