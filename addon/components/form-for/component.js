@@ -58,6 +58,7 @@ export default Component.extend({
   save() {
     return this.submit().then(() => {
       this.onsaved && this.onsaved(this.model);
+      this.notifyPropertyChange('changeset');
     });
   },
 

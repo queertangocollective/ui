@@ -20,6 +20,12 @@
   }
 }
 
+@media(max-width: 500px) {
+  .form-for-nav {
+    flex-direction: column;
+  }
+}
+
 .form-for_field {
   label {
     display: block;
