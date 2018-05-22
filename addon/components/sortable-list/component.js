@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { set, get, computed } from '@ember/object';
+import { set, computed } from '@ember/object';
 import RSVP from 'rsvp';
 import layout from './template';
 import move from 'ember-animated/motions/move';
@@ -16,7 +16,7 @@ export default Component.extend({
 
   hasMore: computed('total', 'model.length', {
     get() {
-      return get(this, 'total') > get(this, 'model.length');
+      return this.total > this.model.length;
     }
   }),
 
@@ -51,8 +51,8 @@ export default Component.extend({
 
   actions: {
     loadMore(offset) {
-      return get(this, 'load')(offset).then(({ model, meta }) => {
-        set(this, 'rows', [...get(this, 'rows').toArray(), ...model.toArray()]);
+      return this.load(offset).then(({ model, meta }) => {
+        set(this, 'rows', [...this.rows.toArray(), ...model.toArray()]);
         set(this, 'total', meta.page.total);
       });
     }

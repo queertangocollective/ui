@@ -1,4 +1,3 @@
-import { get } from '@ember/object';
 import NumberField from '../number-field/component';
 import { l } from '../../helpers/l';
 

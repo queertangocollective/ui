@@ -1,8 +1,7 @@
 import Autoresize from '../../mixins/autoresize';
 import Component from '@ember/component';
-import { set, get } from '@ember/object';
+import { set } from '@ember/object';
 import { tryInvoke, isBlank } from '@ember/utils';
-import { later } from '@ember/runloop';
 import moment from 'moment';
 import layout from './template';
 
@@ -57,34 +56,34 @@ export default Component.extend(Autoresize, {
   disabled: false,
 
   _getValue() {
-    if (get(this, 'isFocused')) {
-      let input = get(this, 'element').querySelector('input');
+    if (this.isFocused) {
+      let input = this.element.querySelector('input');
       return input.value;
     } else {
-      let value = get(this, 'value');
-      return value ? moment(value).format(get(this, 'format')) : '';
+      let value = this.value;
+      return value ? moment(value).format(this.format) : '';
     }
   },
 
   _setValue(value) {
-    let date = moment.tz(value, get(this, 'format'), get(this, 'timezone'));
+    let date = moment.tz(value, this.format, this.timezone);
     if (isBlank(value) || value == null) {
-      get(this, 'onchange')(null);
+      this.onchange(null);
     } else if (date.isValid()) {
       set(this, 'center', date);
-      get(this, 'onchange')(date.toDate());
+      this.onchange(date.toDate());
     }
     this._updateDisplayValue(value);
   },
 
   _updateDisplayValue(displayValue) {
-    let input = get(this, 'element').querySelector('input');
+    let input = this.element.querySelector('input');
     let selectionStart = input.selectionStart;
     let selectionEnd = input.selectionEnd;
 
     set(this, 'displayValue', displayValue || '');
     input.value = displayValue || '';
-    if (get(this, 'isFocused')) {
+    if (this.isFocused) {
       input.selectionStart = selectionStart;
       input.selectionEnd = selectionEnd;
     }
@@ -93,12 +92,12 @@ export default Component.extend(Autoresize, {
   actions: {
     handleArrowKeys(evt) {
       if (evt.which === UP || evt.which === DOWN) {
-        let input = get(this, 'element').querySelector('input');
+        let input = this.element.querySelector('input');
         let cursor = input.selectionStart;
 
         let direction = evt.which === UP ? 1 : -1;
-        let date = moment(get(this, 'value'));
-        let format = get(this, 'format');
+        let date = moment(this.value);
+        let format = this.format;
         let formattedDate = date.format(format);
         let separators = formattedDate.replace(/\d+/g, '0').split('0');
         let parts = [];
@@ -178,7 +177,7 @@ export default Component.extend(Autoresize, {
           }
         }
 
-        this._setValue(date.format(get(this, 'format')));
+        this._setValue(date.format(this.format));
         return false;
       }
     },
@@ -196,7 +195,7 @@ export default Component.extend(Autoresize, {
     },
 
     reformat() {
-      let input = get(this, 'element').querySelector('input');
+      let input = this.element.querySelector('input');
       this._setValue(input.value);
     },
 

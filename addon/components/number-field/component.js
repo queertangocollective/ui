@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { get, set } from '@ember/object';
+import { set } from '@ember/object';
 import { l } from '../../helpers/l';
 import layout from './template';
 

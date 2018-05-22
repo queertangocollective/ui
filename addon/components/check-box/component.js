@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { get, computed } from '@ember/object';
+import { computed } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
 import layout from './template';
 

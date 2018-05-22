@@ -32,7 +32,6 @@ export default Controller.extend({
           set(file, 'url', url);
         })
       });
-      console.log(key, files);
       set(this, key, files);
     },
 
@@ -44,7 +43,7 @@ export default Controller.extend({
 
     open(dialog) {
       return this.open(dialog).then((answer) => {
-        console.log(answer);
+        return answer;
       }, function () {});
     }
   }

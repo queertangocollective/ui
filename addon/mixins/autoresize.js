@@ -1,5 +1,5 @@
 import Autoresize from 'ember-autoresize/mixins/autoresize';
-import { get, set, computed } from '@ember/object';
+import { set, computed } from '@ember/object';
 import Mixin from '@ember/object/mixin';
 import { isNone } from '@ember/utils';
 import { once } from '@ember/runloop';

@@ -9,7 +9,7 @@ export default Component.extend({
     return this.option === this.value;
   }),
 
-  click(evt) {
+  click() {
     this.onchange(this.option);
     return false;
   }
