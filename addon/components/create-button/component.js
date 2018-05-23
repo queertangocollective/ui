@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { set } from '@ember/object';
+import { computed, set } from '@ember/object';
 import { run } from '@ember/runloop';
 import layout from './template';
 import { fadeIn, fadeOut } from 'ember-animated/motions/opacity';
@@ -18,6 +18,15 @@ export default Component.extend({
     document.body.removeEventListener('click', this.documentClick);
     this._super();
   },
+
+  displayValue: computed('value', {
+    get() {
+      return this.value;
+    },
+    set(_, value) {
+      return value;
+    }
+  }),
 
   actions: {
     submit(value) {

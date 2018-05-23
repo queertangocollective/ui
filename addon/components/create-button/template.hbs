@@ -1,13 +1,15 @@
-{{#animated-if isCreating use=fade duration=200}}
-  {{text-field type=type value=value onchange=(action (mut value)) autofocus=true placeholder=placeholder}}
-{{/animated-if}}
+{{#animated-container}}
+  {{#animated-if isCreating use=fade duration=200}}
+    {{text-field type=type value=displayValue onchange=(action (mut displayValue)) autofocus=true placeholder=placeholder}}
+  {{/animated-if}}
 
-{{#if isCreating}}
-  {{#submit-button class='icon' onsubmit=(action 'submit' value)}}
-    {{yield to='inverse'}}
-  {{/submit-button}}
-{{else}}
-  <button type='submit' onclick={{action 'create'}}>
-    {{yield}}
-  </button>
-{{/if}}
+  {{#if isCreating}}
+    {{#submit-button class='icon' onsubmit=(action 'submit' displayValue)}}
+      {{yield to='inverse'}}
+    {{/submit-button}}
+  {{else}}
+    <button type='submit' onclick={{action 'create'}}>
+      {{yield}}
+    </button>
+  {{/if}}
+{{/animated-container}}
