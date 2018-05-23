@@ -12,6 +12,7 @@ export default Component.extend({
   *fade({ insertedSprites, removedSprites }) {
     insertedSprites.map(fadeIn);
     removedSprites.map(fadeOut);
+    yield;
   },
 
   destroy() {
