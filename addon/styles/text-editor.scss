@@ -197,7 +197,7 @@
 
   figure {
     position: relative;
-  
+
     img + button {
       position: absolute;
       top: 0.5rem;
@@ -205,17 +205,10 @@
     }
   }
   figure img {
-    &.inset-left {
-      float: left;
-    }
-    &.inset-right {
-      float: right;
-    }
-
     &.size-small {
       width: 50vw;
     }
-    &.size-large {
+    &.size-medium {
       width: 75vw;
     }
   }
