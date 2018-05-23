@@ -1,9 +1,11 @@
 {{#if item~}}
   <span class="{{dasherize sortAsc}}">{{yield item}}</span>
-{{~else~}}
+{{~else if sortable~}}
   {{#link-to (query-params sort=(if (equals (dasherize sort) (dasherize sortAsc)) (dasherize sortDesc) (dasherize sortAsc)))
         class=(concat (dasherize sortAsc) ' ' (if (equals (dasherize sort) (dasherize sortAsc)) 'asc active') " " (if (equals (dasherize sort) (dasherize sortDesc)) 'desc active'))}}
     <span>{{yield to='inverse'}}</span>
     <span class='sort'>{{icon 'chevron'}}</span>
   {{/link-to}}
+{{~else~}}
+  {{yield to='inverse'}}
 {{~/if}}

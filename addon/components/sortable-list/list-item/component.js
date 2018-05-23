@@ -5,6 +5,7 @@ import layout from './template';
 export default Component.extend({
   tagName: '',
   layout,
+  sortable: true,
   sortDesc: computed('sortAsc', function () {
     return `-${this.sortAsc}`;
   })
