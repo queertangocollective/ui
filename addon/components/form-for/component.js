@@ -15,7 +15,9 @@ export default Component.extend({
 
   novalidate: true,
 
-  attributeBindings: ['novalidate'],
+  autocomplete: true,
+
+  attributeBindings: ['novalidate', 'autocomplete'],
 
   changeset: computed('model', {
     get() {
