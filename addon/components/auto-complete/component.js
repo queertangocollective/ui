@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { set, get, computed } from '@ember/object';
+import { set, computed } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
 import { resolve } from 'rsvp';
 import layout from './template';
@@ -16,7 +16,7 @@ export default Component.extend({
   }),
 
   didReceiveAttrs() {
-    resolve(get(this, 'value')).then((value) => {
+    resolve(this.value).then((value) => {
       set(this, 'displayValue', value);
     });
   },
@@ -51,17 +51,17 @@ export default Component.extend({
   actions: {
     query(query) {
       if (query === '') {
-        get(this, 'onchange')(null);
+        this.onchange(null);
         set(this, 'options', [])
       } else {
-        get(this, 'onquery')({ text: query }).then((options) => {
-          set(this, 'options', options);
+        this.onquery({ text: query }).then((options) => {
+          set(this, 'options', options.toArray());
         });
       }
     },
 
     change(value) {
-      get(this, 'onchange')(value);
+      this.onchange(value);
       set(this, 'options', []);
     }
   }
