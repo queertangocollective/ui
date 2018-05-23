@@ -16,7 +16,7 @@ export default Component.extend({
 
   hasMore: computed('total', 'model.length', {
     get() {
-      return this.total > this.model.length;
+      return this.total > this.model ? this.model.length : 0;
     }
   }),
 
