@@ -37,7 +37,7 @@ export default Component.extend({
     let model = this.model;
     let changeset = this.changeset;
     let changes = this.changeset.buffer;
-    let isDirty = changeset.get('hasChanges') || model.isDeleted;
+    let isDirty = changeset.get('hasChanges') || model.isDeleted || model.constructor === Object;
 
     if (isDirty && (model == null || get(model, 'isNew'))) {
       return this.onsubmit(model, changes).then(() => {

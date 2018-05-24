@@ -27,8 +27,9 @@ export default Component.extend({
   }),
 
   actions: {
-    submit(value) {
-      return this.onsubmit({ [this.field]: value })
+    submit(model, changes) {
+      let payload = Object.assign({}, model, changes);
+      return this.onsubmit(payload)
         .catch(() => {})
         .finally(() => set(this, 'isCreating', false));
     },

@@ -1,7 +1,7 @@
 {{#animated-container}}
-  {{#form-for model onsubmit=(action 'submit') as |f|}}
-    {{#animated-if isCreating use=fade duration=200}}
-      {{f.text field label=false autofocus=true type=type value=displayValue onchange=(action (mut displayValue)) autofocus=true placeholder=placeholder}}
+  {{#form-for this.model onsubmit=(action 'submit') as |f|}}
+    {{#animated-if this.isCreating use=fade duration=200}}
+      {{f.text this.field label=false autofocus=true type=type placeholder=placeholder}}
     {{/animated-if}}
 
     {{#if isCreating}}

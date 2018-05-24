@@ -62,7 +62,9 @@ export default Component.extend({
   },
 
   didInsertElement() {
-    this.element.querySelector('input').focus();
+    if (this.autofocus) {
+      this.element.querySelector('input').focus();
+    }
   },
 
   _getValue() {
