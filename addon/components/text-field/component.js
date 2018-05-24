@@ -61,6 +61,10 @@ export default Component.extend({
     this._updateDisplayValue(this._getValue());
   },
 
+  didInsertElement() {
+    this.element.querySelector('input').focus();
+  },
+
   _getValue() {
     return this.value;
   },

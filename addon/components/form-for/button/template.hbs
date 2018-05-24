@@ -1,3 +1,9 @@
-{{#submit-button onsubmit=onsubmit~}}
-  {{text}}
-{{~/submit-button}}
+{{#if hasBlock}}
+  {{#submit-button onsubmit=onsubmit class=class~}}
+    {{yield}}
+  {{~/submit-button}}
+{{else}}
+  {{#submit-button onsubmit=onsubmit class=class~}}
+    {{text}}
+  {{~/submit-button}}
+{{/if}}

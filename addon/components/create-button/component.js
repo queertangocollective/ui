@@ -20,13 +20,10 @@ export default Component.extend({
     this._super();
   },
 
-  displayValue: computed('value', {
-    get() {
-      return this.value;
-    },
-    set(_, value) {
-      return value;
-    }
+  model: computed('field', 'value', function () {
+    return {
+      [this.field]: this.value
+    };
   }),
 
   actions: {
