@@ -1,6 +1,8 @@
-<header>
-  {{yield (hash item=(component 'tabular-list/list-item' sort=sort))}}
-</header>
+{{#unless (media 'max-width: 500px')}}
+  <header>
+    {{yield (hash item=(component 'tabular-list/list-item' sort=sort))}}
+  </header>
+{{/unless}}
 {{#if rows.length}}
   <ol>
     {{#each rows as |row|}}

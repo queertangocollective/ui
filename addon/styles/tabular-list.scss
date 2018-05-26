@@ -28,6 +28,18 @@
         text-overflow: ellipsis;
         vertical-align: top;
       }
+
+      @media(max-width: 500px) {
+        & {
+          height: auto;
+          padding: 1rem;
+          line-height: 1.2rem;
+        }
+        span {
+          display: block;
+          width: 100% !important;
+        }
+      }
     }
   }
 

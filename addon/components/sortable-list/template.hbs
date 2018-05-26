@@ -1,13 +1,30 @@
 <div class='background'></div>
-<header>
-  {{yield (hash item=(component 'sortable-list/list-item' sort=sort))}}
-</header>
+{{#if (media '(max-width: 500px)')}}
+  <header class="mobile">
+    <div class='buttons'>
+      <button type='submit' onclick={{action (mut isShowingSorting) (not isShowingSorting)}}>
+        {{{this.currentSort.html}}}
+      </button>
+      {{~#link-to (query-params sort=this.currentSort.reverse)
+            class=(concat this.currentSort.direction ' active submit-button icon')}}
+        <span class='sort'>{{icon 'chevron'}}</span>
+      {{~/link-to~}}
+    </div>
+    <div class="sortings {{if isShowingSorting "visible" "hidden"}}">
+      {{yield (hash item=(component 'sortable-list/list-item' sort=sort list=this))}}
+    </div>
+  </header>
+{{else}}
+  <header>
+    {{yield (hash item=(component 'sortable-list/list-item' sort=sort list=this tagName=''))}}
+  </header>
+{{/if}}
 {{#animated-container}}
   {{#animated-if rows.length use=fade duration=duration}}
     {{#animated-container tagName='ol'}}
       {{#animated-each rows use=shuffle duration=duration as |row|}}
         <li>
-          {{~yield (hash item=(component 'sortable-list/list-item' item=row))~}}
+          {{~yield (hash item=(component 'sortable-list/list-item' item=row list=this tagName=''))~}}
         </li>
       {{/animated-each}}
     {{/animated-container}}
