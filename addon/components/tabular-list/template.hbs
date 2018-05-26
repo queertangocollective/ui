@@ -1,4 +1,4 @@
-{{#unless (media 'max-width: 500px')}}
+{{#unless (media '(max-width: 500px)')}}
   <header>
     {{yield (hash item=(component 'tabular-list/list-item' sort=sort))}}
   </header>

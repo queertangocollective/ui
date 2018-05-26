@@ -2,13 +2,13 @@
 
 #countries {
   .name {
-    width: 40%;
+    width: calc(40% - 35px);
   }
   .code {
-    width: 10%;
+    width: 70px;
   }
   .capital {
-    width: 50%;
+    width: calc(50% - 35px);
   }
   li .code {
     font-weight: 600;

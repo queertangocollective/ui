@@ -2,9 +2,8 @@
   <span class="{{dasherize sortAsc}}">{{yield item}}</span>
 {{~else if sortable~}}
   {{#if (media '(max-width: 500px)')~}}
-    {{#link-to (query-params sort=(dasherize sortDesc))
-          class=(dasherize sortAsc)}}
-      <span>{{yield to='inverse'}}</span>
+    {{#link-to (query-params sort=(dasherize sortDesc))}}
+      {{yield to='inverse'}}
     {{/link-to~}}
   {{~else~}}
     {{#link-to (query-params sort=(if (equals (dasherize sort) (dasherize sortAsc)) (dasherize sortDesc) (dasherize sortAsc)))

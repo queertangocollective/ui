@@ -12,13 +12,13 @@ export default Component.extend({
     if (!this.item && this.element) {
       if (this.sort === this.sortAsc) {
         this.list.set('currentSort', {
-          html: this.element.querySelector('span').innerHTML,
+          html: this.element.querySelector('a').innerHTML,
           direction: 'asc',
           reverse: this.sortDesc
         });
       } else if (this.sort === this.sortDesc) {
         this.list.set('currentSort', {
-          html: this.element.querySelector('span').innerHTML,
+          html: this.element.querySelector('a').innerHTML,
           direction: 'desc',
           reverse: this.sortAsc
         });

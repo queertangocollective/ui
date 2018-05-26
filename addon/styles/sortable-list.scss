@@ -52,15 +52,19 @@
           padding: 1rem;
           line-height: 1.2rem;
         }
-        span {
+        & > span {
           display: block;
           width: 100% !important;
+          max-width: calc(100vw - 4rem);
         }
       }
     }
   }
 
   .sortings {
+    background: $black;
+    box-shadow: 0 1px 2px 1px rgba($black, 0.20);
+    border-radius: 4px;
     background: $black;
 
     a {
@@ -101,7 +105,7 @@
     &.mobile {
       .buttons {
         display: flex;
-        
+
         button {
           flex: 1;
           margin-right: 0.5rem;

@@ -3,10 +3,10 @@
   <header class="mobile">
     <div class='buttons'>
       <button type='submit' onclick={{action (mut isShowingSorting) (not isShowingSorting)}}>
-        {{{this.currentSort.html}}}
+        {{this.currentSort.html}}
       </button>
       {{~#link-to (query-params sort=this.currentSort.reverse)
-            class=(concat this.currentSort.direction ' active submit-button icon')}}
+        class=(concat this.currentSort.direction ' active submit-button icon')}}
         <span class='sort'>{{icon 'chevron'}}</span>
       {{~/link-to~}}
     </div>

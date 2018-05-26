@@ -14,6 +14,15 @@ export default Component.extend({
 
   icon: 'sad',
 
+  isShowingSorting: computed('sort', {
+    get() {
+      return false;
+    },
+    set(_, value) {
+      return value;
+    }
+  }),
+
   hasMore: computed('total', 'model.length', {
     get() {
       return this.total > this.model ? this.model.length : 0;
