@@ -24,7 +24,7 @@
     {{#animated-container tagName='ol'}}
       {{#animated-each rows use=shuffle duration=duration as |row|}}
         <li>
-          {{~yield (hash item=(component 'sortable-list/list-item' item=row list=this tagName=''))~}}
+          {{~yield (hash item=(component 'sortable-list/list-item' item=row list=this tagName='')) row~}}
         </li>
       {{/animated-each}}
     {{/animated-container}}

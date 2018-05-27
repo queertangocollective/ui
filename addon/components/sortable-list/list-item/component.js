@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import { dasherize } from '@ember/string';
 import layout from './template';
 
 export default Component.extend({
@@ -10,13 +11,13 @@ export default Component.extend({
   }),
   didRender() {
     if (!this.item && this.element) {
-      if (this.sort === this.sortAsc) {
+      if (this.sort === dasherize(this.sortAsc)) {
         this.list.set('currentSort', {
           html: this.element.querySelector('a').innerHTML,
           direction: 'asc',
           reverse: this.sortDesc
         });
-      } else if (this.sort === this.sortDesc) {
+      } else if (this.sort === dasherize(this.sortDesc)) {
         this.list.set('currentSort', {
           html: this.element.querySelector('a').innerHTML,
           direction: 'desc',
