@@ -1,5 +1,5 @@
 {{#if item~}}
-  <span class="{{dasherize sortAsc}}">{{yield item}}</span>
+  <span class="{{dasherize sortAsc}} {{class}}">{{yield item}}</span>
 {{~else if sortable~}}
   {{#if (media '(max-width: 500px)')~}}
     {{#link-to (query-params sort=(dasherize sortDesc))}}
