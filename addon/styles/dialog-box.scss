@@ -47,13 +47,6 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
-
-    .tabular-list {
-      header, ol {
-        width: 38rem;
-        max-width: calc(100vw - 4rem);
-      }
-    }
   }
 
   & > div > header,
@@ -82,10 +75,9 @@
     max-height: calc(100vh - 8rem);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    padding: 1rem 1rem 0;
 
-    & > *:last-child {
-      padding-bottom: 1rem;
+    .search-field {
+      margin: 0.5em;
     }
 
     & + footer {
@@ -93,6 +85,14 @@
       position: relative;
       padding: 0.5rem;
       box-shadow: 0 1px 2px 1px rgba($black, 0.20);
+    }
+  }
+
+  form .body, .body p {
+    padding: 1rem 1rem 0;
+
+    & > *:last-child {
+      padding-bottom: 1rem;
     }
   }
 

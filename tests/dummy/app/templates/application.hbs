@@ -1,33 +1,8 @@
-{{#button-group value=imageSize onchange=(action (mut imageSize)) as |b|}}
-  {{#b.option 'small' class='icon'}}{{icon 'small'}}{{/b.option}}
-  {{#b.option 'medium' class='icon'}}{{icon 'medium'}}{{/b.option}}
-  {{#b.option 'large' class='icon'}}{{icon 'large'}}{{/b.option}}
-{{/button-group}}
-{{#button-group value=align onchange=(action (mut align)) as |b|}}
-  {{#b.option 'left' class='icon'}}{{icon 'align-left'}}{{/b.option}}
-  {{#b.option 'center' class='icon'}}{{icon 'align-center'}}{{/b.option}}
-  {{#b.option 'right' class='icon'}}{{icon 'align-right'}}{{/b.option}}
-{{/button-group}}
+<section>
+  {{search-field inputId='search-field' query=query onquery=(action (mut query))}}
+</section>
 
-{{#create-button 'email' type='email' placeholder='Enter email'}}
-  {{icon "add"}} Add Login
-{{else}}
-  {{icon "add"}}
-{{/create-button}}
-
-<label for='upload-field'>Upload field</label>
-{{check-box value=multiple onchange=(action (mut multiple))}}
-{{#upload-field name='photo' multiple=multiple value=upload accept='image/*' onchange=(action 'upload' 'upload') as |photo remove|}}
-  <img src={{photo.url}} alt={{photo.name}} />
-  <button type='reset' onclick={{remove}}>{{icon 'trash'}}</button>
-{{else}}
-  Add File
-{{/upload-field}}
-
-{{#link-to (query-params as='list') class='button'}}{{icon 'list'}} List{{/link-to}}
-{{#link-to (query-params as='calendar') class='button'}}{{icon 'calendar'}} Calendar{{/link-to}}
-
-{{#sortable-list id='countries' rows=countries sort=sort as |l|}}
+{{#sortable-list class='countries' rows=countries sort=sort as |l|}}
   {{#l.item 'name' as |item|}}
     {{item.name}}
   {{else}}
@@ -45,6 +20,7 @@
   {{/l.item}}
 {{/sortable-list}}
 
+<section>
 {{#form-for class='grid-column' as |f|}}
   {{#f.nav ondelete=(action 'query')}}
     <button type='submit'>{{icon 'emoji'}} Hi There</button>
@@ -64,44 +40,29 @@
   {{else}}
     Hide Password
   {{/f.password}}
+  {{f.url 'url' label='{{url-field}}'}}
+  {{f.date 'date' label='{{date-field}}'}}
+  {{f.datetime 'datetime' label='{{datetime-field}}'}}
+  {{f.checkbox 'checked' label='Multiple photo upload'}}
+  {{#f.upload 'images' name='photo' multiple=f.changeset.checked accept='image/*' as |photo remove|}}
+    {{file-preview file=photo}}
+    <button type='reset' onclick={{remove}} class='icon'>{{icon 'trash'}}</button>
+  {{else}}
+    Add File
+  {{/f.upload}}
 {{/form-for}}
 
-<label>
-  {{check-box value=hasIcon onchange=(action (mut hasIcon))}}
-  Has search icon
-</label>
-
-<label for='search-field'>Search</label>
-{{search-field hasIcon=hasIcon inputId='search-field' query=query onquery=(action (mut query))}}
-{{query}}
-
-<label for='url-field'>URL</label>
-{{url-field inputId='url-field' value=url onchange=(action (mut url))}}
-{{url}}
-
-<label for='auto-complete'>Autocomplete</label>
-{{auto-complete inputId='auto-complete' value=autocomplete onchange=(action (mut autocomplete)) onquery=(action 'query') key='name'}}
-{{autocomplete.alpha2Code}} / {{autocomplete.name}}
-
-<label for='date-field'>Date Field</label>
-{{date-field inputId='date-field' value=date onchange=(action (mut date))}}
-{{date}}
-
-<label for='datetime-field'>Datetime Field</label>
-{{datetime-field inputId='datetime-field' value=datetime onchange=(action (mut datetime))}}
-{{datetime}}
+{{#create-button 'email' type='email' placeholder='Enter email'}}
+  {{icon "add"}} Add Login
+{{else}}
+  {{icon "add"}}
+{{/create-button}}
 
 {{#copy-field value='Hello'}}
   Copy
 {{else}}
   Copied
 {{/copy-field}}
-
-<label for='check-box'>Checkbox</label>
-{{check-box value=checked onchange=(action (mut checked))}}
-{{checked}}
-
-
 
 <div class='row'>
   {{#submit-button onsubmit=(action 'flash' 'Submitted!')}}
@@ -123,11 +84,12 @@
   {{/animated-beacon}}
   <button type='reset'>Cancel</button>
   {{#if dialog}}
-    {{dialog-box (component 'hello-dialog')
+    {{dialog-box (component 'countries-dialog' model=model)
       group='hello'
       ondismiss=(action (mut dialog) false)}}
   {{/if}}
 </div>
+</section>
 
 {{snack-bar}}
 {{dialog-box}}

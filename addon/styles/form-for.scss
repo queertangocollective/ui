@@ -40,6 +40,13 @@
     margin-bottom: 0.5rem;
   }
 
+  .check-box + label {
+    vertical-align: top;
+    display: inline-block;
+    margin-left: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
   &.has-autocompletion .field {
     position: relative;
 

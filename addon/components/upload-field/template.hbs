@@ -1,15 +1,23 @@
 {{#file-dropzone name=name}}
-  {{#each files as |file idx|}}
-    {{#if file.isLoading}}
-      {{icon 'spinner'}}
-    {{else if file}}
-      {{yield file (action 'change' idx null)}}
-    {{/if}}
-  {{/each}}
+  {{#if files}}
+    <div class='files'>
+      <ul>
+        {{#each files as |file idx|}}
+          <li>
+            {{#if file.isLoading}}
+              {{icon 'spinner'}}
+            {{else if file}}
+              {{yield file (action 'change' idx null)}}
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
 
   {{#if (or multiple (equals files.length 0))}}
-    {{#file-upload name=name accept=accept multiple=multiple onfileadd=(action 'add')}}
-      {{yield to='inverse'}}
+    {{#file-upload class='submit-button' name=name accept=accept multiple=multiple onfileadd=(action 'add')}}
+      {{icon 'add'}} {{yield to='inverse'}}
     {{/file-upload}}
   {{/if}}
 {{/file-dropzone}}

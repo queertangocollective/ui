@@ -1,51 +1,38 @@
-{{#file-dropzone name=(concat name '-photo') as |dropzone|}}
-  {{#if buttons.length}}
-    <nav class='row'>
-      {{#each buttons as |button|}}
-        {{#if (equals button.type 'a')}}
-          {{#text-editor/markup-button for=button.type hint='isLink' title=button.label id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/link-form' active=(get editor.activeMarkupTagNames 'isLink') onsubmit=(action 'addLink')))}}
-            {{icon button.icon}}
-          {{else}}
-            {{icon 'unlink'}}
-          {{/text-editor/markup-button~}}
-        {{else if (equals button.type 'photo')}}
-          {{#file-upload name=(concat name '-photo') id=(concat inputId '-photo') onfileadd=(action 'upload')}}
-            {{icon button.icon}}
-          {{/file-upload~}}
-          {{#tool-tip for=(concat inputId '-photo')}}
-            {{button.label}}
-          {{/tool-tip~}}
-        {{else if (equals button.type 'quote')}}
-          {{#text-editor/section-button for=button.type title=button.label id=inputId editor=this onclick=(action 'toggleSection')}}
-            {{icon button.icon}}
-          {{/text-editor/section-button~}}
-        {{else if (equals button.type 'youtube')}}
-          {{#text-editor/markup-button for=button.type title=button.label id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/youtube-form' onsubmit=(action 'addYoutubeEmbed')))}}
-            {{icon button.icon}}
-            {{/text-editor/markup-button}}
-        {{else if (equals button.type 'emoji')}}
-          {{#text-editor/markup-button for=button.type title=button.label id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/emoji-form' onsubmit=(action 'addEmoji')))}}
-            {{icon button.icon}}
-          {{/text-editor/markup-button}}
-        {{else if button.onembed}}
-          {{#text-editor/markup-button for=button.type title=button.label id=inputId editor=this onclick=(action 'embed' button)}}
-            {{icon button.icon}}
-          {{/text-editor/markup-button~}}
+{{#if buttons.length}}
+  <nav class='row'>
+    {{#each buttons as |button|}}
+      {{#if (equals button.type 'a')}}
+        {{#text-editor/markup-button for=button.type hint='isLink' title=button.label id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/link-form' active=(get editor.activeMarkupTagNames 'isLink') onsubmit=(action 'addLink')))}}
+          {{icon button.icon}}
         {{else}}
-          {{#text-editor/markup-button for=button.type title=button.label id=inputId editor=this onclick=(action 'toggleMarkup')}}
-            {{icon button.icon}}
-          {{/text-editor/markup-button~}}
-        {{/if}}
-      {{/each}}
-    </nav>
-  {{/if}}
-  {{#liquid-if form class='editor-form'}}
-    {{component form.component}}
-  {{/liquid-if}}
-  <div class="mobiledoc-editor__editor-wrapper">
-    <div class="mobiledoc-editor__editor"></div>
-  </div>
-{{/file-dropzone}}
+          {{icon 'unlink'}}
+        {{/text-editor/markup-button~}}
+      {{else if (equals button.type 'quote')}}
+        {{#text-editor/section-button for=button.type title=button.label id=inputId editor=this onclick=(action 'toggleSection')}}
+          {{icon button.icon}}
+        {{/text-editor/section-button~}}
+      {{else if (equals button.type 'emoji')}}
+        {{#text-editor/markup-button for=button.type title=button.label id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/emoji-form' onsubmit=(action 'addEmoji')))}}
+          {{icon button.icon}}
+        {{/text-editor/markup-button}}
+      {{else if (equals button.type 'embed')}}
+        <button type='button' onclick={{action 'embed' editor.editor for button}}>
+          {{icon 'add' class='add'}}<span>Add Embed</span>
+        </button>
+      {{else}}
+        {{#text-editor/markup-button for=button.type title=button.label id=inputId editor=this onclick=(action 'toggleMarkup')}}
+          {{icon button.icon}}
+        {{/text-editor/markup-button~}}
+      {{/if}}
+    {{/each}}
+  </nav>
+{{/if}}
+{{#liquid-if form class='editor-form'}}
+  {{component form.component}}
+{{/liquid-if}}
+<div class="mobiledoc-editor__editor-wrapper">
+  <div class="mobiledoc-editor__editor"></div>
+</div>
 
 {{#each componentCards as |card|}}
   {{#ember-wormhole to=card.destinationElementId}}

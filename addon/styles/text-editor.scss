@@ -52,12 +52,16 @@
     label,
     button {
       position: relative;
+      display: flex;
       appearance: none;
       height: 2rem;
-      width: 2.5rem;
+      width: auto;
       margin: 0;
       padding: 0;
       background: $black;
+      color: $white;
+      font-size: 0.8rem;
+      line-height: 1.8rem;
       border: 0;
 
       &:not(:first-child) {
@@ -79,14 +83,16 @@
         }
       }
 
-      svg path {
-        fill: $white;
+      svg {
+        margin: 0.3rem 0.6rem;
       }
 
-      svg {
-        position: absolute;
-        top: calc(50% - 9px);
-        left: calc(50% - 9px);
+      span {
+        padding-right: 0.6rem;
+      }
+
+      svg path {
+        fill: $white;
       }
     }
   }

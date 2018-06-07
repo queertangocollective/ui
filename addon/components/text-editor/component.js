@@ -61,7 +61,7 @@ export default Component.extend({
 
   embeds: null,
 
-  buttons: computed('markup', 'embeds', function () {
+  buttons: computed('markup', function () {
     let buttons = [{
       type: 'strong',
       label: 'Bold',
@@ -75,30 +75,24 @@ export default Component.extend({
       label: 'Underline',
       icon: 'underline'
     }, {
-      type: 'blockquote',
-      label: 'Quote',
-      icon: 'quote'
-    }, {
       type: 'a',
       label: 'Link',
       icon: 'link'
     }, {
-      type: 'photo',
-      label: 'Add Photo',
-      icon: 'photo'
+      type: 'blockquote',
+      label: 'Quote',
+      icon: 'quote'
     }, {
-      type: 'youtube',
-      label: 'Embed Youtube Video',
-      icon: 'youtube'
-    }, ...(get(this, 'embeds') || [])];
+      type: 'emoji',
+      label: 'Add Emoji',
+      icon: 'emoji'
+    }, {
+      type: 'embed'
+    }];
 
     // Mobile OSes have robust emoji keyboards
-    if (!get(this, 'isMobile')) {
-      buttons.push({
-        type: 'emoji',
-        label: 'Add Emoji',
-        icon: 'emoji'
-      });
+    if (get(this, 'isMobile')) {
+      buttons.removeObject(buttons.findBy('type', 'emoji'));
     }
 
     if (get(this, 'markup')) {
@@ -115,9 +109,7 @@ export default Component.extend({
     set(this, 'componentAtoms', []);
 
     set(this, 'cards', [
-      createComponentCard('photo'),
-      createComponentCard('youtube'),
-      ...(get(this, 'embeds') || []).map(({ type }) => createComponentCard(type))
+      ...(get(this, 'embeds') || []).map((type) => createComponentCard(type))
     ]);
     set(this, 'atoms', [{
       name: 'line-break',
@@ -342,28 +334,13 @@ export default Component.extend({
   },
 
   actions: {
-    upload(file) {
-      let editor = this.editor;
-      let range = this._lastRange;
-      return get(this, 'onupload')(file).then((photo) => {
-        editor.selectRange(range);
-        this.addCard('photo', {
-          photoId: get(photo, 'id'),
-          url: get(photo, 'url'),
-          title: get(photo, 'title'),
-          caption: '',
-          align: 'center',
-          size: 'medium'
-        });
-      });
-    },
 
-    embed(button) {
+    embed() {
       let editor = this.editor;
       let range = this._lastRange;
-      return button.onembed().then((embed) => {
+      return this.onembed().then((embed) => {
         editor.selectRange(range);
-        this.addCard(button.type, embed);
+        this.addCard(embed.type, embed.attributes);
       });
     },
 
@@ -403,19 +380,6 @@ export default Component.extend({
 
     toggleSection(editor, forProperty) {
       editor.toggleSection(forProperty);
-    },
-
-    addYoutubeEmbed(url) {
-      let { range } = this.form;
-      this.set('form', null);
-      let editor = this.editor;
-      editor.selectRange(range);
-      this.addCard('youtube', {
-        url,
-        width: 640,
-        height: 360,
-        autoplay: false
-      });
     },
 
     addEmoji(emoji) {

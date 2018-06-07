@@ -1,20 +1,22 @@
 @import '@queertangocollective/ui';
 
-#countries {
-  .name {
-    width: calc(40% - 35px);
+section {
+  max-width: calc(800px + 2rem);
+  padding: 0 1rem;
+  margin: 1rem auto;
+}
+
+.sortable-list.countries .item {
+  grid: 100% / calc(40% - 35px) 70px calc(50% - 35px);
+
+  &.mobile {
+    grid: 100% / auto 30px;
   }
-  .code {
-    width: 70px;
-  }
-  .capital {
-    width: calc(50% - 35px);
-  }
-  li .code {
-    font-weight: 600;
-    letter-spacing: 0.1rem;
-    font-variant-caps: all-small-caps;
-  }
+}
+.sortable-list.countries li .code {
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  font-variant-caps: all-small-caps;
 }
 
 img {

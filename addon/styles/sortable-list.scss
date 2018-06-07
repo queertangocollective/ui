@@ -3,41 +3,23 @@
   margin-bottom: 1rem;
   width: 100%;
 
-  .background {
-    position: sticky;
-    top: 0rem;
-    pointer-events: none;
-
-    &:after {
-      position: absolute;
-      display: block;
-      content: ' ';
-      top: -0.5rem;
-      height: 3.5rem;
-
-      width: 100%;
-      background: rgba($white, 0.4);
-      backdrop-filter: blur(3px);
-      z-index: 0;
-    }
-  }
-
   ol {
-    box-shadow: 0 1px 2px 1px rgba($black, 0.20);
-    border-radius: 4px;
     margin: 0;
     padding: 0;
 
     li {
       text-decoration: none;
+      border-bottom: 1px solid $heather;
       display: block;
       line-height: 2.5rem;
       height: 2.5rem;
       white-space: nowrap;
       padding: 0 1rem;
 
-      &:not(:last-child) {
-        border-bottom: 1px solid $heather;
+      & > .item {
+        display: grid;
+        max-width: 800px;
+        margin: 0 auto;
       }
 
       span {
@@ -49,13 +31,9 @@
       @media(max-width: 500px) {
         & {
           height: auto;
+          justify-content: start;
           padding: 1rem;
           line-height: 1.2rem;
-        }
-        & > span {
-          display: block;
-          width: 100% !important;
-          max-width: calc(100vw - 4rem);
         }
       }
     }
@@ -89,15 +67,19 @@
 
   header {
     position: sticky;
-    top: 1rem;
-    margin-bottom: 1rem;
+    top: 0;
     grid-template-rows: 1fr 1fr;
     z-index: 2;
+
+    & > .item {
+      display: grid;
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
     &:not(.mobile) {
       padding: 0.3rem 1rem;
       box-shadow: 0 1px 2px 1px rgba($black, 0.20);
-      border-radius: 4px;
       background: $black;
       color: $white;
     }

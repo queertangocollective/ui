@@ -64,6 +64,11 @@ export default Component.extend({
         set(this, 'rows', [...this.rows.toArray(), ...model.toArray()]);
         set(this, 'total', meta.page.total);
       });
+    },
+
+    sort(key, evt) {
+      evt.preventDefault();
+      this.onsort(key);
     }
   }
 });
