@@ -27,8 +27,8 @@
   {{/f.nav}}
   {{f.text 'text' label='{{text-field}}'}}
   {{f.editor 'editor' label='{{text-editor}}'}}
-  {{#f.select 'select' label='{{single-select}}' options=(list 'Apple' 'Banana' 'Yuzu') gravity='s' as |item|}}
-    {{icon 'check'}} {{item}}
+  {{#f.select 'select' label='{{select-field}}' options=(list 'Apple' 'Banana' 'Yuzu') as |item|}}
+    {{item}}
   {{/f.select}}
   {{f.textarea 'multiline' label='{{text-area}}' rows=3}}
   {{f.number 'number' label='{{number-field}}'}}

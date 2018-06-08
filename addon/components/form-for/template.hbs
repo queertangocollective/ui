@@ -15,7 +15,7 @@
               upload=(component 'form-for/field' fieldType='upload-field' model=changeset index=index onchange=(action 'onchange') label=false)
               url=(component 'form-for/field' fieldType='url-field' model=changeset index=index onchange=(action 'onchange'))
               autocomplete=(component 'form-for/field' fieldType='auto-complete' model=changeset index=index onchange=(action 'onchange'))
-              select=(component 'form-for/field' fieldType='single-select' model=changeset index=index onchange=(action 'onchange'))
+              select=(component 'form-for/field' fieldType='select-field' model=changeset index=index onchange=(action 'onchange'))
               submit=(component 'form-for/button' onsubmit=(action save))
               form-for=(component 'form-for/form' model=model tagName='' onsubmit=onsubmit parent=this)
             )}}

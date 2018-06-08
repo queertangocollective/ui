@@ -1,0 +1,5 @@
+<select id="{{inputId}}" name="{{name}}" disabled={{disabled}} onchange={{action (action selectIndex) value="target.selectedIndex"}}>
+  {{#each arrangedOptions as |option|}}
+    <option value="{{option.id}}" selected={{if (equals option.id selected.id) true}}>{{option.value}}</option>
+  {{/each}}
+</select>
