@@ -1,19 +1,19 @@
-{{#with (await (get model fieldName)) as |value|}}
-  {{#if (is-array value)}}
-    {{#each (filter-by 'isDeleted' false value) as |item idx|}}
-      {{#form-for item index=idx tagName='div' multiple=true class=class
-        onsubmit=onsubmit
-        oninit=(action 'registerWith' parent) as |f|}}
-        {{yield f idx}}
-      {{/form-for}}
-    {{else}}
-      {{yield to="inverse"}}
-    {{/each}}
-  {{else}}
-    {{#form-for value tagName='div' class=class
+{{#if (is-array (get model fieldName))}}
+  {{#each (filter-by 'isDeleted' false (get model fieldName)) as |item idx|}}
+    {{#form-for item index=idx tagName='div' multiple=true class=class
+      autosave=autosave
       onsubmit=onsubmit
       oninit=(action 'registerWith' parent) as |f|}}
-      {{yield f}}
+      {{yield f idx}}
     {{/form-for}}
-  {{/if}}
-{{/with}}
+  {{else}}
+    {{yield to="inverse"}}
+  {{/each}}
+{{else}}
+  {{#form-for (get model fieldName) tagName='div' class=class
+    autosave=autosave
+    onsubmit=onsubmit
+    oninit=(action 'registerWith' parent) as |f|}}
+    {{yield f}}
+  {{/form-for}}
+{{/if}}

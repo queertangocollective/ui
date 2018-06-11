@@ -18,7 +18,7 @@
         {{else}}
           {{icon 'check'}}
         {{/if}}
-        {{#if changeset.hasChanges}}Unsaved Changes{{else}}Saved {{moment-from-now model.updatedAt}}{{/if}}
+        {{#if hasChanges}}Unsaved Changes{{else}}Saved {{moment-from-now model.updatedAt}}{{/if}}
       </div>
       {{#pop-over for=(concat "save-indicator-for-" id) gravity=(if (media '(max-width: 500px)') "sw" "se") on="click"}}
         Saved at {{l 'date' model.updatedAt}}
