@@ -10,6 +10,10 @@ export default Controller.extend({
 
   sort: 'name',
 
+  newCountries: computed(function () {
+    return [];
+  }),
+
   countries: computed('sort', 'model', function () {
     let sort = get(this, 'sort');
     if (sort[0] === '-') {
@@ -19,6 +23,10 @@ export default Controller.extend({
   }),
 
   actions: {
+    addCountry(evt) {
+      evt.preventDefault();
+      this.newCountries.push({});
+    },
     async query({ text }) {
       let result = await fetch('https://restcountries.eu/rest/v2/name/' + text, {
         mode: 'cors'

@@ -50,6 +50,12 @@
   {{else}}
     Add File
   {{/f.upload}}
+
+  {{#f.form-for 'newCountries' class='grid-row' as |g|}}
+    {{g.text 'name'}}
+    {{g.text 'code'}}
+  {{/f.form-for}}
+  <button type='submit' onclick={{action 'addCountry'}}>{{icon 'add'}} Add Country</button>
 {{/form-for}}
 
 {{#create-button 'email' type='email' placeholder='Enter email'}}

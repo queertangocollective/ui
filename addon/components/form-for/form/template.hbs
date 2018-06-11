@@ -2,6 +2,7 @@
   {{#each (filter-by 'isDeleted' false (get model fieldName)) as |item idx|}}
     {{#form-for item index=idx tagName='div' multiple=true class=class
       autosave=autosave
+      onchange=onchange
       onsubmit=onsubmit
       oninit=(action 'registerWith' parent) as |f|}}
       {{yield f idx}}
@@ -12,6 +13,7 @@
 {{else}}
   {{#form-for (get model fieldName) tagName='div' class=class
     autosave=autosave
+    onchange=onchange
     onsubmit=onsubmit
     oninit=(action 'registerWith' parent) as |f|}}
     {{yield f}}

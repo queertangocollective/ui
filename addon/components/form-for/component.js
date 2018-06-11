@@ -37,7 +37,7 @@ export default Component.extend({
     let model = this.model;
     let changeset = this.changeset;
     let changes = this.changeset.buffer;
-    let isDirty = changeset.get('hasChanges') || get(model, 'isDeleted') || model.constructor === Object;
+    let isDirty = changeset.get('hasChanges') || get(model, 'isDeleted') || model.constructor === Object || this.hasNestedChanges;
 
     if (isDirty && (model == null || get(model, 'isNew'))) {
       return this.onsubmit(model, changes).then(() => {
@@ -67,6 +67,7 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     set(this, 'nestedForms', []);
+    set(this, 'nestedChanges', []);
     tryInvoke(this, 'oninit', [this]);
   },
 
@@ -74,7 +75,15 @@ export default Component.extend({
     this.nestedForms.push(form);
   },
 
+  hasNestedChanges: computed(function () {
+    return this.nestedForms.some((form) => form.changeset.hasChanges);
+  }),
+
   actions: {
+    hasNestedChangesDidChange() {
+      this.notifyPropertyChange('hasNestedChanges');
+    },
+
     onchange(model, field, value) {
       let [fieldName, ...path] = field.split('.');
       if (path.length) {
@@ -84,6 +93,8 @@ export default Component.extend({
       } else {
         model.set(field, value);
       }
+
+      tryInvoke(this, 'onchange', this.model, this.changeset.buffer);
 
       if (this.autosave) {
         debounce(this, 'save', 2000);
