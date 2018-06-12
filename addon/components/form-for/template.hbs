@@ -1,6 +1,6 @@
 {{yield (hash model=model
               changeset=changeset
-              nav=(component 'form-for/nav' model=model changeset=changeset nestedForms=nestedForms id=elementId)
+              nav=(component 'form-for/nav' model=model changeset=changeset hasChanges=(or changeset.hasChanges hasNestedChanges) id=elementId)
               text=(component 'form-for/field' fieldType='text-field' model=changeset index=index onchange=(action 'onchange'))
               buttons=(component 'form-for/field' fieldType='button-group' model=changeset index=index onchange=(action 'onchange'))
               number=(component 'form-for/field' fieldType='number-field' model=changeset index=index onchange=(action 'onchange'))

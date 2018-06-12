@@ -11,7 +11,12 @@ export default Controller.extend({
   sort: 'name',
 
   newCountries: computed(function () {
-    return [];
+    return [{
+      isDeleted: false,
+      deleteRecord() {
+        set(this, 'isDeleted', true);
+      }
+    }];
   }),
 
   countries: computed('sort', 'model', function () {
@@ -25,8 +30,14 @@ export default Controller.extend({
   actions: {
     addCountry(evt) {
       evt.preventDefault();
-      this.newCountries.push({});
+      this.newCountries.pushObject({
+        isDeleted: false,
+        deleteRecord() {
+          set(this, 'isDeleted', true);
+        }
+      });
     },
+
     async query({ text }) {
       let result = await fetch('https://restcountries.eu/rest/v2/name/' + text, {
         mode: 'cors'

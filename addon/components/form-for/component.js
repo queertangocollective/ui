@@ -11,6 +11,8 @@ export default Component.extend({
 
   tagName: 'form',
 
+  classNames: ['form-for'],
+
   multiple: false,
 
   novalidate: true,
@@ -44,6 +46,10 @@ export default Component.extend({
         return RSVP.all(this.nestedForms.map(function (form) {
           return form.submit(evt);
         }));
+      }).then(() => {
+        if (this.parent) {
+          return this.parent.submit(evt);
+        }
       });
     } else {
       promises = this.nestedForms.map(function (form) {

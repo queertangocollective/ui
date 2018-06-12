@@ -6,10 +6,10 @@
       onsubmit=onsubmit
       oninit=(action 'registerWith' parent) as |f|}}
       {{yield f idx}}
+      <button class='remove-item' onclick={{action 'deleteRecord' item}}>{{icon 'cancel'}}</button>
     {{/form-for}}
-  {{else}}
-    {{yield to="inverse"}}
   {{/each}}
+  <div>{{yield to="inverse"}}</div>
 {{else}}
   {{#form-for (get model fieldName) tagName='div' class=class
     autosave=autosave

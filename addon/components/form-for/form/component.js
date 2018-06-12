@@ -6,7 +6,12 @@ export default Component.extend({
 
   actions: {
     registerWith(parent, form) {
+      form.set('parent', parent);
       parent.register(form);
+    },
+    deleteRecord(record, evt) {
+      evt.preventDefault();
+      record.deleteRecord();
     }
   }
 }).reopenClass({

@@ -21,7 +21,7 @@
 {{/sortable-list}}
 
 <section>
-{{#form-for class='grid-column' as |f|}}
+{{#form-for this class='grid-column' as |f|}}
   {{#f.nav ondelete=(action 'query')}}
     <button type='submit'>{{icon 'emoji'}} Hi There</button>
   {{/f.nav}}
@@ -51,11 +51,12 @@
     Add File
   {{/f.upload}}
 
-  {{#f.form-for 'newCountries' class='grid-row' as |g|}}
+  {{#f.form-for 'newCountries' as |g|}}
     {{g.text 'name'}}
     {{g.text 'code'}}
+  {{else}}
+    <button type='submit' onclick={{action 'addCountry'}}>{{icon 'add'}} Add Country</button>
   {{/f.form-for}}
-  <button type='submit' onclick={{action 'addCountry'}}>{{icon 'add'}} Add Country</button>
 {{/form-for}}
 
 {{#create-button 'email' type='email' placeholder='Enter email'}}
