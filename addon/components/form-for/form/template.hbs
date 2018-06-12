@@ -6,7 +6,7 @@
       onsubmit=onsubmit
       oninit=(action 'registerWith' parent) as |f|}}
       {{yield f idx}}
-      <button class='remove-item' onclick={{action 'deleteRecord' item}}>{{icon 'cancel'}}</button>
+      <button class='remove-item' onclick={{action 'ondelete' item}}>{{icon 'cancel'}}</button>
     {{/form-for}}
   {{/each}}
   <div>{{yield to="inverse"}}</div>

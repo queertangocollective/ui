@@ -90,6 +90,15 @@ export default Component.extend({
       this.notifyPropertyChange('hasNestedChanges');
     },
 
+    ondelete(record) {
+      record.deleteRecord();
+      tryInvoke(this, 'onchange', this.model, this.changeset.buffer);
+
+      if (this.autosave) {
+        debounce(this, 'save', 2000);
+      }
+    },
+
     onchange(model, field, value) {
       let [fieldName, ...path] = field.split('.');
       if (path.length) {

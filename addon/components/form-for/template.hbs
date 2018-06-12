@@ -17,5 +17,5 @@
               autocomplete=(component 'form-for/field' fieldType='auto-complete' model=changeset index=index onchange=(action 'onchange'))
               select=(component 'form-for/field' fieldType='select-field' model=changeset index=index onchange=(action 'onchange'))
               submit=(component 'form-for/button' onsubmit=(action save))
-              form-for=(component 'form-for/form' model=model tagName='' onsubmit=onsubmit autosave=autosave onchange=(action 'hasNestedChangesDidChange') parent=this)
+              form-for=(component 'form-for/form' model=model tagName='' onsubmit=onsubmit autosave=autosave onchange=(action 'hasNestedChangesDidChange') ondelete=(action 'ondelete') parent=this)
             )}}

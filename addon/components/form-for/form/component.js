@@ -9,9 +9,9 @@ export default Component.extend({
       form.set('parent', parent);
       parent.register(form);
     },
-    deleteRecord(record, evt) {
+    ondelete(record, evt) {
       evt.preventDefault();
-      record.deleteRecord();
+      this.ondelete(record);
     }
   }
 }).reopenClass({

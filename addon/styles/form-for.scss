@@ -34,6 +34,7 @@
 
   & > *:not(.remove-item) {
     flex: 1;
+    margin-right: 0.75rem;
   }
 }
 
@@ -51,6 +52,7 @@
   height: 2rem;
   width: 2rem;
   background: $black;
+  border: 0;
   box-shadow: 0 1px 2px 1px rgba($black, 0.20);
   transition-property: background, padding, box-shadow, color, border, border-color, transform;
   transition-duration: 200ms;
