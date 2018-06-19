@@ -17,7 +17,7 @@
       {{/animated-value}}
     </div>
   {{/multiple-from-elsewhere}}
-  {{#if open.dialog}}
-    {{dialog-box open.dialog ondismiss=open.ondismiss}}
-  {{/if}}
+  {{#each open.dialogs as |dialog|}}
+    {{dialog-box dialog.Dialog ondismiss=dialog.reject group=dialog.group}}
+  {{/each}}
 {{/if}}

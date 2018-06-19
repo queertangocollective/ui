@@ -86,15 +86,10 @@
     Are you sure?
   {{/confirm-button}}
 
-  {{#animated-beacon group='hello'}}
-    <button type='submit' onclick={{action (mut dialog) true}}>Show dialog</button>
-  {{/animated-beacon}}
+  {{#dialog-button (component 'workflow-dialog' model=model) group='workflow'}}
+    Show Dialog
+  {{/dialog-button}}
   <button type='reset'>Cancel</button>
-  {{#if dialog}}
-    {{dialog-box (component 'countries-dialog' model=model)
-      group='hello'
-      ondismiss=(action (mut dialog) false)}}
-  {{/if}}
 </div>
 </section>
 

@@ -1,5 +1,4 @@
 import Service from '@ember/service';
-import { set } from '@ember/object';
 import { ConstReference } from '@glimmer/reference';
 
 class UnboundReference extends ConstReference {
@@ -40,17 +39,22 @@ function addNamedArgument(args, key, value) {
   ```
 */
 export default Service.extend({
-  ondismiss: null,
-  dialog: null,
+  init() {
+    this._super();
+    this.set('dialogs', []);
+  },
 
-  execute(Dialog) {
+  execute(Dialog, group) {
     return new Promise((resolve, reject) => {
-      set(this, 'ondismiss', reject);
       addNamedArgument(Dialog.args, 'onsubmit', resolve);
-      set(this, 'dialog', Dialog);
+      this.get('dialogs').pushObject({
+        reject,
+        group,
+        Dialog
+      });
     }).finally(() => {
-      set(this, 'dialog', null);
-      set(this, 'ondismiss', null);
+      let dialog = this.get('dialogs').findBy('Dialog', Dialog);
+      this.get('dialogs').removeObject(dialog);
     });
   }
 });

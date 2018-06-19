@@ -1,0 +1,13 @@
+<header>
+  Hello!
+</header>
+<div class='body'>
+  <p>
+    {{#dialog-button (component 'countries-dialog' model=model) group='hello'}}
+      👋🏼 Say Hello
+    {{/dialog-button}}
+  </p>
+</div>
+<footer>
+  <button type='reset' onclick={{action dismiss}}>Cancel</button>
+</footer>
