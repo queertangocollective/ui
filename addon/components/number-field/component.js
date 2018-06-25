@@ -325,7 +325,6 @@ export default Component.extend({
       }
 
       let numericInput = new RegExp('[\\d\\s' + this.symbol + this.groupingSeparator + this.decimalSeparator + '-]', 'g');
-      console.log(numericInput);
       return numericInput.test(String.fromCharCode(evt.which));
     },
 
