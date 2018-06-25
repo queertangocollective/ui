@@ -1,6 +1,5 @@
 import Component from '@ember/component';
-import { set } from '@ember/object';
-import { l } from '../../helpers/l';
+import { set, computed } from '@ember/object';
 import layout from './template';
 
 const UP = 38;
@@ -121,40 +120,86 @@ export default Component.extend({
    */
   precision: 0,
 
+  style: 'decimal',
+
+  locale: 'en-US',
+
+  isFocused: false,
+
+  multiplier: 1,
+
+  formatter: computed('style', 'locale', 'currency', 'precision', function () {
+    let options = {
+      style: this.style
+    };
+
+    if (this.currency) {
+      options.currency = this.currency;
+    }
+    if (this.precision != null) {
+      options.maximumFractionDigits = this.precision;
+    }
+    return Intl.NumberFormat(this.locale, options);
+  }),
+
+  symbol: computed('decimalSeparator', 'groupingSeparator', function () {
+    let test = this.formatter.format(9876543.21);
+    return test.replace(/\d/g, '')
+               .replace(new RegExp('[' + this.decimalSeparator + ']', 'g'), '')
+               .replace(new RegExp('[' + this.groupingSeparator + ']', 'g'), '').trim();
+  }),
+
+  decimalSeparator: computed('formatter', function () {
+    let test = this.formatter.format(9876543.21);
+    let separator = test.charAt(test.indexOf('21') - 1);
+    if (separator.match(/\d/)) {
+      return '';
+    }
+    return separator;
+  }),
+
+  groupingSeparator: computed('formatter', function () {
+    let test = this.formatter.format(9876543.21);
+    let groupingSeparatorIndex = test.indexOf('3');
+    while (test.charAt(groupingSeparatorIndex).match(/\d/)) {
+      groupingSeparatorIndex--;
+    }
+
+    return test.charAt(groupingSeparatorIndex);
+  }),
+
+  maximumFractionDigits: computed('formatter', function () {
+    return this.formatter.resolvedOptions().maximumFractionDigits;
+  }),
+
   didRender() {
     this._updateDisplayValue(this._getValue());
   },
 
   _getValue() {
-    return this.value;
+    if (this.isFocused) {
+      let input = this.element.querySelector('input');
+      return input.value;
+    } else {
+      let value = this.value;
+      return value ? this._format(value) : '';
+    }
   },
 
-  _setValue(value) {
-    if (value) {
-      this.onchange(parseFloat(value.toFixed(this.precision), 10));
-    } else {
-      this.onchange(value);
-    }
-    this._updateDisplayValue(value);
+  _setValue(displayValue) {
+    let value = this._applyPrecision(displayValue);
+    this.onchange(value);
+    this._updateDisplayValue(displayValue);
   },
 
   _stepValue(step) {
-    this._setValue(this._clamp((this._getValue() || 0) + step));
+    this._setValue(this._format(this._clamp((this.value || 0) + step)));
   },
 
-  _updateDisplayValue(number) {
-    let precision = this.precision;
-    let max = this.max;
+  _updateDisplayValue(displayValue) {
     let input = this.element.querySelector('input');
     let cursorPosition = input.selectionStart;
     let lastDisplayValue = input.value;
-    let displayValue = this._format(number);
-
-    if (precision > 0 && parseFloat(number, 10) < max) {
-      // this._format returns a rounded float; need to append the original decimal
-      // values onto the new string
-      displayValue = this._trimDecimals(lastDisplayValue, displayValue, precision);
-    }
 
     input.value = displayValue;
 
@@ -165,24 +210,22 @@ export default Component.extend({
   _trimDecimals(oldString, newString, precision) {
     let trimmedString = newString;
 
-    if (trimmedString.indexOf('.') === -1 &&
-        oldString.indexOf('.') !== -1) {
-      trimmedString += '.' + oldString.slice(
-        oldString.indexOf('.'),
-        oldString.indexOf('.') + precision + 1
-      ).replace(/\./g, '');
+    if (trimmedString.indexOf(this.decimalSeparator) === -1 &&
+        oldString.indexOf(this.decimalSeparator) !== -1) {
+      trimmedString += this.decimalSeparator + oldString.slice(
+        oldString.indexOf(this.decimalSeparator),
+        oldString.indexOf(this.decimalSeparator) + precision + 1
+      ).replace(new RegExp(this.decimalSeparator, 'g'), '');
     }
 
     return trimmedString;
   },
 
   _format(number) {
-    let precision = this.precision;
-
-    return l('number', number, {
-      precision,
-      'strip-insignificant-zeros': true
-    }) || '';
+    if (isNaN(number) || number == null) {
+      return number || '';
+    }
+    return this.formatter.format(number);
   },
 
   _moveCursor(previousCursorPosition, previousValue, newValue) {
@@ -197,8 +240,8 @@ export default Component.extend({
       if (newCursorPosition === previousValue.length) {
         newCursorPosition = newValue.length;
       } else if (previousValue !== newValue) {
-        let prevLength = (previousValue.match(/,/g) || []).length;
-        let newLength = (newValue.match(/,/g) || []).length;
+        let prevLength = (previousValue.match(new RegExp(this.groupingSeparator, 'g')) || []).length;
+        let newLength = (newValue.match(new RegExp(this.groupingSeparator, 'g')) || []).length;
 
         // Adjust the newCursorPosition to be between the same
         // digits when the number of commas changes
@@ -222,26 +265,25 @@ export default Component.extend({
   },
 
   _removeExtraDecimals(string = '') {
-    let firstDecimal = string.indexOf('.');
-    if (firstDecimal !== -1) {
+    let firstDecimal = string.indexOf(this.decimalSeparator);
+    if (firstDecimal !== -1 && this.decimalSeparator !== '') {
       let firstHalf = string.slice(0, firstDecimal + 1);
       let secondHalf = string.slice(firstDecimal + 1);
 
-      return `${firstHalf.replace(/\$/g, '')}${secondHalf.replace(/[%.]/g, '')}`;
+      return `${firstHalf.replace(new RegExp(this.symbol, 'g'), '')}${secondHalf.replace(/[%.]/g, '')}`;
     }
-
-    return string.replace(/\$/g, '');
+    return string.replace(new RegExp(this.groupingSeparator.replace(/./, '\\.'), 'g'), '');
   },
 
   // Removes extra characters
   _applyPrecision(number) {
-    let precision = this.precision;
+    let precision = this.maximumFractionDigits;
     let value = this._removeExtraDecimals(number);
     let decimalPlaces = 0;
 
     // Drops any characters beyond `precision` decimal points
-    let decimalPointIndex = value.indexOf('.');
-    if (decimalPointIndex !== -1) {
+    let decimalPointIndex = value.indexOf(this.decimalSeparator);
+    if (decimalPointIndex !== -1 && this.decimalSeparator !== '') {
       decimalPlaces = value.slice(decimalPointIndex).length - 1;
 
       decimalPlaces = Math.min(decimalPlaces, precision);
@@ -249,9 +291,10 @@ export default Component.extend({
       value = value.slice(0, decimalPointIndex + 1 + precision);
     }
 
-    let finalValue = this._clamp(parseInt(value.replace(/[,.]/g, ''), 10), decimalPlaces);
+    let separatorRegexp = new RegExp('[' + this.groupingSeparator + this.decimalSeparator + ']'.replace('.', '\\.'), 'g');
+    let finalValue = this._clamp(parseInt(value.replace(separatorRegexp, ''), 10) * this.multiplier, decimalPlaces);
 
-    if (isNaN(finalValue)) {
+    if (isNaN(finalValue) || finalValue == null) {
       finalValue = null;
     } else {
       finalValue = finalValue / Math.pow(10, decimalPlaces);
@@ -273,7 +316,7 @@ export default Component.extend({
     },
 
     restrict(evt) {
-      if (evt.which === 32 || evt.shiftKey) {
+      if (evt.which === 32) {
         return false;
       }
 
@@ -281,7 +324,9 @@ export default Component.extend({
         return true;
       }
 
-      return /[\d\s.,-]/.test(String.fromCharCode(evt.which));
+      let numericInput = new RegExp('[\\d\\s' + this.symbol + this.groupingSeparator + this.decimalSeparator + '-]', 'g');
+      console.log(numericInput);
+      return numericInput.test(String.fromCharCode(evt.which));
     },
 
     // Cleans the input before submitting the value to the `onchange` function
@@ -292,9 +337,7 @@ export default Component.extend({
         return true;
       }
 
-      let valueWithPrecision = this._applyPrecision(displayValue);
-
-      this._setValue(valueWithPrecision);
+      this._setValue(displayValue);
     },
 
     focus() {
@@ -303,6 +346,7 @@ export default Component.extend({
 
     blur() {
       set(this, 'isFocused', false);
+      this._setValue(this._getValue());
     }
   }
 });
