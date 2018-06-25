@@ -1,5 +1,4 @@
 import { helper } from '@ember/component/helper';
-import { A } from '@ember/array';
 import moment from 'moment';
 
 function format(value, name, options) {
@@ -38,37 +37,26 @@ function formatDuration(value, options={}) {
 
 let formatters = {
   percent(value, hash) {
-    return l('number', value, hash) + '%';
+    return new Intl.NumberFormat(hash.locale, {
+      style: 'percent',
+      maximumFractionDigits: hash.precision
+    }).format(value);
   },
 
   currency(value, hash) {
-    return '$' + l('number', value / 100, hash);
+    return new Intl.NumberFormat(hash.locale, {
+      style: 'currency',
+      currency: hash.currency,
+      maximumFractionDigits: hash.precision
+    }).format(value / 100);
   },
 
   number(value, hash) {
-    if (hash.precision != null) {
-      value = parseFloat(value.toFixed(hash.precision), 10);
-    }
-
-    let sign = '';
-    if (value < 0) {
-      value = Math.abs(value);
-      sign = '-';
-    }
-    let [wholeNumber, decimal] = value.toString().split('.');
-    let groupings = [];
-    while (wholeNumber.length) {
-      groupings.unshift(wholeNumber.slice(-3));
-      wholeNumber = wholeNumber.slice(0, -3);
-    }
-
-    if ((decimal || '').length < (hash.precision || 0) &&
-        !hash['strip-insignificant-zeros']) {
-      decimal = decimal || '';
-      decimal += Array(hash.precision - (decimal || '').length + 1).join('0');
-    }
-
-    return sign + A([groupings.join(','), decimal]).compact().join('.');
+    return new Intl.NumberFormat(hash.locale, {
+      style: 'decimal',
+      currency: hash.currency,
+      maximumFractionDigits: hash.precision
+    }).format(value);
   },
 
   date(value, hash) {
