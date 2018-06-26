@@ -1,5 +1,5 @@
 {{#unless (equals fieldType 'check-box')}}
-  {{#if label}}<label for={{inputId}}>{{{label}}}</label>{{/if}}
+  {{#if label}}<label for={{inputId}}>{{t (concat formName '.' fieldName) htmlSafe=true}}</label>{{/if}}
 {{/unless}}
 <div class='field'>
   {{#if hasBlock}}
@@ -29,6 +29,7 @@
       onchange=(action onchange model (if fieldName fieldName index))
       onquery=(action 'query')
       onupload=onupload
+      precision=precision
       rows=rows as |arg1 arg2|}}
       {{yield arg1 arg2}}
     {{else}}
@@ -57,10 +58,11 @@
       onchange=(action onchange model (if fieldName fieldName index))
       onquery=(action 'query')
       onupload=onupload
+      precision=precision
       rows=rows}}
   {{/if}}
   {{#if (equals fieldType 'check-box')}}
-    {{#if label}}<label for={{inputId}}>{{{label}}}</label>{{/if}}
+    {{#if label}}<label for={{inputId}}>{{t (concat formName '.' fieldName) htmlSafe=true}}</label>{{/if}}
   {{/if}}
   {{#if autocomplete}}
     <a tabindex=0 class='autocomplete' onclick={{action onchange model (if fieldName fieldName index) autocomplete preventDefault=false}}>

@@ -15,6 +15,8 @@ export default Component.extend({
 
   multiple: false,
 
+  name: null,
+
   novalidate: true,
 
   autocomplete: true,
