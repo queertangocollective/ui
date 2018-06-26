@@ -25,26 +25,26 @@
   {{#f.nav ondelete=(action 'query')}}
     <button type='submit'>{{icon 'emoji'}} Hi There</button>
   {{/f.nav}}
-  {{f.text 'text' label='{{text-field}}'}}
-  {{f.editor 'editor' label='{{text-editor}}'}}
-  {{#f.select 'select' label='{{select-field}}' options=(list 'Apple' 'Banana' 'Yuzu') as |item|}}
+  {{f.text 'text'}}
+  {{f.editor 'editor'}}
+  {{#f.select 'select' options=(list 'Apple' 'Banana' 'Yuzu') as |item|}}
     {{item}}
   {{/f.select}}
-  {{f.textarea 'multiline' label='{{text-area}}' rows=3}}
+  {{f.textarea 'multiline' rows=3}}
   {{#select-field options=locales value=locale onchange=(action 'setLocale') as |option|}}{{option.name}}{{/select-field}}
-  {{f.number 'number' label='{{number-field}}' locale=locale.code precision=2}}
-  {{f.percent 'percent' label='{{percent-field}}' min=0 max=1 locale=locale.code}}
-  {{f.currency 'amount' 'currency' label='{{currency-field}}' currencies=currencies locale=locale.code}}
-  {{f.autocomplete 'autocomplete' key='name' onquery=(action 'query') label='{{auto-complete}}'}}
-  {{#f.password 'password' label='{{password-field}}'}}
+  {{f.number 'number' locale=locale.code precision=2}}
+  {{f.percent 'percent' min=0 max=1 locale=locale.code}}
+  {{f.currency 'amount' 'currency' currencies=currencies locale=locale.code}}
+  {{f.autocomplete 'autocomplete' key='name' onquery=(action 'query') }}
+  {{#f.password 'password' }}
     Reveal Password
   {{else}}
     Hide Password
   {{/f.password}}
-  {{f.url 'url' label='{{url-field}}'}}
-  {{f.date 'date' label='{{date-field}}'}}
-  {{f.datetime 'datetime' label='{{datetime-field}}'}}
-  {{f.checkbox 'checked' label='Multiple photo upload'}}
+  {{f.url 'url'}}
+  {{f.date 'date'}}
+  {{f.datetime 'datetime'}}
+  {{f.checkbox 'checked'}}
   {{#f.upload 'images' name='photo' multiple=f.changeset.checked accept='image/*' as |photo remove|}}
     {{file-preview file=photo}}
     <button type='reset' onclick={{remove}} class='icon'>{{icon 'trash'}}</button>

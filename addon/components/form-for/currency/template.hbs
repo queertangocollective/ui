@@ -1,4 +1,4 @@
-{{#if label}}<label for={{inputId}}>{{t (concat formName '.' fieldName) htmlSafe=true}}</label>{{/if}}
+{{#if hasLabel}}<label for={{inputId}}>{{t (concat formName '.' fieldName) htmlSafe=true}}</label>{{/if}}
 <div class='field currency {{if isSymbolBeforeNumber 'symbol-lhs' 'symbol-rhs'}}'>
   {{#select-field value=selectedCurrency options=displayCurrencies onchange=(action 'setCurrency' model currencyName) as |option|}}{{option.symbol}}{{/select-field}}
   {{currency-field inputId=inputId

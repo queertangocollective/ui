@@ -1,5 +1,5 @@
 {{#unless (equals fieldType 'check-box')}}
-  {{#if label}}<label for={{inputId}}>{{t (concat formName '.' fieldName) htmlSafe=true}}</label>{{/if}}
+  {{#if hasLabel}}<label for={{inputId}}>{{t (concat formName '.' fieldName) htmlSafe=true}}</label>{{/if}}
 {{/unless}}
 <div class='field'>
   {{#if hasBlock}}
@@ -62,7 +62,7 @@
       rows=rows}}
   {{/if}}
   {{#if (equals fieldType 'check-box')}}
-    {{#if label}}<label for={{inputId}}>{{t (concat formName '.' fieldName) htmlSafe=true}}</label>{{/if}}
+    {{#if hasLabel}}<label for={{inputId}}>{{t (concat formName '.' fieldName) htmlSafe=true}}</label>{{/if}}
   {{/if}}
   {{#if autocomplete}}
     <a tabindex=0 class='autocomplete' onclick={{action onchange model (if fieldName fieldName index) autocomplete preventDefault=false}}>
