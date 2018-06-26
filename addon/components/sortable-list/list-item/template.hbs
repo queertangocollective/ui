@@ -23,5 +23,9 @@
     {{~/if~}}
   {{/if}}
 {{~else~}}
-  {{t (concat listName '.' sortAsc)}}
+  {{#if (has-block 'inverse')}}
+    {{yield to='inverse'}}
+  {{else}}
+    {{t (concat listName '.' sortAsc)}}
+  {{/if}}
 {{~/if}}
