@@ -1,6 +1,34 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default Route.extend({
+  intl: service(),
+
+  beforeModel() {
+    this.intl.addTranslations('en', {
+      test: {
+        text: 'text-field',
+        editor: 'text-editor',
+        select: 'select-field',
+        multiline: 'text-area',
+        number: 'number-field',
+        percent: 'percent-field',
+        amount: 'currency-field',
+        autocomplete: 'auto-complete',
+        password: 'password-field',
+        url: 'url-field',
+        date: 'date-field',
+        datetime: 'datetime-field',
+        checked: 'check-box',
+        newCountries: {
+          name: 'Country Name',
+          code: 'Country Code'
+        }
+      }
+    });
+    this.intl.setLocale(['en-US', 'en']);
+  },
+
   model() {
     return fetch('https://restcountries.eu/rest/v2/', {
       mode: 'cors'

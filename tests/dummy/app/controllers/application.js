@@ -1,14 +1,34 @@
 import Controller from '@ember/controller';
-import method from 'ember-service-methods/inject';
+import { inject as method } from 'ember-service-methods';
+import { inject as service } from '@ember/service';
 import { computed, get, set } from '@ember/object';
 
 export default Controller.extend({
   open: method(),
   flash: method(),
+  intl: service(),
 
   queryParams: ['sort', 'as'],
 
   sort: 'name',
+
+  locale: computed(function () {
+    return this.intl.locale[0];
+  }),
+
+  locales: computed(function () {
+    return [{
+      name: 'English (USA)',
+      code: 'en-us'
+    }, {
+      name: 'English (Germany)',
+      code: 'en-de'
+    }];
+  }),
+
+  currencies: computed(function () {
+    return ['USD', 'EUR', 'CAD'];
+  }),
 
   newCountries: computed(function () {
     return [{
@@ -36,6 +56,10 @@ export default Controller.extend({
           set(this, 'isDeleted', true);
         }
       });
+    },
+
+    setLocale(locale) {
+      this.intl.setLocale([locale.code, 'en']);
     },
 
     async query({ text }) {

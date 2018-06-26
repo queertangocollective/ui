@@ -21,7 +21,7 @@
 {{/sortable-list}}
 
 <section>
-{{#form-for this class='grid-column' as |f|}}
+{{#form-for this name='test' class='grid-column' as |f|}}
   {{#f.nav ondelete=(action 'query')}}
     <button type='submit'>{{icon 'emoji'}} Hi There</button>
   {{/f.nav}}
@@ -31,9 +31,10 @@
     {{item}}
   {{/f.select}}
   {{f.textarea 'multiline' label='{{text-area}}' rows=3}}
-  {{f.number 'number' label='{{number-field}}'}}
-  {{f.percent 'percent' label='{{percent-field}}'}}
-  {{f.currency 'currency' label='{{currency-field}}'}}
+  {{#select-field options=locales value=locale onchange=(action 'setLocale') as |option|}}{{option.name}}{{/select-field}}
+  {{f.number 'number' label='{{number-field}}' locale=locale.code precision=2}}
+  {{f.percent 'percent' label='{{percent-field}}' min=0 max=1 locale=locale.code}}
+  {{f.currency 'amount' 'currency' label='{{currency-field}}' currencies=currencies locale=locale.code}}
   {{f.autocomplete 'autocomplete' key='name' onquery=(action 'query') label='{{auto-complete}}'}}
   {{#f.password 'password' label='{{password-field}}'}}
     Reveal Password

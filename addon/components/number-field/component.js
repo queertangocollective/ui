@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { set, computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 import layout from './template';
 
 const UP = 38;
@@ -122,13 +123,13 @@ export default Component.extend({
 
   style: 'decimal',
 
-  locale: 'en-US',
+  intl: service(),
 
   isFocused: false,
 
   multiplier: 1,
 
-  formatter: computed('style', 'locale', 'currency', 'precision', function () {
+  formatter: computed('style', 'intl.locale', 'currency', 'precision', function () {
     let options = {
       style: this.style
     };
@@ -139,7 +140,7 @@ export default Component.extend({
     if (this.precision != null) {
       options.maximumFractionDigits = this.precision;
     }
-    return Intl.NumberFormat(this.locale, options);
+    return Intl.NumberFormat(this.intl.locale, options);
   }),
 
   symbol: computed('decimalSeparator', 'groupingSeparator', function () {
