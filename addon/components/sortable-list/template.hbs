@@ -2,7 +2,7 @@
   <header class="mobile">
     <div class='buttons'>
       <button type='submit' onclick={{action (mut isShowingSorting) (not isShowingSorting)}}>
-        {{this.currentSort.html}}
+        {{t (concat name '.' this.currentSort.name)}}
       </button>
       {{#if onsort}}
         <a href='#' tabindex=-1 onclick={{action 'sort' this.currentSort.reverse}}
@@ -17,13 +17,13 @@
       {{/if}}
     </div>
     <div class="sortings {{if isShowingSorting "visible" "hidden"}}">
-      {{yield (hash item=(component 'sortable-list/list-item' sort=sort onsort=(if onsort (action 'sort')) list=this))}}
+      {{yield (hash item=(component 'sortable-list/list-item' sort=sort onsort=(if onsort (action 'sort')) list=this listName=name))}}
     </div>
   </header>
 {{else}}
   <header>
     <div class='item'>
-      {{yield (hash item=(component 'sortable-list/list-item' sort=sort onsort=(if onsort (action 'sort')) list=this tagName=''))}}
+      {{yield (hash item=(component 'sortable-list/list-item' sort=sort onsort=(if onsort (action 'sort')) list=this listName=name tagName=''))}}
     </div>
   </header>
 {{/if}}
@@ -33,7 +33,7 @@
       {{#animated-each rows use=shuffle duration=duration as |row|}}
         <li>
           <div class='item {{if (media '(max-width: 500px)') 'mobile'}}'>
-            {{~yield (hash item=(component 'sortable-list/list-item' item=row list=this tagName='')) row~}}
+            {{~yield (hash item=(component 'sortable-list/list-item' item=row list=this listName=name tagName='')) row~}}
           </div>
         </li>
       {{/animated-each}}

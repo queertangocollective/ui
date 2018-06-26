@@ -12,6 +12,8 @@ export default Component.extend({
 
   classNames: ['sortable-list'],
 
+  classNameBindings: ['name'],
+
   icon: 'sad',
 
   isShowingSorting: computed('sort', {

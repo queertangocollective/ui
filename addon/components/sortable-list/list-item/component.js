@@ -24,16 +24,16 @@ export default Component.extend({
   }),
 
   didRender() {
-    if (!this.item && this.element) {
+    if (!this.item) {
       if (this.displaySort === this.displaySortAsc) {
         this.list.set('currentSort', {
-          html: this.element.querySelector('a').innerHTML,
+          name: this.sortAsc,
           direction: 'asc',
           reverse: this.displaySortDesc
         });
       } else if (this.displaySort === this.displaySortDesc) {
         this.list.set('currentSort', {
-          html: this.element.querySelector('a').innerHTML,
+          name: this.sortAsc,
           direction: 'desc',
           reverse: this.displaySortAsc
         });

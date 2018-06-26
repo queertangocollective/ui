@@ -2,21 +2,15 @@
   {{search-field inputId='search-field' query=query onquery=(action (mut query))}}
 </section>
 
-{{#sortable-list class='countries' rows=countries sort=sort as |l|}}
+{{#sortable-list name='countries' rows=countries sort=sort as |l|}}
   {{#l.item 'name' as |item|}}
     {{item.name}}
-  {{else}}
-    Country
   {{/l.item}}
   {{#l.item 'code' as |item|}}
     {{item.alpha2Code}}
-  {{else}}
-    Code
   {{/l.item}}
   {{#l.item 'capital' as |item|}}
     {{item.capital}}
-  {{else}}
-    Capital
   {{/l.item}}
 {{/sortable-list}}
 

@@ -6,6 +6,11 @@ export default Route.extend({
 
   beforeModel() {
     this.intl.addTranslations('en', {
+      countries: {
+        name: 'Name',
+        code: 'Code',
+        capital: 'Capital'
+      },
       test: {
         text: 'text-field',
         editor: 'text-editor',
