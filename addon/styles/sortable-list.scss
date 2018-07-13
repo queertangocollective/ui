@@ -39,6 +39,18 @@
     }
   }
 
+  .no-items {
+    font-size: 1.2rem;
+    text-align: center;
+
+    svg {
+      display: block;
+      width: auto;
+      height: 2rem;
+      margin: 1rem auto; 
+    }
+  }
+
   .sortings {
     background: $black;
     box-shadow: 0 1px 2px 1px rgba($black, 0.20);

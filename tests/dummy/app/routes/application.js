@@ -7,6 +7,9 @@ export default Route.extend({
   beforeModel() {
     this.intl.addTranslations('en', {
       countries: {
+        notFound: 'No Countries found for "{query}"',
+        none: 'No Countries have been added yet',
+        more: 'Load more',
         name: 'Name',
         code: 'Code',
         capital: 'Capital'

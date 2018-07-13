@@ -39,12 +39,15 @@ export default Controller.extend({
     }];
   }),
 
-  countries: computed('sort', 'model', function () {
+  countries: computed('sort', 'model', 'query', function () {
+    let countries = get(this, 'model').filter((country) => {
+      return country.name.indexOf(this.query || '') !== -1;
+    });
     let sort = get(this, 'sort');
     if (sort[0] === '-') {
-      return get(this, 'model').sortBy(sort.slice(1)).reverse().slice(0, 20);
+      return countries.sortBy(sort.slice(1)).reverse().slice(0, 20);
     }
-    return get(this, 'model').sortBy(get(this, 'sort')).slice(0, 20);
+    return countries.sortBy(get(this, 'sort')).slice(0, 20);
   }),
 
   actions: {

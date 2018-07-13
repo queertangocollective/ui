@@ -39,13 +39,20 @@
       {{/animated-each}}
     {{/animated-container}}
   {{else}}
-    {{yield to='inverse'}}
+    <div class='no-items'>
+      {{icon this.icon}}
+      {{#if query}}
+        {{t (concat name '.notFound') query=query}}
+      {{else}}
+        {{t (concat name '.none')}}
+      {{/if}}
+    </div>
   {{/animated-if}}
 {{/animated-container}}
 {{#if hasMore}}
-  <div>
+  <div class='container'>
     {{#submit-button onsubmit=(action 'loadMore' rows.length)}}
-      Load More Results
+      {{t (concat name '.more')}}
     {{/submit-button}}
   </div>
 {{/if}}

@@ -2,7 +2,7 @@
   {{search-field inputId='search-field' query=query onquery=(action (mut query))}}
 </section>
 
-{{#sortable-list name='countries' rows=countries sort=sort as |l|}}
+{{#sortable-list name='countries' rows=countries sort=sort icon='location' query=query as |l|}}
   {{#l.item 'name' as |item|}}
     {{item.name}}
   {{/l.item}}
