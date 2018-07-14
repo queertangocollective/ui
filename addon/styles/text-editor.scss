@@ -39,6 +39,23 @@
     }
   }
 
+  h2 {
+    font-size: 2rem;
+    line-height: 2.5rem;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    line-height: 3rem;
+    font-weight: 600;
+  }
+
+  small {
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+  }
+
   nav {
     background: $black;
     color: $white;
@@ -48,9 +65,10 @@
     width: 100%;
     margin: 0.5rem 0;
     overflow: hidden;
-
+    
     label,
-    button {
+    button,
+    select {
       position: relative;
       display: flex;
       appearance: none;
@@ -94,6 +112,10 @@
       svg path {
         fill: $white;
       }
+    }
+
+    select {
+      padding: 0 0.5rem;
     }
   }
 

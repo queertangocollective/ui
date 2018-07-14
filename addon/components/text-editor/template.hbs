@@ -7,10 +7,10 @@
         {{else}}
           {{icon 'unlink'}}
         {{/text-editor/markup-button~}}
-      {{else if (equals button.type 'quote')}}
-        {{#text-editor/section-button for=button.type title=button.label id=inputId editor=this onclick=(action 'toggleSection')}}
-          {{icon button.icon}}
-        {{/text-editor/section-button~}}
+      {{else if (equals button.type 'text-size')}}
+        {{#select-field value=textSize options=textSizes onchange=(action 'setTextSize') as |option|}}
+          {{t (concat 'editor.' option.name)}}
+        {{/select-field}}
       {{else if (equals button.type 'emoji')}}
         {{#text-editor/markup-button for=button.type title=button.label id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/emoji-form' onsubmit=(action 'addEmoji')))}}
           {{icon button.icon}}

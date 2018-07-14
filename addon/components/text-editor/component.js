@@ -14,6 +14,10 @@ export const REMOVE_CARD_HOOK = 'removeComponent';
 export const ADD_ATOM_HOOK = 'addAtomComponent';
 export const REMOVE_ATOM_HOOK = 'removeAtomComponent';
 
+import { VALID_MARKUP_SECTION_TAGNAMES, MARKUP_SECTION_ELEMENT_NAMES } from 'mobiledoc-kit/models/markup-section';
+VALID_MARKUP_SECTION_TAGNAMES.push('small');
+MARKUP_SECTION_ELEMENT_NAMES.push('small');
+
 let uuid = 0;
 
 function arrayToMap(array) {
@@ -83,6 +87,9 @@ export default Component.extend({
       label: 'Quote',
       icon: 'quote'
     }, {
+      type: 'text-size',
+      label: 'Text Size'
+    }, {
       type: 'emoji',
       label: 'Add Emoji',
       icon: 'emoji'
@@ -117,6 +124,20 @@ export default Component.extend({
       render() {
         return document.createElement('br');
       }
+    }]);
+
+    set(this, 'textSizes', [{
+      name: 'h2',
+      type: 'block',
+    }, {
+      name: 'h3',
+      type: 'block',
+    }, {
+      name: 'none',
+      type: 'none'
+    }, {
+      name: 'small',
+      type: 'block'
     }]);
 
     this._startedRunLoop = false;
@@ -260,6 +281,18 @@ export default Component.extend({
     editor.cursorDidChange(() => {
       if (editor.hasCursor()) {
         this._lastRange = editor.range;
+        join(() => {
+          let activeSection = editor.activeSection && editor.activeSection.tagName;
+          if (activeSection === 'h2') {
+            this.set('textSize', this.textSizes.findBy('name', 'h2'));
+          } else if (activeSection === 'h3') {
+            this.set('textSize', this.textSizes.findBy('name', 'h3'));
+          } else if (activeSection === 'small') {
+            this.set('textSize', this.textSizes.findBy('name', 'small'));
+          } else {
+            this.set('textSize', this.textSizes.findBy('name', 'none'));
+          }
+        });
       }
     });
 
@@ -363,6 +396,30 @@ export default Component.extend({
           range: editor.range,
           component
         });
+      }
+    },
+
+    setTextSize(option) {
+      let editor = this.editor;
+      let activeSection = editor.activeSection && editor.activeSection.tagName;
+      if (option.type === 'block') {
+        if (activeSection === 'markup-section') {
+          activeSection = option.name;
+        }
+        editor.toggleSection(option.name);
+      } else if (option.type === 'none' &&
+                 activeSection !== 'markup-section') {
+        editor.toggleSection(option.name);
+      }
+      
+      if (activeSection === 'h2') {
+        this.set('textSize', this.textSizes.findBy('name', 'h2'));
+      } else if (activeSection === 'h3') {
+        this.set('textSize', this.textSizes.findBy('name', 'h3'));
+      } else if (activeSection === 'small') {
+        this.set('textSize', this.textSizes.findBy('name', 'small'));
+      } else {
+        this.set('textSize', this.textSizes.findBy('name', 'none'));
       }
     },
 

@@ -6,6 +6,12 @@ export default Route.extend({
 
   beforeModel() {
     this.intl.addTranslations('en', {
+      editor: {
+        h2: 'Extra Large',
+        h3: 'Large',
+        none: 'Normal',
+        small: 'Small'
+      },
       countries: {
         notFound: 'No Countries found for "{query}"',
         none: 'No Countries have been added yet',

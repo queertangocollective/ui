@@ -35,7 +35,10 @@ export default Component.extend({
     };
   }),
 
-  selectIndex(index) {
+  selectIndex(evt) {
+    let index = evt.target.selectedIndex;
     this.onchange(this.options[index]);
+    evt.preventDefault();
+    evt.stopPropagation();
   }
 });
