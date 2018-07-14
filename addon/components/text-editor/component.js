@@ -15,7 +15,9 @@ export const ADD_ATOM_HOOK = 'addAtomComponent';
 export const REMOVE_ATOM_HOOK = 'removeAtomComponent';
 
 import { VALID_MARKUP_SECTION_TAGNAMES, MARKUP_SECTION_ELEMENT_NAMES } from 'mobiledoc-kit/models/markup-section';
+VALID_MARKUP_SECTION_TAGNAMES.push('blockquote');
 VALID_MARKUP_SECTION_TAGNAMES.push('small');
+MARKUP_SECTION_ELEMENT_NAMES.push('blockquote');
 MARKUP_SECTION_ELEMENT_NAMES.push('small');
 
 let uuid = 0;
@@ -83,10 +85,6 @@ export default Component.extend({
       label: 'Link',
       icon: 'link'
     }, {
-      type: 'blockquote',
-      label: 'Quote',
-      icon: 'quote'
-    }, {
       type: 'text-size',
       label: 'Text Size'
     }, {
@@ -135,6 +133,9 @@ export default Component.extend({
     }, {
       name: 'none',
       type: 'none'
+    }, {
+      name: 'blockquote',
+      type: 'block'
     }, {
       name: 'small',
       type: 'block'

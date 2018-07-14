@@ -10,6 +10,7 @@ export default Route.extend({
         h2: 'Extra Large',
         h3: 'Large',
         none: 'Normal',
+        blockquote: 'Quote',
         small: 'Small'
       },
       countries: {
