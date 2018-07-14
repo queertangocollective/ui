@@ -284,15 +284,9 @@ export default Component.extend({
         this._lastRange = editor.range;
         join(() => {
           let activeSection = editor.activeSection && editor.activeSection.tagName;
-          if (activeSection === 'h2') {
-            this.set('textSize', this.textSizes.findBy('name', 'h2'));
-          } else if (activeSection === 'h3') {
-            this.set('textSize', this.textSizes.findBy('name', 'h3'));
-          } else if (activeSection === 'small') {
-            this.set('textSize', this.textSizes.findBy('name', 'small'));
-          } else {
-            this.set('textSize', this.textSizes.findBy('name', 'none'));
-          }
+          let textSize = this.textSizes.findBy('name', activeSection) ||
+                         this.textSizes.findBy('name', 'none');
+          this.set('textSize', textSize);
         });
       }
     });
@@ -409,19 +403,13 @@ export default Component.extend({
         }
         editor.toggleSection(option.name);
       } else if (option.type === 'none' &&
-                 activeSection !== 'markup-section') {
-        editor.toggleSection(option.name);
+                 activeSection !== 'p') {
+        editor.toggleSection(activeSection);
       }
       
-      if (activeSection === 'h2') {
-        this.set('textSize', this.textSizes.findBy('name', 'h2'));
-      } else if (activeSection === 'h3') {
-        this.set('textSize', this.textSizes.findBy('name', 'h3'));
-      } else if (activeSection === 'small') {
-        this.set('textSize', this.textSizes.findBy('name', 'small'));
-      } else {
-        this.set('textSize', this.textSizes.findBy('name', 'none'));
-      }
+      let textSize = this.textSizes.findBy('name', activeSection) ||
+                     this.textSizes.findBy('name', 'none');
+      this.set('textSize', textSize);
     },
 
     addLink(href) {
