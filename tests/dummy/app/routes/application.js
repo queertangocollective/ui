@@ -6,7 +6,13 @@ export default Route.extend({
 
   beforeModel() {
     this.intl.addTranslations('en', {
-      editor: {
+      textEditor: {
+        strong: 'Bold [{shortcut}]',
+        em: 'Italic [{shortcut}]',
+        u: 'Underline [{shortcut}]',
+        a: 'Link',
+        textSize: 'Text Size',
+        embed: 'Add Embed',
         h2: 'Extra Large',
         h3: 'Large',
         none: 'Normal',

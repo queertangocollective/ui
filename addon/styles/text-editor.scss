@@ -42,13 +42,15 @@
   h2 {
     font-size: 2rem;
     line-height: 2.5rem;
-    font-weight: 600;
+    margin-bottom: 1rem;
+    font-weight: 300;
   }
 
   h3 {
     font-size: 1.5rem;
-    line-height: 3rem;
-    font-weight: 600;
+    line-height: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 300;
   }
 
   small {
@@ -107,6 +109,7 @@
 
       span {
         padding-right: 0.6rem;
+        white-space: nowrap;
       }
 
       svg path {
@@ -146,70 +149,7 @@
     }
   }
 
-  .emoji-form {
-    background: $white;
-    border: 1px solid rgba(204, 204, 204, 0);
-    font-size: 1.5rem;
-    color: #4A4A4A;
-    border-radius: 4px;
-    box-shadow: 0 1px 2px 1px rgba(5, 5, 5, 0.2);
-    resize: none;
-    height: 2.4rem;
-    overflow: hidden;
-    padding: 0 1.5rem;
-
-    .emoji-list {
-      position: absolute;
-      padding: 0 0.5rem;
-      margin: 0.25rem 0;
-      white-space: nowrap;
-      overflow-x: auto;
-      overflow-y: hidden;
-      width: calc(100% - 3rem);
-    }
-
-    .next, .previous {
-      position: absolute;
-      padding: 0.4rem 0;
-      top: 0.2rem;
-    }
-
-    .next {
-      right: 0.2rem;
-    }
-
-    .previous {
-      left: 0.2rem;
-      svg {
-        transform: rotate(180deg);
-      }
-    }
-
-    a {
-      display: inline-block;
-      width: 1.5rem;
-      transition-property: font-size;
-      transition-duration: 200ms;
-      transition-timing-function: cubic-bezier(0.79, 0.14, 0.15, 0.86);
-      cursor: pointer;
-      padding: 0.25rem 0.25rem 0;
-      line-height: 1.75rem;
-      width: 2rem;
-
-      &:active {
-        text-align: center;
-        font-size: 1.3rem;
-        line-height: 1.3rem;
-      }
-
-      &:focus {
-        outline: none;
-      }
-    }
-  }
-
-  .link-form,
-  .youtube-form {
+  .link-form {
     position: relative;
     margin: 0.25rem 0;
 

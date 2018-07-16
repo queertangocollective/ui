@@ -1,7 +1,0 @@
-<div class='emoji-list' scrollLeft={{scrollLeft}} onscroll={{action (mut scrollLeft) value="target.scrollLeft"}}>
-  {{#each emojis as |emoji|~}}
-    <a tabindex=0 onclick={{action onsubmit emoji preventDefault=false}}>{{emoji}}</a>
-  {{~/each}}
-</div>
-<button class='next reset icon' onclick={{action 'next'}}>{{icon 'chevron'}}</button>
-<button class='previous reset icon' onclick={{action 'previous'}}>{{icon 'chevron'}}</button>

@@ -9,6 +9,6 @@
     {{yield}}
   {{~/if}}
   {{~#tool-tip for=(concat id '-' for)~}}
-    {{title}} {{#if keyboardShortcut}}[{{keyboardShortcut}}]{{/if}}
+    {{t (concat 'textEditor.' for) shortcut=keyboardShortcut htmlSafe=true}}
   {{~/tool-tip~}}
 </button>

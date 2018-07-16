@@ -70,35 +70,21 @@ export default Component.extend({
   buttons: computed('markup', function () {
     let buttons = [{
       type: 'strong',
-      label: 'Bold',
       icon: 'bold'
     }, {
       type: 'em',
-      label: 'Italic',
       icon: 'italic'
     }, {
       type: 'u',
-      label: 'Underline',
       icon: 'underline'
     }, {
       type: 'a',
-      label: 'Link',
       icon: 'link'
     }, {
-      type: 'text-size',
-      label: 'Text Size'
-    }, {
-      type: 'emoji',
-      label: 'Add Emoji',
-      icon: 'emoji'
+      type: 'text-size'
     }, {
       type: 'embed'
     }];
-
-    // Mobile OSes have robust emoji keyboards
-    if (get(this, 'isMobile')) {
-      buttons.removeObject(buttons.findBy('type', 'emoji'));
-    }
 
     if (get(this, 'markup')) {
       return get(this, 'markup').map((name) => {
@@ -426,14 +412,6 @@ export default Component.extend({
 
     toggleSection(editor, forProperty) {
       editor.toggleSection(forProperty);
-    },
-
-    addEmoji(emoji) {
-      let { range } = this.form;
-      this.set('form', null);
-      let editor = this.editor;
-      editor.selectRange(range);
-      editor.insertText(emoji);
     }
   }
 });

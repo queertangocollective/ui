@@ -8,16 +8,18 @@
           {{icon 'unlink'}}
         {{/text-editor/markup-button~}}
       {{else if (equals button.type 'text-size')}}
-        {{#select-field value=textSize options=textSizes onchange=(action 'setTextSize') as |option|}}
-          {{t (concat 'editor.' option.name)}}
+        {{~#tool-tip for=(concat elementId '-text-size')~}}
+          {{t 'textEditor.textSize'}}
+        {{~/tool-tip~}}
+        {{#select-field inputId=(concat elementId "-text-size") value=textSize options=textSizes onchange=(action 'setTextSize') as |option|}}
+          {{t (concat 'textEditor.' option.name)}}
         {{/select-field}}
-      {{else if (equals button.type 'emoji')}}
-        {{#text-editor/markup-button for=button.type title=button.label id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/emoji-form' onsubmit=(action 'addEmoji')))}}
-          {{icon button.icon}}
-        {{/text-editor/markup-button}}
       {{else if (equals button.type 'embed')}}
-        <button type='button' onclick={{action 'embed' editor.editor for button}}>
-          {{icon 'add' class='add'}}<span>Add Embed</span>
+        {{~#tool-tip for=(concat elementId '-embed')~}}
+          {{t (concat 'textEditor.' button.type)}}
+        {{~/tool-tip~}}
+        <button type='button' id="{{elementId}}-embed" onclick={{action 'embed' editor.editor for button}}>
+          {{icon 'add' class='add'}}
         </button>
       {{else}}
         {{#text-editor/markup-button for=button.type title=button.label id=inputId editor=this onclick=(action 'toggleMarkup')}}
