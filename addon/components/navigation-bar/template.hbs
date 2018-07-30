@@ -1,14 +1,35 @@
-{{#if (media '(max-width: 620px)')}}
-  <button type='submit' id='nav-{{elementId}}' class='icon'>
-    {{icon 'list'}}
-  </button>
-  {{#pop-over gravity='nw' cover=true for=(concat 'nav-' elementId) on='click' ondidinsert=(action (mut popover))}}
-    <nav class="column">
-      {{yield}}
-    </nav>
-  {{/pop-over}}
+{{#if (media '(max-width: 500px)')}}
+  <div class='mobile-nav'>
+    {{#link-to 'home' class='home'}}{{yield}}{{/link-to}}
+    {{yield to='inverse'}}
+    <button type='submit' class='icon' onclick={{action (mut isActive) (not isActive)}}>
+      {{icon 'list'}}
+    </button>
+  </div>
+  {{#animated-container}}
+    {{#animated-if isActive use=slide duration=duration}}
+      <nav class='mobile'>
+        {{~#each mobileRoutes as |route|~}}
+          {{#link-to route}}{{t (concat 'navigation.' route)}}{{/link-to}}
+        {{~/each}}
+      </nav>
+    {{/animated-if}}
+  {{/animated-container}}
 {{else}}
-  <nav class="row">
-    {{yield}}
+  <nav class='desktop container'>
+    {{~#each visibleRoutes as |route|~}}
+      {{#link-to route}}{{t (concat 'navigation.' route)}}{{/link-to}}
+    {{~/each}}
+    {{#if hiddenRoutes.length}}
+      <label id='nav-more'>{{t (concat 'navigation.more')}}</label>
+      {{#pop-over for='nav-more' on='hover hold' gravity='s'}}
+        {{~#each hiddenRoutes as |route|~}}
+          {{#link-to route}}{{t (concat 'navigation.' route)}}{{/link-to}}
+        {{~/each}}
+      {{/pop-over}}
+    {{/if}}
   </nav>
+  <div class='container'>
+    {{yield to='inverse'}}
+  </div>
 {{/if}}

@@ -6,6 +6,13 @@ section, .container {
   margin: 1rem auto;
 }
 
+.navigation-bar a.home {
+  color: $white;
+  text-align: center;
+  font-size: 1.2rem;
+  padding-top: 0.4rem;
+}
+
 .sortable-list.countries .item {
   grid: 100% / calc(40% - 35px) 70px calc(50% - 35px);
 

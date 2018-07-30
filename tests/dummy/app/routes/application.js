@@ -6,6 +6,18 @@ export default Route.extend({
 
   beforeModel() {
     this.intl.addTranslations('en', {
+      navigation: {
+        home: 'Home',
+        apple: 'Apple',
+        banana: 'Banana',
+        coconut: 'Coconut',
+        durian: 'Durian',
+        elderberry: 'Elderberry',
+        fig: 'Fig',
+        grape: 'Grape',
+        honeydew: 'Honeydew',
+        more: 'More'
+      },
       textEditor: {
         strong: 'Bold [{shortcut}]',
         em: 'Italic [{shortcut}]',

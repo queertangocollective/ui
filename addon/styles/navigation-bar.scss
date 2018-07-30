@@ -1,44 +1,91 @@
 .navigation-bar {
-  padding: 0.5rem 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 
-  a {
-    color: $grey;
-    text-decoration: none;
-    padding: 0.35rem 0.5rem 0.35rem 0;
-    line-height: 1.2rem;
+  .container {
+    margin: 0 auto;
+  }
 
-    &:hover {
-      text-decoration: underline;
+  .mobile-nav {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr 3rem;
+    border-bottom: 1px solid $heather;
+
+    .home {
+      background: $black;
     }
 
-    &.active {
-      text-decoration: underline;
+    input, button {
+      border-radius: 0;
+      box-shadow: none;
+    }
+  
+    button {
+      position: relative;
+      padding: 0;
+  
+      svg {
+        position: absolute;
+        left: 10px;
+        top: 7px;
+      }
+    }
+  }
+
+  nav.mobile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: $black;
+    color: $white;
+    padding: 1rem;
+    font-size: 1.1rem;
+
+    a {
+      color: $white;
+      text-decoration: none;
+      padding: 0.35rem 0.5rem 0.35rem 0;
+      line-height: 1.2rem;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+  
+      &.active {
+        text-decoration: underline;
+        color: $heather;
+      }
+    }
+  }
+
+  nav.desktop {
+    padding: 1rem;
+
+    a {
       color: $black;
-    }
-  }
-
-  span {
-    flex: 1;
-  }
-
-  .pop-over {
-    background: $white;
-
-    .pop-over-compass {
-      box-shadow: 0 2px 4px 2px rgba($black, 0.2);
-    }
-
-    nav {
-      width: 10rem;
-      padding: 0 0.5rem;
+      text-decoration: none;
+      padding: 0.35rem 0.5rem 0.35rem 0;
+      line-height: 1.2rem;
+      margin-right: 0.25rem;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+  
+      &.active {
+        text-decoration: underline;
+        color: $black;
+      }
     }
 
-    span {
-      display: block;
-      content: ' ';
-      flex: none;
-      height: 1rem;
+    .pop-over {
+      a {
+        display: block;
+        color: $white;
+        
+        & + a {
+          margin-top: 0.35rem;
+          border-top: 1px solid $grey;
+        }
+      }
     }
   }
 }
