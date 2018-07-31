@@ -1,23 +1,20 @@
 {{#if (media '(max-width: 500px)')}}
   <header class="mobile">
     <div class='buttons'>
-      <button type='submit' onclick={{action (mut isShowingSorting) (not isShowingSorting)}}>
-        {{t (concat name '.' this.currentSort.name)}}
-      </button>
+      {{#select-field options=sortings value=currentSort onchange=(action 'sortMobile') as |option|}}
+        {{t (concat name '.' option.name)}}
+      {{/select-field}}
       {{#if onsort}}
-        <a href='#' tabindex=-1 onclick={{action 'sort' this.currentSort.reverse}}
-           class="{{this.currentSort.direction}} active submit-button icon">
+        <a href='#' tabindex=-1 onclick={{action 'sort' (get this.currentSort this.inverse)}}
+           class="{{this.direction}} active submit-button icon">
           <span class='sort'>{{icon 'chevron'}}</span>
         </a>
       {{else}}
-        {{~#link-to (query-params sort=this.currentSort.reverse)
-          class=(concat this.currentSort.direction ' active submit-button icon')}}
+        {{~#link-to (query-params sort=(get this.currentSort this.inverse))
+          class=(concat this.direction ' active submit-button icon')}}
           <span class='sort'>{{icon 'chevron'}}</span>
         {{~/link-to~}}
       {{/if}}
-    </div>
-    <div class="sortings {{if isShowingSorting "visible" "hidden"}}">
-      {{yield (hash item=(component 'sortable-list/list-item' sort=sort onsort=(if onsort (action 'sort')) list=this listName=name))}}
     </div>
   </header>
 {{else}}

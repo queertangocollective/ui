@@ -5,10 +5,14 @@ import layout from './template';
 import move from 'ember-animated/motions/move';
 import opacity from 'ember-animated/motions/opacity';
 import { easeInOut as easing } from 'ember-animated/easings/cosine';
+import { A } from '@ember/array';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
 
   layout,
+
+  router: service(),
 
   classNames: ['sortable-list'],
 
@@ -16,12 +20,40 @@ export default Component.extend({
 
   icon: 'sad',
 
+  init() {
+    this._super(...arguments);
+    this.set('sortings', A([]));
+  },
+
   isShowingSorting: computed('sort', {
     get() {
       return false;
     },
     set(_, value) {
       return value;
+    }
+  }),
+
+  currentSort: computed('sort', 'sortings', function () {
+    return this.sortings.findBy('ascending', this.sort) ||
+           this.sortings.findBy('descending', this.sort);
+  }),
+
+  direction: computed('sort', 'currentSort', function () {
+    if (this.currentSort == null) return;
+    if (this.sort === this.currentSort.ascending) {
+      return 'asc';
+    } else {
+      return 'desc';
+    }
+  }),
+
+  inverse: computed('sort', 'currentSort', function () {
+    if (this.currentSort == null) return;
+    if (this.sort === this.currentSort.ascending) {
+      return 'descending';
+    } else {
+      return 'ascending';
     }
   }),
 
@@ -68,8 +100,23 @@ export default Component.extend({
       });
     },
 
+    sortMobile(value) {
+      if (value == null) return;
+
+      this.set('currentSort', value);
+      if (this.onsort) {
+        this.sort(value.name);
+      } else {
+        this.router.replaceWith({
+          queryParams: {
+            sort: value.name
+          }
+        });
+      }
+    },
+
     sort(key, evt) {
-      evt.preventDefault();
+      if (evt) evt.preventDefault();
       this.onsort(key);
     }
   }

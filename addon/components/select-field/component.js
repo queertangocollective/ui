@@ -19,7 +19,7 @@ export default Component.extend({
     });
   },
 
-  arrangedOptions: computed('options', function () {
+  arrangedOptions: computed('options.[]', function () {
     return this.options.map((option) => {
       return {
         id: guidFor(option),

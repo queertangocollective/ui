@@ -7,6 +7,15 @@ export default Component.extend({
   layout,
   sortable: true,
 
+  init() {
+    this._super(...arguments);
+    this._sortDescriptor = {
+      name: this.sortAsc,
+      ascending: this.displaySortAsc,
+      descending: this.displaySortDesc
+    };
+  },
+
   sortDesc: computed('sortAsc', function () {
     return `-${this.sortAsc}`;
   }),
@@ -24,20 +33,9 @@ export default Component.extend({
   }),
 
   didRender() {
-    if (!this.item) {
-      if (this.displaySort === this.displaySortAsc) {
-        this.list.set('currentSort', {
-          name: this.sortAsc,
-          direction: 'asc',
-          reverse: this.displaySortDesc
-        });
-      } else if (this.displaySort === this.displaySortDesc) {
-        this.list.set('currentSort', {
-          name: this.sortAsc,
-          direction: 'desc',
-          reverse: this.displaySortAsc
-        });
-      }
+    if (this.list.sortings.findBy('name', this._sortDescriptor.name) == null &&
+        this.sortable) {
+      this.list.set('sortings', [...this.list.sortings, this._sortDescriptor]);
     }
   }
 }).reopenClass({

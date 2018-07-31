@@ -98,14 +98,16 @@
 
     &.mobile {
       .buttons {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 3rem;
 
-        button {
-          flex: 1;
-          margin-right: 0.5rem;
+        select, a, button {
+          border-radius: 0;
         }
-        a .sort {
-          margin-left: -0.25rem;
+
+        a, button {
+          height: 2rem;
+          padding: 0.25rem 0.5rem;
         }
       }
     }
