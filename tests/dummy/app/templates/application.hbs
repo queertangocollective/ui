@@ -1,6 +1,4 @@
-{{#navigation-bar routes='apple banana coconut durian elderberry fig grape honeydew'}}
-  Q
-{{else}}
+{{#navigation-bar routes='home apple banana coconut durian elderberry fig grape honeydew' onlogout=(action 'logout')}}
   {{search-field inputId='search-field' query=query onquery=(action (mut query))}}
 {{/navigation-bar}}
 

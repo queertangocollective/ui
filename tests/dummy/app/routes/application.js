@@ -16,7 +16,8 @@ export default Route.extend({
         fig: 'Fig',
         grape: 'Grape',
         honeydew: 'Honeydew',
-        more: 'More'
+        more: 'More',
+        logout: 'Logout'
       },
       textEditor: {
         strong: 'Bold [{shortcut}]',

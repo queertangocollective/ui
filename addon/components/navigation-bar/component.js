@@ -47,12 +47,16 @@ export default Component.extend({
   }),
 
   measure() {
-    let routes = ['home', ...this.routes.split(' '), 'more'].map((routeName) => {
+    if (this.element.querySelector('a') == null) {
+      return;
+    }
+
+    let routes = [...this.routes.split(' '), 'more'].map((routeName) => {
       return {
         routeName,
         width: measureText(this.intl.t(`navigation.${routeName}`), {
           whiteSpace: 'nowrap',
-          marginRight: '0.5rem'
+          marginRight: '0.25rem'
         }, {
           template: this.element.querySelector('a')
         }).margins.width
@@ -61,6 +65,10 @@ export default Component.extend({
 
     let more = routes.pop();
     let space = getLayout(this.element.querySelector('nav')).content.width - more.width;
+    let submit = this.element.querySelector('.submit-button');
+    if (submit) {
+      space -= getLayout(submit).margins.width;
+    }
     let visible = [];
     let invisible = routes;
     while (space > 0 && invisible.length > 0) {

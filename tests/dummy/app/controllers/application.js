@@ -61,6 +61,8 @@ export default Controller.extend({
       });
     },
 
+    logout() {},
+
     setLocale(locale) {
       this.intl.setLocale([locale.code, 'en']);
     },

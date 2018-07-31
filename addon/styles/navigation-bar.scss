@@ -7,12 +7,8 @@
 
   .mobile-nav {
     display: grid;
-    grid-template-columns: 2.5rem 1fr 3rem;
+    grid-template-columns: 1fr 3rem;
     border-bottom: 1px solid $heather;
-
-    .home {
-      background: $black;
-    }
 
     input, button {
       border-radius: 0;
@@ -58,6 +54,11 @@
 
   nav.desktop {
     padding: 1rem;
+
+    .submit-button {
+      margin-top: -0.5rem;
+      float: right;
+    }
 
     a {
       color: $black;

@@ -1,7 +1,6 @@
 {{#if (media '(max-width: 500px)')}}
   <div class='mobile-nav'>
-    {{#link-to 'home' class='home'}}{{yield}}{{/link-to}}
-    {{yield to='inverse'}}
+    {{yield}}
     <button type='submit' class='icon' onclick={{action (mut isActive) (not isActive)}}>
       {{icon 'list'}}
     </button>
@@ -28,8 +27,11 @@
         {{~/each}}
       {{/pop-over}}
     {{/if}}
+    {{#if onlogout}}
+      {{#submit-button onsubmit=onlogout}}{{t 'navigation.logout'}}{{/submit-button}}
+    {{/if}}
   </nav>
   <div class='container'>
-    {{yield to='inverse'}}
+    {{yield}}
   </div>
 {{/if}}
