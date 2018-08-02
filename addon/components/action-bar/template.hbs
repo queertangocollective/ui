@@ -1,5 +1,5 @@
-<nav class='container'>
-  {{#animated-container}}
+{{#animated-container}}
+  <nav class='container'>
     {{#animated-value currentPage rules=rules duration=300 as |page|}}
       <div class='page'>
         {{#if page.hasLess}}
@@ -69,5 +69,5 @@
         {{/if}}
       </div>
     {{/animated-value}}
-  {{/animated-container}}
-</nav>
+  </nav>
+{{/animated-container}}

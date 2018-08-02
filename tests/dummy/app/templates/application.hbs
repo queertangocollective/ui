@@ -67,6 +67,7 @@
 {{else}}
   Copied
 {{/copy-field}}
+</section>
 
 {{action-bar 'snackbar' 'showDialog' 'delete' 'workflow'
   for='test'
@@ -75,11 +76,11 @@
   delete=(action 'flash' 'Submitted with confirmation')
   workflow=(component 'workflow-dialog' model=model)
 }}
-<div class='row'>
-  <button type='reset'>Cancel</button>
+<div class='container'>
+  <div class='row'>
+    <button type='reset'>Cancel</button>
+  </div>
 </div>
-</section>
-
 {{snack-bar}}
 {{dialog-box}}
 {{outlet}}
