@@ -22,7 +22,9 @@ export default Component.extend({
       };
 
       let action = this[name];
-      if (typeof action === 'string') {
+      if (action == null) {
+        descriptor.active = false;
+      } else if (typeof action === 'string') {
         if (action.indexOf('mailto:') === 0) {
           descriptor.link = action;
           descriptor.isMailTo = true;
@@ -52,6 +54,7 @@ export default Component.extend({
 
       return descriptor;
     });
+    this.metrics = null;
     this.set('pages', [{
       index: 0,
       hasMore: true,
