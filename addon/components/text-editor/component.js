@@ -82,9 +82,13 @@ export default Component.extend({
       icon: 'link'
     }, {
       type: 'text-size'
-    }, {
-      type: 'embed'
     }];
+
+    if (this.onembed) {
+      buttons.push({
+        type: 'embed'
+      });
+    }
 
     if (get(this, 'markup')) {
       return get(this, 'markup').map((name) => {

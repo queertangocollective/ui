@@ -57,6 +57,13 @@ export default Route.extend({
         newCountries: {
           name: 'Country Name',
           code: 'Country Code'
+        },
+        actions: {
+          snackbar: 'Show Snackbar',
+          showDialog: 'Show Dialog',
+          workflow: 'Show Workflow',
+          delete: 'Confirm',
+          confirmDelete: 'Are you sure?'
         }
       }
     });

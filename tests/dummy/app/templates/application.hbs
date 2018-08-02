@@ -1,6 +1,8 @@
 {{#navigation-bar routes='home apple banana coconut durian elderberry fig grape honeydew' onlogout=(action 'logout')}}
-  {{search-field inputId='search-field' query=query onquery=(action (mut query))}}
+  {{from-elsewhere name='navigation'}}
 {{/navigation-bar}}
+
+{{to-elsewhere named='navigation' send=(component 'search-field' inputId='search-field' query=query onquery=(action (mut query)))}}
 
 {{#sortable-list name='countries' rows=countries sort=sort icon='location' query=query as |l|}}
   {{#l.item 'name' as |item|}}
@@ -66,24 +68,14 @@
   Copied
 {{/copy-field}}
 
+{{action-bar 'snackbar' 'showDialog' 'delete' 'workflow'
+  for='test'
+  snackbar=(action 'flash' 'Submitted!')
+  showDialog=(action 'open' (component 'hello-dialog' thing=(action 'open')))
+  delete=(action 'flash' 'Submitted with confirmation')
+  workflow=(component 'workflow-dialog' model=model)
+}}
 <div class='row'>
-  {{#submit-button onsubmit=(action 'flash' 'Submitted!')}}
-    Show snackbar
-  {{/submit-button}}
-
-  {{#submit-button onsubmit=(action 'open' (component 'hello-dialog' thing=(action 'open')))}}
-    Show dialog
-  {{/submit-button}}
-
-  {{#confirm-button onsubmit=(action 'flash' 'Submitted with confirmation')}}
-    {{icon 'eye'}} Show snackbar
-  {{else}}
-    Are you sure?
-  {{/confirm-button}}
-
-  {{#dialog-button (component 'workflow-dialog' model=model) group='workflow'}}
-    Show Dialog
-  {{/dialog-button}}
   <button type='reset'>Cancel</button>
 </div>
 </section>
