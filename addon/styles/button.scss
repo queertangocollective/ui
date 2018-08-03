@@ -16,7 +16,7 @@ button[type=reset] {
   border-style: solid;
   padding: 0.4rem 1rem;
   line-height: 1.1rem;
-  font-size: 12px;
+  font-size: 13px;
   transition-property: background, padding, box-shadow, color, border, border-color, transform;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.79, 0.14, 0.15, 0.86);
@@ -76,14 +76,14 @@ button[type=reset] {
       border-color: $accent;
 
       svg {
-        path, rect {
+        path, rect, circle {
           fill: $white;
         }
       }
     }
 
     svg {
-      path, rect {
+      path, rect, circle {
         fill: $white;
       }
     }
@@ -109,14 +109,14 @@ button[type=reset] {
       border-color: $accent;
 
       svg {
-        path, rect {
+        path, rect, circle {
           fill: $white;
         }
       }
     }
 
     svg {
-      path, rect {
+      path, rect, circle {
         fill: $black;
       }
     }
