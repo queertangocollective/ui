@@ -148,11 +148,11 @@ export default Component.extend(Autoresize, {
     },
 
     restrict(evt) {
-      if (evt.which === 32 || evt.shiftKey) {
+      if (evt.which === 32) {
         return false;
       }
 
-      if (evt.which <= 40) {
+      if (evt.which <= 40 || evt.metaKey) {
         return true;
       }
 
