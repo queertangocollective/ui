@@ -10,8 +10,8 @@
       position: relative;
       display: inline-block;
       content: ' ';
-      width: calc(1rem + 4px);
-      height: calc(1rem + 4px);
+      width: 1rem;
+      height: 1rem;
       background: $white;
       border: 2px solid rgba($accent, 0);
       box-shadow: 0 1px 2px 1px rgba($black, 0.2);
@@ -72,10 +72,10 @@
 
   svg {
     position: absolute;
-    top: -0.5rem;
+    top: -0.4rem;
     left: 0rem;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.125rem;
+    height: 1.125rem;
     opacity: 0;
     pointer-events: none;
 
