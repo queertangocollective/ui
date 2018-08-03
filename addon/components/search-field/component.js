@@ -61,7 +61,7 @@ export default Component.extend({
 
   didReceiveAttrs() {
     if (this._timer == null) {
-      set(this, 'value', get(this, 'query'));
+      set(this, 'value', this.query);
     }
   },
 
@@ -69,15 +69,15 @@ export default Component.extend({
     set(this, 'value', null);
     cancel(this._timer);
     this._timer = null;
-    get(this, 'onquery')('');
-    if (get(this, 'onchange')) {
-      get(this, 'onchange')('');
+    this.onquery('');
+    if (this.onchange) {
+      this.onchange('');
     }
   },
 
   search() {
     this._timer = null;
-    get(this, 'onquery')(get(this, 'value'));
+    this.onquery(this.value);
   },
 
   duration: 250,
@@ -93,7 +93,7 @@ export default Component.extend({
     change(value) {
       if (isBlank(value) || value == null) {
         this.clear();
-      } else if (value !== get(this, 'value')) {
+      } else if (value !== this.value) {
         set(this, 'value', value);
         this._timer = debounce(this, 'search', 500);
       }

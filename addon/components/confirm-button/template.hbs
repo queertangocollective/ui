@@ -1,5 +1,5 @@
 {{#animated-if isProcessing use=fade duration=duration}}
-  {{icon 'spinner' class='spinner'}}
+  {{icon 'ellipsis' class='bounce'}}
 {{else}}
   {{#animated-if isConfirming use=fade duration=duration}}
     <span>{{yield to='inverse'}}</span>

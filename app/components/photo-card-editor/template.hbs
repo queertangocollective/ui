@@ -1,5 +1,5 @@
 {{#if isLoading}}
-  {{icon 'spinner'}}
+  {{icon 'ellipsis' class='bounce'}}
 {{else if photo}}
   <img src={{photo.url}} alt={{photo.name}}>
   <span id="{{dasherize name}}-delete" class="delete-photo" onclick={{action removeCard}}>{{icon 'cancel-solid'}}</span>

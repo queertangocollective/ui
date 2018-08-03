@@ -40,8 +40,8 @@ export default Route.extend({
         code: 'Code',
         capital: 'Capital'
       },
-      saveIndicator: {
-        savedAt: 'Saved at {savedAt}',
+      saveStatus: {
+        savedAt: 'Saved {savedAt}',
         lastSavedAt: 'Last saved at {savedAt}',
         unsaved: 'Unsaved Changes'
       },
