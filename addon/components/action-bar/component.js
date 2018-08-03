@@ -84,7 +84,7 @@ export default Component.extend({
   },
 
   rules({ oldItems, newItems }) {
-    if (oldItems.length) {
+    if (oldItems.length && newItems.length) {
       if (oldItems[0].index < newItems[0].index) {
         return toLeft;
       } else if (oldItems[0].index > newItems[0].index) {
