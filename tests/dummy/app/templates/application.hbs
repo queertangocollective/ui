@@ -17,7 +17,7 @@
 {{/sortable-list}}
 
 <section>
-{{#form-for this name='test' class='grid-column' as |f|}}
+{{#form-for this name='test' onsubmit=(action 'save') autosave=true class='grid-column' as |f|}}
   {{f.save-status}}
   {{f.text 'text'}}
   {{f.editor 'editor'}}

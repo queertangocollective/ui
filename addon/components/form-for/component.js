@@ -88,6 +88,12 @@ export default Component.extend({
   }),
 
   actions: {
+    save() {
+      if (!this.model.get('isSaving')) {
+        this.save();
+      }
+    },
+
     hasNestedChangesDidChange() {
       this.notifyPropertyChange('hasNestedChanges');
     },

@@ -3,10 +3,5 @@ import layout from './template';
 
 export default Component.extend({
   layout,
-  tagName: '',
-
-  stop(evt) {
-    evt.preventDefault();
-    evt.stopPropagation();
-  }
+  tagName: ''
 });

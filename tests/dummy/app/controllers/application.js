@@ -12,9 +12,12 @@ export default Controller.extend({
 
   sort: 'name',
 
-  updatedAt: computed(function () {
-    return new Date(Date.now() - 2500000);
-  }),
+  updatedAt: null,
+
+  init() {
+    this._super(...arguments);
+    this.set('updatedAt', new Date());
+  },
 
   locale: computed(function () {
     return this.intl.locale[0];
@@ -62,6 +65,15 @@ export default Controller.extend({
         deleteRecord() {
           set(this, 'isDeleted', true);
         }
+      });
+    },
+
+    save(_, changes) {
+      this.setProperties(changes);
+      this.set('updatedAt', new Date());
+      this.set('isSaving', true);
+      return new Promise((resolve) => setTimeout(resolve, 2500)).then(() => {
+        this.set('isSaving', false);
       });
     },
 
