@@ -15,7 +15,7 @@ export default Component.extend({
 
   didReceiveAttrs() {
     this._super();
-    let allActions = this.actionNames.map((name) => {
+    let allActions = this.actionNames.reduce((E, name) => {
       let descriptor = {
         label: `${this.for}.actions.${name}`,
         icon: this[`${name}Icon`]
@@ -52,8 +52,10 @@ export default Component.extend({
         }
       }
 
-      return descriptor;
-    });
+      if (!descriptor.active) {
+        E.push(descriptor);
+      }
+    }, []);
     this.metrics = null;
     this.set('pages', [{
       index: 0,
