@@ -60,7 +60,14 @@ let formatters = {
   },
 
   date(value, hash) {
-    return moment(value).format(hash.format || 'MMM D, YYYY [at] h:mmA');
+    return new Intl.DateTimeFormat(hash.locale, {
+      style: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric'
+    }).format(value);
   },
 
   duration(value, hash) {
