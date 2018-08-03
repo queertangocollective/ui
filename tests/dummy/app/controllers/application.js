@@ -12,6 +12,10 @@ export default Controller.extend({
 
   sort: 'name',
 
+  updatedAt: computed(function () {
+    return new Date(Date.now() - 2500000);
+  }),
+
   locale: computed(function () {
     return this.intl.locale[0];
   }),

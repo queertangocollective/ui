@@ -1,30 +1,13 @@
-.form-for-nav {
-  justify-content: space-between;
-  margin-bottom: 1rem;
-
-  .create-button {
-    margin: 0;
+.save-indicator {
+  button {
+    font-variant-caps: normal;
+    font-weight: normal;
+    letter-spacing: 0;
+    font-size: 1rem;
   }
 
-  .save-indicator {
-    padding: 0.25rem;
-
-    svg {
-      position: relative;
-      top: 3px;
-    }
-
-    .pop-over {
-      white-space: nowrap;
-    }
-  }
-
-  .overflow-menu {
-    background-color: white;
-
-    .pop-over-container {
-      padding: 0 0.5rem 0.5rem;
-    }
+  .pop-over {
+    white-space: nowrap;
   }
 }
 

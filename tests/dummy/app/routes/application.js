@@ -40,6 +40,11 @@ export default Route.extend({
         code: 'Code',
         capital: 'Capital'
       },
+      saveIndicator: {
+        savedAt: 'Saved at {savedAt}',
+        lastSavedAt: 'Last saved at {savedAt}',
+        unsaved: 'Unsaved Changes'
+      },
       test: {
         text: 'text-field',
         editor: 'text-editor',
