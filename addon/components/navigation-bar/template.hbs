@@ -17,13 +17,13 @@
 {{else}}
   <nav class='desktop container'>
     {{~#each visibleRoutes as |route|~}}
-      {{#link-to route}}{{t (concat 'navigation.' route)}}{{/link-to}}
+      {{#link-to route tabindex='0'}}{{t (concat 'navigation.' route)}}{{/link-to}}
     {{~/each}}
     {{#if hiddenRoutes.length}}
-      <label id='nav-more'>{{t (concat 'navigation.more')}}</label>
-      {{#pop-over for='nav-more' on='hover hold' gravity='s'}}
+      <label id='nav-more' tabindex="0">{{t (concat 'navigation.more')}}</label>
+      {{#pop-over for='nav-more' on='focus hover hold' gravity='s'}}
         {{~#each hiddenRoutes as |route|~}}
-          {{#link-to route}}{{t (concat 'navigation.' route)}}{{/link-to}}
+          {{#link-to route tabindex='0'}}{{t (concat 'navigation.' route)}}{{/link-to}}
         {{~/each}}
       {{/pop-over}}
     {{/if}}

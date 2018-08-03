@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { observer, get, computed } from '@ember/object';
-import { fadeIn, fadeOut } from 'ember-animated/motions/opacity';
+import move from 'ember-animated/motions/move';
 import layout from './template';
 import { getLayout, measureText } from 'dom-ruler';
 import { bind } from '@ember/runloop';
@@ -10,7 +10,7 @@ export default Component.extend({
 
   layout,
 
-  duration: 200,
+  duration: 300,
 
   classNames: ['navigation-bar'],
 
@@ -37,8 +37,14 @@ export default Component.extend({
   },
 
   *slide({ insertedSprites, removedSprites }) {
-    insertedSprites.map(fadeIn);
-    removedSprites.map(fadeOut);
+    insertedSprites.map((sprite) => {
+      sprite.startAtPixel({ x: 0, y: sprite.finalBounds.height * -1 + 36 });
+      return move(sprite);
+    });
+    removedSprites.map((sprite) => {
+      sprite.endAtPixel({ x: 0, y: sprite.initialBounds.height * -1 + 36 });
+      return move(sprite);
+    });
     yield;
   },
 
