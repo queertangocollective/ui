@@ -13,10 +13,11 @@
     flex-shrink: 0;
     box-shadow: 0 1px 2px 1px rgba($black, 0.20);
     border-radius: 4px;
-    height: calc(2rem + 1px);
-    border-width: 1px;
+    height: calc(2rem + 2px);
+    border-width: 2px;
     border-style: solid;
-    padding: 0.4rem 0.18rem;
+    border-color: rgba($accent, 0);
+    padding: 0.4rem 0.1rem;
     line-height: 1.1rem;
     font-size: 13px;
     width: 2rem;
@@ -40,15 +41,7 @@
 
     &:focus {
       outline: none;
-      color: $white;
-      background: $accent;
       border-color: $accent;
-
-      svg {
-        path, rect {
-          fill: $white;
-        }
-      }
     }
 
     svg {

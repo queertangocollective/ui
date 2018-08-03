@@ -10,11 +10,11 @@ button[type=reset] {
   display: inline-flex;
   box-shadow: 0 1px 2px 1px rgba($black, 0.20);
   border-radius: 4px;
-  height: calc(2rem + 1px);
-  border-width: 1px;
+  height: calc(2rem + 2px);
+  border-width: 2px;
   border-style: solid;
-  padding: 0.4rem 1rem;
-  line-height: 1.2rem;
+  padding: 0.4rem 0.8rem;
+  line-height: 1rem;
   font-size: 1rem;
   transition-property: background, padding, box-shadow, color, border, border-color, transform;
   transition-duration: 200ms;
@@ -103,15 +103,7 @@ button[type=reset] {
 
     &:focus {
       outline: none;
-      color: $white;
-      background: $accent;
       border-color: $accent;
-
-      svg {
-        path, rect, circle {
-          fill: $white;
-        }
-      }
     }
 
     svg {
