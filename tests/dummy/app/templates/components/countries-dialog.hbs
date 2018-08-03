@@ -3,7 +3,7 @@
 </header>
 <div class='body'>
   {{search-field query=search onquery=(action (mut query))}}
-  {{#sortable-list class='countries' rows=countries onsort=(action (mut sort)) sort=sort as |l|}}
+  {{#sortable-list name='countries' rows=countries onsort=(action (mut sort)) sort=sort as |l|}}
     {{#l.item 'name' as |item|}}
       {{item.name}}
     {{else}}
