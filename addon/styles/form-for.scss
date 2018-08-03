@@ -48,6 +48,10 @@
     box-shadow: 0 2px 4px 2px rgba($black, 0.2);
   }
 
+  &:focus {
+    background: $accent;
+  }
+
   &:active:not(:disabled) {
     transform: translateY(1px);
     transition-duration: 80ms;
@@ -74,6 +78,7 @@
     vertical-align: top;
     display: inline-block;
     margin-left: 0.5rem;
+    margin-top: 0.2rem;
     margin-bottom: 1rem;
   }
 

@@ -10,11 +10,11 @@
 
   .submit-button {
     position: absolute;
-    top: 0.1rem;
-    right: 0.1rem;
+    top: calc(0.1rem + 1px);
+    right: calc(0.1rem + 1px);
     height: 1.8rem;
     line-height: 1rem;
-    padding: 0.2rem 0.75rem;
+    padding: 0.2rem 0.5rem;
   }
 
   .dialog-box & .text-field {
