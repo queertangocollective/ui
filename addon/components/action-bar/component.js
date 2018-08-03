@@ -18,7 +18,8 @@ export default Component.extend({
     let allActions = this.actionNames.reduce((E, name) => {
       let descriptor = {
         label: `${this.for}.actions.${name}`,
-        icon: this[`${name}Icon`]
+        icon: this[`${name}Icon`],
+        active: true
       };
 
       let action = this[name];
@@ -52,7 +53,7 @@ export default Component.extend({
         }
       }
 
-      if (!descriptor.active) {
+      if (descriptor.active) {
         E.push(descriptor);
       }
       return E;
