@@ -55,6 +55,7 @@ export default Component.extend({
       if (!descriptor.active) {
         E.push(descriptor);
       }
+      return E;
     }, []);
     this.metrics = null;
     this.set('pages', [{
