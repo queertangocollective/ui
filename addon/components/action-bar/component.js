@@ -4,8 +4,6 @@ import { getLayout } from 'dom-ruler';
 import { bind, debounce } from '@ember/runloop';
 import { computed } from '@ember/object';
 import { toLeft, toRight } from 'ember-animated/transitions/move-over';
-import fade from 'ember-animated/transitions/fade';
-
 
 export default Component.extend({
 
