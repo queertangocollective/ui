@@ -105,7 +105,7 @@ export default Component.extend({
 
       this.set('currentSort', value);
       if (this.onsort) {
-        this.sort(value.name);
+        this.onsort(value.name);
       } else {
         this.router.replaceWith({
           queryParams: {

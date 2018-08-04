@@ -40,7 +40,8 @@ export default Component.extend({
       set(this, 'isCreating', true);
 
       this.documentClick = (evt) => {
-        if (this.element !== evt.target &&
+        if (this.element != null &&
+            this.element !== evt.target &&
             !this.element.contains(evt.target)) {
           run(() => {
             set(this, 'isCreating', false);

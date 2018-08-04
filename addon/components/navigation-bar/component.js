@@ -64,7 +64,8 @@ export default Component.extend({
   }),
 
   measure() {
-    if (this.element.querySelector('a') == null) {
+    if (this.element.querySelector('a') == null ||
+        this.element.querySelector('nav') == null) {
       return;
     }
 

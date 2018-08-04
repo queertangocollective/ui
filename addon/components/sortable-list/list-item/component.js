@@ -21,7 +21,7 @@ export default Component.extend({
   }),
 
   displaySort: computed('sort', function () {
-    return this.sort.split('.').map(dasherize).join('.');
+    return (this.sort || '').split('.').map(dasherize).join('.');
   }),
 
   displaySortAsc: computed('sortAsc', function () {

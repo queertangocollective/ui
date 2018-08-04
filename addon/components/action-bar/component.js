@@ -102,16 +102,15 @@ export default Component.extend({
   },
 
   rules({ oldItems, newItems }) {
-    if (oldItems.length && newItems.length) {
+    if (oldItems.length && oldItems[0] != null &&
+        newItems.length && newItems[0] != null) {
       if (oldItems[0].index < newItems[0].index) {
         return toLeft;
       } else if (oldItems[0].index > newItems[0].index) {
         return toRight;
-      } else {
-        return;
       }
     }
-    return fade;
+    return;
   },
 
   measure() {
