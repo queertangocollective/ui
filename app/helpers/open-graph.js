@@ -1,7 +1,7 @@
 import Helper from '@ember/component/helper';
 import { A } from '@ember/array';
 import EmberObject, { set, get } from '@ember/object';
-import { guidFor, copy } from '@ember/object/internals';
+import { guidFor } from '@ember/object/internals';
 import { inject as service } from '@ember/service';
 
 const OpenGraph = EmberObject.extend({
@@ -12,7 +12,7 @@ const OpenGraph = EmberObject.extend({
 
   push(item) {
     let itemForId = this.items.findBy('id', item.id);
-    let items = copy(this.items);
+    let items = [...this.items];
 
     if (itemForId) {
       let index = this.items.indexOf(itemForId);
@@ -26,7 +26,7 @@ const OpenGraph = EmberObject.extend({
 
   remove(id) {
     let item = this.items.findBy('id', id);
-    let items = A(copy(this.items));
+    let items = A([...this.items]);
     items.removeObject(item);
     set(this, 'items', A(items));
   }

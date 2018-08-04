@@ -1,5 +1,4 @@
 import { schedule, run, begin, end, join } from '@ember/runloop';
-import { copy } from '@ember/object/internals';
 import Component from '@ember/component';
 import EmberObject, { computed, set, get } from '@ember/object';
 import createComponentCard from 'ember-mobiledoc-editor/utils/create-component-card';
@@ -167,7 +166,7 @@ export default Component.extend({
         element.id = destinationElementId;
 
         // The data must be copied to avoid sharing the reference
-        payload = copy(payload, true);
+        payload = JSON.parse(JSON.stringify(payload));
 
         let card = EmberObject.create({
           destinationElementId,
@@ -191,7 +190,7 @@ export default Component.extend({
         element.id = destinationElementId;
 
         // The data must be copied to avoid sharing the reference
-        payload = copy(payload, true);
+        payload = JSON.parse(JSON.stringify(payload));
 
         let atom = EmberObject.create({
           destinationElementId,
