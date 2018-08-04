@@ -3,7 +3,6 @@ import { set, get } from '@ember/object';
 import RSVP from 'rsvp';
 import { task, timeout } from 'ember-concurrency';
 import layout from './template';
-import opacity from 'ember-animated/motions/opacity';
 
 export default Component.extend({
 
@@ -36,12 +35,5 @@ export default Component.extend({
 
     get(this, 'submit').perform(get(this, 'onsubmit'));
     return false;
-  },
-
-  fade: function* ({ insertedSprites, removedSprites }) {
-    yield RSVP.all([
-      ...insertedSprites.map(sprite => opacity(sprite, { from: 0, to: 1 })),
-      ...removedSprites.map(sprite => opacity(sprite, { from: 0, to: 0 }))
-    ]);
   }
 });

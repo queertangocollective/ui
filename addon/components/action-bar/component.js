@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import layout from './template';
 import { getLayout } from 'dom-ruler';
-import { bind } from '@ember/runloop';
+import { bind, debounce } from '@ember/runloop';
 import { computed } from '@ember/object';
 import { toLeft, toRight } from 'ember-animated/transitions/move-over';
 import fade from 'ember-animated/transitions/fade';
@@ -10,6 +10,8 @@ import fade from 'ember-animated/transitions/fade';
 export default Component.extend({
 
   layout,
+
+  duration: 300,
 
   classNames: ['action-bar'],
 
@@ -66,6 +68,7 @@ export default Component.extend({
       hasLess: false
     }]);
     this.set('currentPageNumber', 0);
+    this.scheduleMeasurement();
   },
 
   currentPage: computed('currentPageNumber', 'pages', function () {
@@ -75,11 +78,22 @@ export default Component.extend({
     return null;
   }),
 
+  displayDuration: computed('isMeasuring', 'duration', function () {
+    return this.isMeasuring ? 0 : this.duration;
+  }),
+
+  scheduleMeasurement() {
+    this.set('isMeasuring', true);
+    debounce(() => {
+      if (this.isDestroyed) return;
+      this.set('isMeasuring', false);
+      this.measure();
+    }, 50);
+  },
+
   didInsertElement() {
     this.measure();
-    this.resize = bind(this, () => {
-      this.measure();
-    });
+    this.resize = bind(this, 'scheduleMeasurement');
     window.addEventListener('resize', this.resize);
   },
 

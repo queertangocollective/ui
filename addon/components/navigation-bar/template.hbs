@@ -6,7 +6,7 @@
     </button>
   </div>
   {{#animated-container}}
-    {{#animated-if isActive use=slide duration=duration}}
+    {{#animated-if isActive use=slide duration=displayDuration}}
       <nav class='mobile'>
         {{~#each mobileRoutes as |route|~}}
           {{#link-to route}}{{t (concat 'navigation.' route)}}{{/link-to}}

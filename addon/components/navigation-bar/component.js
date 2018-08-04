@@ -4,7 +4,7 @@ import { observer, get, computed } from '@ember/object';
 import move from 'ember-animated/motions/move';
 import layout from './template';
 import { getLayout, measureText } from 'dom-ruler';
-import { bind } from '@ember/runloop';
+import { bind, debounce } from '@ember/runloop';
 
 export default Component.extend({
 
@@ -24,11 +24,22 @@ export default Component.extend({
     this.set('visibleRoutes', ['home']);
   },
 
+  displayDuration: computed('isMeasuring', 'duration', function () {
+    return this.isMeasuring ? 0 : this.duration;
+  }),
+
+  scheduleMeasurement() {
+    this.set('isMeasuring', true);
+    debounce(() => {
+      if (this.isDestroyed) return;
+      this.set('isMeasuring', false);
+      this.measure();
+    }, 10);
+  },
+
   didInsertElement() {
     this.measure();
-    this.resize = bind(this, () => {
-      this.measure();
-    });
+    this.resize = bind(this, 'scheduleMeasurement');
     window.addEventListener('resize', this.resize);
   },
 

@@ -1,6 +1,6 @@
 {{#animated-container}}
   <nav class='container'>
-    {{#animated-value currentPage rules=rules duration=300 as |page|}}
+    {{#animated-value currentPage rules=rules duration=displayDuration as |page|}}
       <div class='page'>
         {{#if page.hasLess}}
           <button class='previous-page' onclick={{action 'previousPage'}}>
