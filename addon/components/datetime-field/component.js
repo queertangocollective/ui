@@ -80,7 +80,8 @@ export default Component.extend(Autoresize, {
     let input = this.element.querySelector('input');
     if (input.type === 'datetime-local') {
       if (this.value) {
-        input.value = this.value.toISOString().split(':').slice(0, 2).join(':');
+        let date = moment.tz(this.value, this.timezone);
+        input.value = date.format('YYYY-MM-DDTHH:mm');
       } else {
         input.value = null;
       }
@@ -223,7 +224,7 @@ export default Component.extend(Autoresize, {
 
     selectDate(evt) {
       // Ugh, adjust for timezone
-      let date = moment.tz(evt.target.value, 'YYYY-MM-DDTHH:MM', this.timezone);
+      let date = moment.tz(evt.target.value, this.timezone);
       this.onchange(date.toDate());
     },
 
