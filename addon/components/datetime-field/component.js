@@ -78,6 +78,14 @@ export default Component.extend(Autoresize, {
 
   _updateDisplayValue(displayValue) {
     let input = this.element.querySelector('input');
+    if (input.type === 'datetime-local') {
+      if (this.value) {
+        input.value = this.value.toISOString().split(':').slice(0, 2).join(':');
+      } else {
+        input.value = null;
+      }
+      return;
+    }
     let selectionStart = input.selectionStart;
     let selectionEnd = input.selectionEnd;
 
@@ -211,6 +219,12 @@ export default Component.extend(Autoresize, {
     updateCenter({ date }) {
       set(this, 'center', date);
       set(this, 'isFocused', true);
+    },
+
+    selectDate(evt) {
+      // Ugh, adjust for timezone
+      let date = moment.tz(evt.target.value, 'YYYY-MM-DDTHH:MM', this.timezone);
+      this.onchange(date.toDate());
     },
 
     onchange({ moment }) {

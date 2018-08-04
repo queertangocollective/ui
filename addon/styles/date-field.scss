@@ -2,8 +2,12 @@
   @extend .text-field;
   position: relative;
 
-  input {
+  input[type="text"] {
     padding-right: 2.5rem;
+  }
+
+  input {
+    height: calc(2rem + 2px);
   }
 
   input + a {
