@@ -27,7 +27,7 @@
     &:hover:not(:disabled) {
       box-shadow: 0 2px 4px 2px rgba($black, 0.2);
     }
-    
+
     &:active:not(:disabled) {
       transform: translateY(1px);
       transition-duration: 80ms;

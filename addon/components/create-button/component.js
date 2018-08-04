@@ -16,6 +16,7 @@ export default Component.extend({
   },
 
   destroy() {
+    document.body.removeEventListener('touchstart', this.documentClick);
     document.body.removeEventListener('click', this.documentClick);
     this._super();
   },
@@ -47,6 +48,7 @@ export default Component.extend({
         }
       };
       document.body.addEventListener('mousedown', this.documentClick);
+      document.body.addEventListener('touchstart', this.documentClick);
     }
   }
 }).reopenClass({

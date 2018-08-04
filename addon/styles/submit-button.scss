@@ -1,18 +1,10 @@
 button[type=submit].submit-button {
   text-align: left;
-
-  .liquid-container, .liquid-child {
-    height: 1.5rem;
-  }
-
-  &:not(.is-processing) .liquid-child {
-    white-space: nowrap;
-    display: inline-grid;
-    grid-template-columns: auto auto auto;
-  }
+  white-space: nowrap;
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
 
   .bounce {
-    width: 100%;
     margin: 0 auto;
     padding-right: 0;
   }

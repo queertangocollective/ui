@@ -77,8 +77,8 @@
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 
-    .search-field {
-      margin: 0.5em;
+    & > .search-field input {
+      border-radius: 0;
     }
 
     & + footer {
