@@ -10,7 +10,7 @@
         <div class='actions'>
           {{#each page.actions as |action|}}
             {{#if action.isExternalLink}}
-              <a href="{{action.link}}" target="__blank" rel="nofollow noreferrer" class="submit-button">
+              <a href={{action.link}} target="__blank" rel="nofollow noreferrer" class="submit-button">
                 {{#if action.icon}}
                   {{t action.label icon=(icon action.icon) htmlSafe=true}}
                 {{else}}
@@ -18,7 +18,7 @@
                 {{/if}}
               </a>
             {{else if action.isMailTo}}
-              <a href="{{action.link}}" rel="nofollow noreferrer" class="submit-button">
+              <a href={{action.link}} rel="nofollow noreferrer" class="submit-button">
                 {{#if action.icon}}
                   {{t action.label icon=(icon action.icon) htmlSafe=true}}
                 {{else}}

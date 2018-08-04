@@ -1,29 +1,29 @@
 {{#if buttons.length}}
   <nav class='row'>
-    {{#each buttons as |button|}}
-      {{#if (equals button.type 'a')}}
-        {{#text-editor/markup-button for=button.type hint='isLink' title=button.label id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/link-form' active=(get editor.activeMarkupTagNames 'isLink') onsubmit=(action 'addLink')))}}
-          {{icon button.icon}}
+    {{#each buttons as |b|}}
+      {{#if (equals b.type 'a')}}
+        {{#text-editor/markup-button for=b.type hint='isLink' title=b.label id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/link-form' active=(get editor.activeMarkupTagNames 'isLink') onsubmit=(action 'addLink')))}}
+          {{icon b.icon}}
         {{else}}
           {{icon 'unlink'}}
         {{/text-editor/markup-button~}}
-      {{else if (equals button.type 'text-size')}}
+      {{else if (equals b.type 'text-size')}}
         {{~#tool-tip for=(concat elementId '-text-size')~}}
           {{t 'textEditor.textSize'}}
         {{~/tool-tip~}}
         {{#select-field inputId=(concat elementId "-text-size") value=textSize options=textSizes onchange=(action 'setTextSize') as |option|}}
           {{t (concat 'textEditor.' option.name)}}
         {{/select-field}}
-      {{else if (equals button.type 'embed')}}
+      {{else if (equals b.type 'embed')}}
         {{~#tool-tip for=(concat elementId '-embed')~}}
-          {{t (concat 'textEditor.' button.type)}}
+          {{t (concat 'textEditor.' b.type)}}
         {{~/tool-tip~}}
-        <button type='button' id="{{elementId}}-embed" onclick={{action 'embed' editor.editor for button}}>
+        <button type='button' id="{{elementId}}-embed" onclick={{action 'embed' editor.editor for b}}>
           {{icon 'add' class='add'}}
         </button>
       {{else}}
-        {{#text-editor/markup-button for=button.type title=button.label id=inputId editor=this onclick=(action 'toggleMarkup')}}
-          {{icon button.icon}}
+        {{#text-editor/markup-button for=b.type title=b.label id=inputId editor=this onclick=(action 'toggleMarkup')}}
+          {{icon b.icon}}
         {{/text-editor/markup-button~}}
       {{/if}}
     {{/each}}

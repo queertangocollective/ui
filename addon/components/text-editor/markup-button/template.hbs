@@ -1,4 +1,4 @@
-<button type='button' id="{{id}}-{{for}}" class="{{if (get editor.activeMarkupTagNames for) 'active'}}" title={{title}} onclick={{action onclick editor.editor for}}>
+<button type='button' id="{{id}}-{{for}}" class={{if (get editor.activeMarkupTagNames for) 'active'}} title={{title}} onclick={{action onclick editor.editor for}}>
   {{~#if (get editor.activeMarkupTagNames for)~}}
     {{#if (has-block 'inverse')~}}
       {{yield to='inverse'}}

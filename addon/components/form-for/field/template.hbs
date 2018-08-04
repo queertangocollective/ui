@@ -1,6 +1,6 @@
-{{#unless (equals fieldType 'check-box')}}
+{{#if (not (equals fieldType 'check-box'))}}
   {{#if hasLabel}}<label for={{inputId}}>{{t (concat formName '.' fieldName) htmlSafe=true}}</label>{{/if}}
-{{/unless}}
+{{/if}}
 <div class='field'>
   {{#if hasBlock}}
     {{#component fieldType

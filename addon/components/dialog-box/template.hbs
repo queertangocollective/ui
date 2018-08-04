@@ -9,7 +9,7 @@
       {{/animated-if}}
       {{#animated-value dialog group=dialog.group use=show duration=duration as |props|}}
         {{#if props.dialog}}
-          <div class="{{props.className}}">
+          <div class={{props.className}}>
             {{component props.dialog dismiss=props.dismiss}}
             {{key-down 'esc' props.dismiss}}
           </div>
