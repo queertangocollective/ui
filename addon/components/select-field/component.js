@@ -13,7 +13,7 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     RSVP.resolve(this.value).then((value) => {
-      if (value == null) {
+      if (value == null && this.options.length > 0) {
         this.onchange(this.options[0]);
       }
     });
