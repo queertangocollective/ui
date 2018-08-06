@@ -1,10 +1,12 @@
 import Component from '@ember/component';
+import layout from './template';
 import { set, get, computed } from '@ember/object';
 import { htmlSafe } from '@ember/string';
 import { later } from '@ember/runloop';
 
 export default Component.extend({
   tagName: '',
+  layout,
 
   didReceiveAttrs() {
     if (get(this, 'progress') > 0 &&
