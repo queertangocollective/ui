@@ -30,7 +30,7 @@
       box-shadow: 0 1px 2px 1px rgba($black, 0.2);
     }
 
-    &:focus + label {
+    &:focus:not(:active) + label {
       border: 2px solid $accent;
     }
 
@@ -47,11 +47,11 @@
       }
     }
 
-    &:checked:focus + label {
+    &:checked:focus:not(:active) + label {
       background: $white;
     }
 
-    &:checked:focus + label svg path {
+    &:checked:focus:not(:active) + label svg path {
       fill: $accent;
       filter: none;
     }

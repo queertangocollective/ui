@@ -4,6 +4,7 @@
     <button type='submit' class='icon' onclick={{action (mut isActive) (not isActive)}}>
       {{icon 'list'}}
     </button>
+    {{progress-bar progress=50}}
   </div>
   {{#animated-container}}
     {{#animated-if isActive use=slide duration=displayDuration}}
@@ -15,6 +16,7 @@
     {{/animated-if}}
   {{/animated-container}}
 {{else}}
+  {{progress-bar progress=progress}}
   <nav class='desktop container'>
     {{~#each visibleRoutes as |route|~}}
       {{#link-to route tabindex='0'}}{{t (concat 'navigation.' route)}}{{/link-to}}

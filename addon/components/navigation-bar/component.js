@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { observer, get, computed } from '@ember/object';
+import { reads } from '@ember/object/computed';
 import move from 'ember-animated/motions/move';
 import layout from './template';
 import { getLayout, measureText } from 'dom-ruler';
@@ -17,6 +18,10 @@ export default Component.extend({
   router: service(),
 
   intl: service(),
+
+  fileQueue: service(),
+
+  progress: reads('fileQueue.progress'),
 
   init() {
     this._super();

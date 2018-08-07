@@ -6,7 +6,7 @@ export default Component.extend({
   layout,
 
   didReceiveAttrs() {
-    this.set('name', file.name);
+    this.set('name', this.file.name);
     this.file.readAsDataURL().then((url) => {
       this.set('url', url);
     });
