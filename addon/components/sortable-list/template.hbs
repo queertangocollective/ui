@@ -1,6 +1,13 @@
+{{#animated-container class='filters'}}
+  {{#animated-if isFiltering duration=200}}
+    <div class='container'>
+      {{yield to='inverse'}}
+    </div>
+  {{/animated-if}}
+{{/animated-container}}
 {{#if (media '(max-width: 500px)')}}
-  {{#if rows.length}}
-    <header class="mobile">
+  {{#if sortings.length}}
+    <header class="mobile {{if (has-block 'inverse') "has-filters"}} {{if isFiltering 'and-filtering'}}">
       <div class='buttons'>
         {{#select-field options=sortings value=currentSort onchange=(action 'sortMobile') as |option|}}
           {{t (concat name '.' option.name)}}
@@ -16,16 +23,29 @@
             <span class='sort'>{{icon 'chevron'}}</span>
           {{~/link-to~}}
         {{/if}}
+        {{#if (has-block 'inverse')}}
+          <button class='filter' type='submit' onclick={{action (mut isFiltering) (not isFiltering)}}>
+            {{icon 'settings'}}
+          </button>
+        {{/if}}
       </div>
     </header>
   {{/if}}
 {{else}}
-  <header>
+  <header class={{if isFiltering 'and-filtering'}}>
     <div class='item'>
       {{yield (hash item=(component 'sortable-list/list-item' sort=sort onsort=(if onsort (action 'sort')) list=this listName=name tagName=''))}}
     </div>
+    {{#if (has-block 'inverse')}}
+      <button id="{{elementId}}-filter" class='filter' type='submit' onclick={{action (mut isFiltering) (not isFiltering)}}>
+        {{icon 'settings'}}
+      </button>
+    {{/if}}
   </header>
 {{/if}}
+{{#tool-tip for=(concat elementId "-filter")}}
+  Filter Results
+{{/tool-tip}}
 {{#animated-container}}
   {{#animated-if rows.length use=fade duration=duration}}
     {{#animated-container tagName='ol'}}

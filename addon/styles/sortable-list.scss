@@ -3,6 +3,14 @@
   margin-bottom: 1rem;
   width: 100%;
 
+  .filters {
+    position: sticky;
+    top: 0;
+    background: $accent;
+    color: $white;
+    z-index: 2;
+  }
+
   ol {
     margin: 0;
     padding: 0;
@@ -86,8 +94,12 @@
   header {
     position: sticky;
     top: 0;
-    grid-template-rows: 1fr 1fr;
+    transition: top 200ms;
     z-index: 2;
+
+    &.and-filtering {
+      top: 3rem;
+    }
 
     & > .item {
       display: grid;
@@ -96,14 +108,34 @@
       line-height: 1.5rem;
     }
 
+    button.filter {
+      border-radius: 0;
+      height: 2rem;
+      padding: 0.25rem 0.5rem;
+
+      svg {
+        padding: 0;
+      }
+    }
+
     &:not(.mobile) {
       padding: 0.3rem 1rem;
       box-shadow: 0 1px 2px 1px rgba($black, 0.20);
       background: $black;
       color: $white;
+
+      button.filter {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
     }
 
     &.mobile {
+      &.has-filters .buttons {
+        grid-template-columns: 1fr 3rem 3rem;
+      }
+
       .buttons {
         display: grid;
         grid-template-columns: 1fr 3rem;
