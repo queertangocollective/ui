@@ -1,10 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
-    <title>cancel</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="cancel" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M8.99924473,7.58503116 L13.2913827,3.29289322 C13.681907,2.90236893 14.3150719,2.90236893 14.7055962,3.29289322 C15.0961205,3.68341751 15.0961205,4.31658249 14.7055962,4.70710678 L10.4134583,8.99924473 L14.7055962,13.2913827 C15.0961205,13.681907 15.0961205,14.3150719 14.7055962,14.7055962 C14.3150719,15.0961205 13.681907,15.0961205 13.2913827,14.7055962 L8.99924473,10.4134583 L4.70710678,14.7055962 C4.31658249,15.0961205 3.68341751,15.0961205 3.29289322,14.7055962 C2.90236893,14.3150719 2.90236893,13.681907 3.29289322,13.2913827 L7.58503116,8.99924473 L3.29289322,4.70710678 C2.90236893,4.31658249 2.90236893,3.68341751 3.29289322,3.29289322 C3.68341751,2.90236893 4.31658249,2.90236893 4.70710678,3.29289322 L8.99924473,7.58503116 Z" id="Combined-Shape" fill="#010101"></path>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px"
+	 height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<g id="Bounding_Boxes">
+	<g id="ui_x5F_spec_x5F_header_copy_3" display="none">
+	</g>
+	<path fill="none" d="M0,0h24v24H0V0z"/>
+</g>
+<g id="Rounded_1_">
+	<g id="ui_x5F_spec_x5F_header_copy_6" display="none">
+	</g>
+	<path d="M18.3,5.71L18.3,5.71c-0.39-0.39-1.02-0.39-1.41,0L12,10.59L7.11,5.7c-0.39-0.39-1.02-0.39-1.41,0l0,0
+		c-0.39,0.39-0.39,1.02,0,1.41L10.59,12L5.7,16.89c-0.39,0.39-0.39,1.02,0,1.41h0c0.39,0.39,1.02,0.39,1.41,0L12,13.41l4.89,4.89
+		c0.39,0.39,1.02,0.39,1.41,0l0,0c0.39-0.39,0.39-1.02,0-1.41L13.41,12l4.89-4.89C18.68,6.73,18.68,6.09,18.3,5.71z"/>
+</g>
 </svg>

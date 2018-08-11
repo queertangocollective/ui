@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
-    <title>check</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="check" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M15.4360486,3.29435161 C15.8269133,2.90348691 16.4576315,2.9004883 16.8508785,3.29373525 C17.2414028,3.68425955 17.2435838,4.31524353 16.8502621,4.70856517 L6.95199991,14.6068274 C6.56113522,14.9976921 5.93041695,15.0006907 5.53717,14.6074438 L1.2924293,10.3627031 C0.90306481,9.97333857 0.901282353,9.34383646 1.29452931,8.9505895 C1.6850536,8.56006521 2.32198113,8.56382777 2.70664286,8.94848949 L6.24427678,12.4861234 L15.4360486,3.29435161 Z" id="Oval-15" fill="#050505"></path>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px"
+	 height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<g id="Bounding_Boxes">
+	<path fill="none" d="M0,0h24v24H0V0z"/>
+</g>
+<g id="Rounded">
+	<path d="M9,16.17L5.53,12.7c-0.39-0.39-1.02-0.39-1.41,0l0,0c-0.39,0.39-0.39,1.02,0,1.41l4.18,4.18c0.39,0.39,1.02,0.39,1.41,0
+		L20.29,7.71c0.39-0.39,0.39-1.02,0-1.41l0,0c-0.39-0.39-1.02-0.39-1.41,0L9,16.17z"/>
+</g>
 </svg>

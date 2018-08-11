@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
-    <title>chevron</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="chevron" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M3.60930901,10.5167176 L7.86425459,6.26177202 C8.63682727,5.48919934 9.90221021,5.48431816 10.6796641,6.26177202 L14.9346097,10.5167176 C15.3139707,10.8960786 15.3193379,11.5346108 14.9288136,11.9251351 C14.5355666,12.318382 13.9072145,12.3177496 13.5192686,11.9298036 L9.98008843,8.44480996 C9.58789207,8.05761839 8.94501261,8.06479234 8.56039439,8.44480996 L5.0246501,11.9298036 C4.6368364,12.3176173 4.00562938,12.3156594 3.61510508,11.9251351 C3.22185813,11.5318881 3.2219858,10.9040408 3.60930901,10.5167176 Z" id="Combined-Shape" fill="#010101" transform="translate(9.269954, 8.950465) scale(1, -1) rotate(90.000000) translate(-9.269954, -8.950465) "></path>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px"
+	 height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<g id="Bounding_Boxes">
+	<path opacity="0.87" fill="none" d="M24,24H0L0,0l24,0V24z"/>
+</g>
+<g id="Rounded">
+	<path d="M15.88,9.29L12,13.17L8.12,9.29c-0.39-0.39-1.02-0.39-1.41,0l0,0c-0.39,0.39-0.39,1.02,0,1.41l4.59,4.59
+		c0.39,0.39,1.02,0.39,1.41,0l4.59-4.59c0.39-0.39,0.39-1.02,0-1.41l0,0C16.91,8.91,16.27,8.9,15.88,9.29z"/>
+</g>
 </svg>

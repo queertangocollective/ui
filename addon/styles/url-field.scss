@@ -7,17 +7,17 @@
 
   svg {
     position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
+    top: 0.3rem;
+    left: 0.4rem;
     z-index: 2;
 
-    &.secure path {
+    &.secure {
       fill: $green;
     }
 
     &, svg {
-      width: 1.125rem;
-      height: 1.125rem;
+      width: 1.5rem;
+      height: 1.5rem;
     }
 
     &:active {

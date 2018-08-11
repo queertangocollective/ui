@@ -13,8 +13,8 @@ button[type=reset] {
   height: calc(2rem + 2px);
   border-width: 2px;
   border-style: solid;
-  padding: 0.4rem 0.8rem;
-  line-height: 1rem;
+  padding: 0 0.6rem;
+  line-height: 1.9rem;
   font-size: 1rem;
   transition-property: background, padding, box-shadow, color, border, border-color, transform;
   transition-duration: 200ms;
@@ -42,15 +42,16 @@ button[type=reset] {
 
   svg {
     display: block;
-    width: 1.625rem;
-    height: 1.125rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0.2rem;
 
     &:first-child {
-      padding-right: 0.5rem;
+      margin-right: 0.25rem;
     }
 
     &:last-child:not(:first-child) {
-      padding-left: 0.5rem;
+      margin-left: 0.25rem;
     }
   }
 
@@ -58,8 +59,12 @@ button[type=reset] {
     display: flex;
   }
 
-  &.icon svg {
-    padding-right: 0;
+  &.icon {
+    padding: 0 0.25rem;
+
+    svg {
+      margin: 0;
+    }
   }
 
   &:focus {
@@ -77,18 +82,10 @@ button[type=reset] {
     &:focus:not(:active) {
       background: $accent;
       border-color: $accent;
-
-      svg {
-        path, rect, circle {
-          fill: $white;
-        }
-      }
     }
 
     svg {
-      path, rect, circle {
-        fill: $white;
-      }
+      fill: $white;
     }
   }
 
@@ -110,9 +107,7 @@ button[type=reset] {
     }
 
     svg {
-      path, rect, circle {
-        fill: $black;
-      }
+      fill: $black;
     }
   }
 

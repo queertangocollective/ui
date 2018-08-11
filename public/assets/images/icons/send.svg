@@ -3,11 +3,14 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px"
 	 height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
 <g id="Bounding_Boxes">
+	<g id="ui_x5F_spec_x5F_header_copy_3" display="none">
+	</g>
 	<path fill="none" d="M0,0h24v24H0V0z"/>
 </g>
-<g id="Rounded">
-	<path d="M5,13h11.17l-4.88,4.88c-0.39,0.39-0.39,1.03,0,1.42l0,0c0.39,0.39,1.02,0.39,1.41,0l6.59-6.59c0.39-0.39,0.39-1.02,0-1.41
-		L12.71,4.7c-0.39-0.39-1.02-0.39-1.41,0l0,0c-0.39,0.39-0.39,1.02,0,1.41L16.17,11H5c-0.55,0-1,0.45-1,1v0C4,12.55,4.45,13,5,13z"
-		/>
+<g id="Rounded_1_">
+	<g id="ui_x5F_spec_x5F_header_copy_6" display="none">
+	</g>
+	<path d="M3.4,20.4l17.45-7.48c0.81-0.35,0.81-1.49,0-1.84L3.4,3.6C2.74,3.31,2.01,3.8,2.01,4.51L2,9.12c0,0.5,0.37,0.93,0.87,0.99
+		L17,12L2.87,13.88C2.37,13.95,2,14.38,2,14.88l0.01,4.61C2.01,20.2,2.74,20.69,3.4,20.4z"/>
 </g>
 </svg>

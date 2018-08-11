@@ -6,10 +6,11 @@ import layout from './template';
 
 export default Component.extend({
   layout,
-  tagName: '',
+
+  classNames: ['select-field'],
 
   disabled: false,
-  
+
   init() {
     this._super(...arguments);
     RSVP.resolve(this.value).then((value) => {

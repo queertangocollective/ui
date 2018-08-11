@@ -331,6 +331,10 @@ export default Component.extend({
       return s.isNested ? s.parent.tagName : s.tagName;
     });
     const sectionTags = arrayToMap(sectionParentTagNames);
+    const link = editor.activeMarkups.find(m => m.tagName === 'a');
+    /*if (link) {
+      console.log(this.value);
+    }*/
 
     // Avoid updating this component's properties synchronously while
     // rendering the editor (after rendering the component) because it
@@ -339,10 +343,18 @@ export default Component.extend({
       schedule('afterRender', () => {
         this.set('activeMarkupTagNames', markupTags);
         this.set('activeSectionTagNames', sectionTags);
+        if (!this.editor.cursor.offsets.head.isBlank &&
+            !this.editor.cursor.offsets.tail.isBlank) {
+          this.set('activeLink', link);
+        }
       });
     } else {
       this.set('activeMarkupTagNames', markupTags);
       this.set('activeSectionTagNames', sectionTags);
+      if (!this.editor.cursor.offsets.head.isBlank &&
+          !this.editor.cursor.offsets.tail.isBlank) {
+        this.set('activeLink', link);
+      }
     }
   },
 
@@ -395,17 +407,16 @@ export default Component.extend({
                  activeSection !== 'p') {
         editor.toggleSection(activeSection);
       }
-      
+
       let textSize = this.textSizes.findBy('name', activeSection) ||
                      this.textSizes.findBy('name', 'none');
       this.set('textSize', textSize);
     },
 
-    addLink(href) {
-      let range = get(this, 'form.range');
+    setLink(link, href) {
+      // debugger;
       this.set('form', null);
       let editor = this.editor;
-      editor.selectRange(range);
       editor.toggleMarkup('a', { href });
     },
 

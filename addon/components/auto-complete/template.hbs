@@ -1,4 +1,4 @@
-{{search-field inputId=inputId query=(get displayValue key) onquery=(action 'query') hasIcon=false onchange=(action (mut query))}}
+{{search-field inputId=inputId query=(get displayValue key) onquery=(action 'query') icon=(if value 'link') link=this.link onchange=(action (mut query))}}
 
 {{#if options}}
   {{#animated-container tagName='ul' class='auto-complete-options'}}

@@ -2,9 +2,9 @@
   <div class='mobile-nav'>
     {{yield}}
     <button type='submit' class='icon' onclick={{action (mut isActive) (not isActive)}}>
-      {{icon 'list'}}
+      {{icon 'menu'}}
     </button>
-    {{progress-bar progress=50}}
+    {{progress-bar value=progress}}
   </div>
   {{#animated-container}}
     {{#animated-if isActive use=slide duration=displayDuration}}
@@ -16,7 +16,7 @@
     {{/animated-if}}
   {{/animated-container}}
 {{else}}
-  {{progress-bar progress=progress}}
+  {{progress-bar value=progress}}
   <nav class='desktop container'>
     {{~#each visibleRoutes as |route|~}}
       {{#link-to route tabindex='0'}}{{t (concat 'navigation.' route)}}{{/link-to}}

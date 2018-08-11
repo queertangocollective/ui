@@ -40,9 +40,9 @@
 
     &:checked + label svg {
       opacity: 1;
+      fill: $white;
 
       path {
-        fill: $white;
         filter: drop-shadow(0px 1px 1px rgba($black, 0.5));
       }
     }
@@ -51,17 +51,14 @@
       background: $white;
     }
 
-    &:checked:focus:not(:active) + label svg path {
+    &:checked:focus:not(:active) + label svg {
       fill: $accent;
       filter: none;
     }
 
     &:not(:checked):hover + label svg {
       opacity: 1;
-
-      path {
-        fill: lighten($black, 50%);
-      }
+      fill: lighten($black, 50%);
     }
 
     &:disabled + label {
@@ -72,10 +69,10 @@
 
   svg {
     position: absolute;
-    top: -0.4rem;
-    left: 0rem;
-    width: 1.125rem;
-    height: 1.125rem;
+    top: -0.55rem;
+    left: -0.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
     opacity: 0;
     pointer-events: none;
 

@@ -2,7 +2,7 @@
   <nav class='row'>
     {{#each buttons as |b|}}
       {{#if (equals b.type 'a')}}
-        {{#text-editor/markup-button for=b.type hint='isLink' title=b.label id=inputId editor=this onclick=(action 'openForm' (component 'text-editor/link-form' active=(get editor.activeMarkupTagNames 'isLink') onsubmit=(action 'addLink')))}}
+        {{#text-editor/markup-button for=b.type hint='isLink' title=b.label id=inputId editor=this onclick=(action 'toggleMarkup')}}
           {{icon b.icon}}
         {{else}}
           {{icon 'unlink'}}
@@ -29,8 +29,9 @@
     {{/each}}
   </nav>
 {{/if}}
-{{#liquid-if form class='editor-form'}}
-  {{component form.component}}
+
+{{#liquid-if activeLink class='editor-form'}}
+  {{text-editor/link-form value=activeLink.attributes.href onsubmit=(action 'setLink' activeLink)}}
 {{/liquid-if}}
 <div class="mobiledoc-editor__editor-wrapper">
   <div class="mobiledoc-editor__editor"></div>

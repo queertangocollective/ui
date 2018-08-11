@@ -71,7 +71,7 @@
 
     label,
     button,
-    select {
+    .select-field {
       position: relative;
       display: flex;
       appearance: none;
@@ -89,7 +89,8 @@
       &:focus {
         background: $accent;
         color: $white;
-        svg path {
+
+        svg {
           fill: $white;
         }
       }
@@ -108,13 +109,9 @@
           border-left: 1px solid $heather;
         }
 
-        svg path {
+        svg {
           fill: $black;
         }
-      }
-
-      svg {
-        margin: 0.3rem 0.6rem;
       }
 
       span {
@@ -122,13 +119,21 @@
         white-space: nowrap;
       }
 
-      svg path {
+      svg {
+        width: 2rem;
+        height: 1.25rem;
         fill: $white;
       }
     }
+  }
 
+  .select-field {
     select {
-      padding: 0 0.5rem;
+      padding-left: 0.5rem;
+      padding-right: 1.5rem;
+    }
+    svg {
+      right: 0;
     }
   }
 
@@ -169,7 +174,7 @@
       right: calc(0.1rem + 2px);
       height: calc(1.8rem - 2px);
       line-height: 1rem;
-      padding: 0.1rem 0.2rem;
+      padding: 0rem 0.25rem;
     }
   }
 

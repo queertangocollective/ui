@@ -1,6 +1,6 @@
 import { isBlank } from '@ember/utils';
 import Component from '@ember/component';
-import { set, get } from '@ember/object';
+import { set } from '@ember/object';
 import { cancel, debounce } from '@ember/runloop';
 import layout from './template';
 import RSVP from 'rsvp';
@@ -22,17 +22,16 @@ import opacity from 'ember-animated/motions/opacity';
  */
 export default Component.extend({
   layout,
-  classNames: ['search-field'],
-  classNameBindings: ['hasIcon'],
+  tagName: '',
 
   /**
-    Whether the search icon should be displayed
+    The icon to display to the right hand side
 
-    @property hasIcon
-    @type Boolean
-    @default true
+    @property icon
+    @type string
+    @default 'search'
   */
-  hasIcon: true,
+  icon: 'search',
 
   /**
     Called whenever the user changes the value.
@@ -67,6 +66,7 @@ export default Component.extend({
 
   clear() {
     set(this, 'value', null);
+    this.query = null;
     cancel(this._timer);
     this._timer = null;
     this.onquery('');
@@ -97,8 +97,8 @@ export default Component.extend({
         set(this, 'value', value);
         this._timer = debounce(this, 'search', 500);
       }
-      if (get(this, 'onchange')) {
-        get(this, 'onchange')(value);
+      if (this.onchange) {
+        this.onchange(value);
       }
     }
   }

@@ -160,21 +160,16 @@
 
       .sort {
         pointer-events: none;
-        transform: rotate(90deg);
         height: 1.5rem;
         width: 1.5rem;
         margin-left: 0.125rem;
       }
 
       svg {
-        margin-left: 0.125rem;
-        width: 1.125rem;
-        height: 1.125rem;
+        width: 1.5rem;
+        height: 1.5rem;
         transition: all 200ms;
-
-        path {
-          fill: $white;
-        }
+        fill: $white;
       }
 
       &.active svg {
@@ -187,7 +182,7 @@
 
       &.active.desc {
         svg {
-          transform: rotateY(180deg);
+          transform: rotateX(180deg);
         }
       }
     }
