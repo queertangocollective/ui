@@ -13,6 +13,8 @@ export default Controller.extend({
   sort: 'name',
 
   updatedAt: null,
+  
+  size: 'medium',
 
   init() {
     this._super(...arguments);

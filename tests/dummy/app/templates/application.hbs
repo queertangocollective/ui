@@ -16,6 +16,12 @@
   {{/l.item}}
 {{/sortable-list}}
 
+{{#button-group name='photoSize' value=size onchange=(action (mut size)) as |g|}}
+  {{g.option 'small' icon='small'}}
+  {{g.option 'medium' icon='medium'}}
+  {{g.option 'large' icon='large'}}
+{{/button-group}}
+
 <section>
 {{#form-for this name='test' onsubmit=(action 'save') class='grid-column' as |f|}}
   {{f.save-status}}
@@ -29,7 +35,7 @@
   {{f.number 'number' locale=locale.code precision=2}}
   {{f.percent 'percent' min=0 max=1 locale=locale.code}}
   {{f.currency 'amount' 'currency' currencies=currencies locale=locale.code}}
-  {{f.autocomplete 'autocomplete' key='name' onquery=(action 'query') }}
+  {{f.autocomplete 'autocomplete' key='name' onquery=(action 'query') link=(href-to 'apple')}}
   {{#f.password 'password' }}
     Reveal Password
   {{else}}

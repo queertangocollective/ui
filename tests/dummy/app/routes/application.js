@@ -32,6 +32,11 @@ export default Route.extend({
         blockquote: 'Quote',
         small: 'Small'
       },
+      photoSize: {
+        small: '{icon} Small',
+        medium: '{icon} Medium',
+        large: '{icon} Full Bleed'
+      },
       countries: {
         notFound: 'No Countries found for "{query}"',
         none: 'No Countries have been added yet',
