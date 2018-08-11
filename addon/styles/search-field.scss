@@ -15,6 +15,10 @@
   fieldset {
     position: relative;
 
+    a:hover svg {
+      fill: $accent;
+    }
+
     input {
       padding-right: 1.5rem;
     }
@@ -33,6 +37,7 @@
       &, svg {
         width: 1.5rem;
         height: 1.5rem;
+        transition: fill 120ms;
       }
     }
 
