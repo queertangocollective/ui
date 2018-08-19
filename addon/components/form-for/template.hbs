@@ -1,7 +1,7 @@
 {{yield (hash model=model
               changeset=changeset
               save-status=(component 'form-for/save-status' model=model changeset=changeset hasChanges=(or changeset.hasChanges hasNestedChanges) id=elementId onsave=(action 'save'))
-              text=(component 'form-for/field' fieldType='text-field' formName=name model=changeset index=index onchange=(action 'onchange'))
+              text=(component 'form-for/field' fieldType='text-field' formName=name model=changeset index=index onchange=(action 'onchange') onsubmit=(action save))
               buttons=(component 'form-for/field' fieldType='button-group' formName=name model=changeset index=index onchange=(action 'onchange'))
               number=(component 'form-for/field' fieldType='number-field' formName=name model=changeset index=index onchange=(action 'onchange'))
               currency=(component 'form-for/currency' formName=name model=changeset index=index onchange=(action 'onchange'))

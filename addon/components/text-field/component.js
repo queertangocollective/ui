@@ -109,6 +109,13 @@ export default Component.extend({
       let input = this.element.querySelector('input');
       this._setValue(input.value);
     },
+    keydown(evt) {
+      if (evt.which === 27) {
+        tryInvoke(this, 'oncancel');
+      } else if (evt.which === 13) {
+        tryInvoke(this, 'onsubmit');
+      }
+    },
     focus() {
       set(this, 'isFocused', true);
       tryInvoke(this, 'onfocus');

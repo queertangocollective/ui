@@ -1,10 +1,10 @@
 {{#animated-container}}
   {{#form-for this.model onsubmit=(action 'submit') as |f|}}
     {{#animated-if this.isCreating use=fade duration=200}}
-      {{f.text this.field hasLabel=false autofocus=true type=type placeholder=placeholder}}
+      {{f.text this.field hasLabel=false autofocus=true type=type placeholder=placeholder oncancel=(action clear)}}
     {{/animated-if}}
 
-    {{#if isCreating}}
+    {{#if this.isCreating}}
       {{#f.submit class='icon'}}
         {{yield to='inverse'}}
       {{/f.submit}}

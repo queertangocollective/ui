@@ -18,12 +18,12 @@ export default Component.extend({
 
   type: 'submit',
 
-  duration: 200,
+  duration: 400,
 
   submit: task(function *(submit) {
     set(this, 'isProcessing', true);
     try {
-      yield RSVP.all([submit(), timeout(500)]);
+      yield RSVP.all([submit(), timeout(800)]);
     } finally {
       set(this, 'isProcessing', false);
     }

@@ -6,6 +6,9 @@ module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
     svgJar: {
       strategy: 'inline',
+      sourceDirs: [
+        'public/assets/images/icons'
+      ],
       inline: {
         copypastaGen: (assetId) => `{{icon '${assetId}'}}`
       }

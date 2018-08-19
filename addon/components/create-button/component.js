@@ -9,6 +9,8 @@ export default Component.extend({
   classNames: ['create-button'],
   type: 'text',
 
+  isCreating: false,
+
   *fade({ insertedSprites, removedSprites }) {
     insertedSprites.map(fadeIn);
     removedSprites.map(fadeOut);
@@ -19,6 +21,11 @@ export default Component.extend({
     document.body.removeEventListener('touchstart', this.documentClick);
     document.body.removeEventListener('click', this.documentClick);
     this._super();
+  },
+
+  clear() {
+    this.set('isCreating', false);
+    this.set('value', null);
   },
 
   model: computed('field', 'value', function () {
@@ -32,7 +39,7 @@ export default Component.extend({
       let payload = Object.assign({}, model, changes);
       return this.onsubmit(payload)
         .catch(() => {})
-        .finally(() => set(this, 'isCreating', false));
+        .finally(() => this.clear());
     },
 
     create(evt) {
@@ -44,7 +51,7 @@ export default Component.extend({
             this.element !== evt.target &&
             !this.element.contains(evt.target)) {
           run(() => {
-            set(this, 'isCreating', false);
+            this.clear();
           });
         }
       };

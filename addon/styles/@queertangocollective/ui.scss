@@ -60,6 +60,7 @@ html {
 
 a {
   color: $accent;
+  touch-action: manipulation;
 }
 
 .liquid-container:not(.liquid-animating) {

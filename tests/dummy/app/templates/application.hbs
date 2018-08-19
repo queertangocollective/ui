@@ -60,7 +60,7 @@
   {{/f.form-for}}
 {{/form-for}}
 
-{{#create-button 'email' type='email' placeholder='Enter email'}}
+{{#create-button 'email' type='email' placeholder='Enter email' onsubmit=(action 'flash')}}
   {{icon "add"}} Add Login
 {{else}}
   {{icon "add"}}

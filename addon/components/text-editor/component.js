@@ -277,6 +277,8 @@ export default Component.extend({
                          this.textSizes.findBy('name', 'none');
           this.set('textSize', textSize);
         });
+      } else {
+        this._lastRange = null;
       }
     });
 
@@ -365,12 +367,14 @@ export default Component.extend({
   actions: {
 
     embed() {
-      let editor = this.editor;
-      let range = this._lastRange;
-      return this.onembed().then((embed) => {
-        editor.selectRange(range);
-        this.addCard(embed.type, embed.attributes);
-      });
+      let range = this.editor.range || this._lastRange;
+      if (range == null) {
+        let editor = this.editor;
+        return this.onembed().then((embed) => {
+          editor.selectRange(range);
+          this.addCard(embed.type, embed.attributes);
+        });
+      }
     },
 
     openForm(component) {
@@ -413,10 +417,11 @@ export default Component.extend({
       this.set('textSize', textSize);
     },
 
-    setLink(link, href) {
-      // debugger;
+    addLink(href) {
+      let { range } = this.form;
       this.set('form', null);
       let editor = this.editor;
+      editor.selectRange(range);
       editor.toggleMarkup('a', { href });
     },
 

@@ -90,7 +90,7 @@ export default Component.extend({
   },
 
   didInsertElement() {
-    this.measure();
+    this.scheduleMeasurement();
     this.resize = bind(this, 'scheduleMeasurement');
     window.addEventListener('resize', this.resize);
   },
