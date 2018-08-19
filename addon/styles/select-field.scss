@@ -7,7 +7,7 @@
     background: $black;
     box-shadow: 0 1px 2px 1px rgba($black, 0.20);
     border-radius: 4px;
-    height: 2rem;
+    height: calc(2rem + 4px);
     font-size: 1rem;
     appearance: none;
     border: 0;
